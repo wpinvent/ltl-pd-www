@@ -15,27 +15,27 @@ mobile application.  Here is one way to achieve this:
 
 1. Create a new PhoneGap/Cordova application, using PhoneGap's "create" utility:
 
-    # create <dest> <default namespace> <project name>
-    create './mycode/ltl-pd-android' 'com.bluedotsolutions' 'ltl-pd-android'
+        # create <dest> <default namespace> <project name>
+        create './mycode/ltl-pd-android' 'com.bluedotsolutions' 'ltl-pd-android'
 
 1. Make this folder a new Git repository (e.g. ltl-pd-android)
 
-    cd ./mycode/ltl-pd-android
-    git init
-    git commit -a -m 'Initial commit'
+        cd ./mycode/ltl-pd-android
+        git init
+        git commit -a -m 'Initial commit'
 
 1. Remove the default www folder created in the Cordova projects
 
-    rm -rf ./mycode/ltl-pd-android/assets/www
+        rm -rf ./mycode/ltl-pd-android/assets/www
 
 1. Add this www repository as a submodule in the ltl-pd-android repo:
 
-    cd ./mycode/ltl-pd-android
-    git submodule add git@github.com:andywhite37/ltl-pd-www.git assets/www
+        cd ./mycode/ltl-pd-android
+        git submodule add git@github.com:andywhite37/ltl-pd-www.git assets/www
 
-    # git submodule init/update if needed (?)
-    git submodule init
-    git submodule update
+        # git submodule init/update if needed (?)
+        git submodule init
+        git submodule update
 
 ### 3rd-Party Dependencies (included in lib)
 
