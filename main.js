@@ -42,34 +42,40 @@ require.config({
 /**
  * Main entry point into the application
  */
-require(['domReady', 'jquery', 'bootstrap', 'js/views/HomeView'],
+require(['domReady', 'jquery', 'underscore', 'backbone', 'js/app', 'bootstrap'],
+    // bootstrap not used directly, but included in deps list to force it to load
 
-    function (domReady, $, bootstrap, HomeView) {
+    function (domReady, $, _, Backbone, app) {
+
+        console.log('Entering main');
 
         // This is require.js's equivalent of jQuery's $(document).ready()...
         domReady(function () {
 
             // Function to run when Cordova is ready
-            var onDeviceReady = function(desktop) {
-
-                if (desktop !== true) {
+            var onDeviceReady = function(isDesktop) {
+                if (isDesktop !== true) {
                     cordova.exec(null, null, 'SplashScreen', 'hide', []);
                 }
 
                 // Start the application!
-                var homeView = new HomeView().render();
-                $('div#root').append(homeView.el);
+                app.initialize(isDesktop);
+                Backbone.history.start({ pushState: false }); // use hash-based URLs off of index.html
+                app.start();
 
                 // Hide the static loading div
                 $('#loading').slideUp(600);
-            }
+            };
 
             // If running on a device, wait for Cordova's deviceready event
             if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
                 document.addEventListener('deviceready', onDeviceReady, false);
             }
             else {
-                onDeviceReady(true);
+                // On desktop - simulated loading delay
+                setTimeout(function() {
+                    onDeviceReady(true);
+                }, 500);
             }
         });
     }

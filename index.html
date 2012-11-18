@@ -2,26 +2,28 @@
 <html lang="en">
     <head>
         <title>LTL P&D</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Twitter Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" href="lib/twitter-bootstrap-2.2.1/css/bootstrap.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="lib/twitter-bootstrap-2.2.1/css/bootstrap-responsive.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/master.css" media="screen" />
+    </head>
 
-        <!-- Cordova JS (must load first) -->
+    <body>
+        <div id="loading" class="hero-unit">
+            <h2>LTL P&D</h2>
+            <p>Application loading, please wait...</p>
+        </div>
+
+        <div id="root" class="container-fluid">
+        </div>
+
+        <!-- Cordova JS (must load first, and outside the control of Require.js) -->
         <script type="text/javascript" src="lib/cordova-2.2.0/cordova-2.2.0.js"></script>
 
         <!-- Require.js entry point -->
         <script type="text/javascript" data-main="main" src="lib/require-2.1.1/require.js"></script>
-    </head>
-
-    <body>
-        <div id="root" class="container-fluid">
-            <div id="loading" class="hero-unit">
-                <h2>LTL P&D</h2>
-                <p>Application loading, please wait...</p>
-            </div>
-        </div>
     </body>
 </html>
