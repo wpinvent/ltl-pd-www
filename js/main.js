@@ -9,8 +9,13 @@ require(['domReady', 'jquery', 'underscore', 'backbone', 'js/app', 'js/routers/a
         // Wait for DOM ready...
         domReady(function () {
 
+            console.log('DOM ready!');
+
             // Function to run when Cordova is ready
             var onDeviceReady = function(isDesktop) {
+
+                console.log('Device ready!');
+
                 if (isDesktop !== true) {
                     cordova.exec(null, null, 'SplashScreen', 'hide', []);
                 }

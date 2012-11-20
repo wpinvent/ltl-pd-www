@@ -4,7 +4,7 @@
 define(['jquery', 'underscore', 'backbone'],
     function($, _, Backbone) {
 
-        console.log('Entering DesktopNative');
+        console.log('Entering js/utils/DesktopNative');
 
         var DesktopNative = function() {
             var self = this;

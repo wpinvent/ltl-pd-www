@@ -1,28 +1,28 @@
 /**
  * app - Returns the main Backbone.Marionette.Application instance
  */
-define(['jquery', 'underscore', 'backbone', 'marionette', 'js/utils/CordovaNative', 'js/utils/DesktopNative'],
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'marionette',
+    'js/utils/CordovaNative',
+    'js/utils/DesktopNative',
+    'js/utils/backboneConfig',
+    'js/utils/marionetteConfig'
+    ],
 
-    function($, _, Backbone, Marionette, CordovaNative, DesktopNative) {
+    function(
+        $,
+        _,
+        Backbone,
+        Marionette,
+        CordovaNative,
+        DesktopNative
+    ) {
         'use strict';
 
         console.log("Entering js/app");
-
-        // Change Marionette to use pre-fetched templates, rather than looking for them by DOM element id selector
-        // https://github.com/marionettejs/backbone.marionette/wiki/Using-marionette-with-requirejs
-        Marionette.TemplateCache.prototype.loadTemplate = function(templateId) {
-            var template = templateId;
-
-            if (!template || template.length === 0) {
-                var message = "Could not find template: '" + templateId + "'",
-                    error = new Error(message);
-
-                error.name = "NoTemplateError";
-                throw error;
-            }
-
-            return template;
-        };
 
         /**
          * Creates an instance of a Backbone.Marionette.Application
