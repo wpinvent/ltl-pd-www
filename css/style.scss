@@ -1,8 +1,16 @@
+/*
+ * CODEGEN WARNING: This .css file was generated from a .scss file, do not edit by hand
+ */
+
 #loading {
     background-color: #cccccc;
     margin: 10% 10% 10% 10%;
 
     h2, p {
         text-align: center;
+    }
+
+    h3, h4 {
+        text-align: right;
     }
 }

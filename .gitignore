@@ -1,3 +1,5 @@
-# Ant build script (html5 boilerplate)
+# Ant build script generated files
 intermediate/
 publish/
+.sass-cache/
+css/style.css
