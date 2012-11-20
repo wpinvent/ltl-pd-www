@@ -14,7 +14,8 @@
     <property environment="ENV" />
     
     <!-- load property files -->
-    <property file="build/config/project.properties"/><property file="build/config/default.properties"/>
+    <property file="build/config/project.properties"/>
+    <property file="build/config/default.properties"/>
     
     <!-- merge the stylesheet properties -->
     <var name="stylesheet-files" value="${file.default.stylesheets}, ${file.stylesheets}"/>
@@ -59,6 +60,7 @@
             </else>
         </if>
     </target>
+
     <target name="text">
         <if>
             <equals arg1="${env}" arg2="dev"/>
@@ -82,6 +84,7 @@
             </else>
         </if>
     </target>
+
     <target name="buildkit">
         <if>
             <equals arg1="${env}" arg2="dev"/>
@@ -105,7 +108,10 @@
             </else>
         </if>
     </target>
+
     <target name="build">
+        <echoproperties />
+
         <if>
             <equals arg1="${env}" arg2="dev"/>
             <then>
@@ -128,6 +134,7 @@
             </else>
         </if>
     </target>
+
     <target name="minify">
         <if>
             <equals arg1="${env}" arg2="dev"/>
@@ -151,11 +158,15 @@
             </else>
         </if>
     </target>
+
     <target name="clean" depends="-clean"/>
     
     <!-- JSLint target, run separately -->
     <target name="jslint">
-        <apply dir="${dir.source}/${dir.js}" executable="java" parallel="false" failonerror="true">
+        <apply dir="${dir.source}/${dir.js}"
+            executable="java"
+            parallel="false"
+            failonerror="true">
             <fileset dir="./${dir.source}/">
                 <include name="**/${dir.js}/*.js"/>
                 <exclude name="**/*.min.js"/>
@@ -356,10 +367,10 @@
                    -jsdoc3"/>
     
     <!--
-  *************************************************
-  * FUNCTION TARGETS                              *
-  *************************************************
-  -->
+    *************************************************
+    * FUNCTION TARGETS                              *
+    *************************************************
+    -->
     
     <target name="-clean" description="(PRIVATE) Wipe the previous build (Deletes the dir.publish directory">
         <!-- This is a private target -->
@@ -367,9 +378,9 @@
         <delete dir="./${dir.intermediate}/"/>
         <delete dir="./${dir.publish}/"/>
     </target>
+
     <target name="-intro" description="(PRIVATE) Kindly inform the developer about the impending magic">
         <!-- This is a private target -->
-        
         <echo message="====================================================================="/>
         <echo message="Welcome to the HTML5 Boilerplate Build Script!"/>
         <echo message=" "/>
@@ -380,16 +391,18 @@
         <echo message=" "/>
         <echo message="Feel free to come back or stay here and follow along."/>
         <echo message="====================================================================="/>
-        <echo message=" "/>
-        <echo message=" "/>
     </target>
+
     <target name="-mkdirs">
+        <echo message="Creating publish and intermediate dirs" />
+
         <condition property="publish.exists">
             <available file="${dir.publish}" type="dir"/>
         </condition>
         <condition property="intermediate.exists">
             <available file="${dir.intermediate}" type="dir"/>
         </condition>
+
         <if>
             <or>
                 <equals arg1="${dir.publish}" arg2="."/>
@@ -425,10 +438,11 @@
             </else>
         </if>
     </target>
+
     <target name="-copy" depends="-mkdirs">
         <!-- This is a private target -->
-        
         <echo message="Copying over new files..."/>
+
         <copy todir="./${dir.publish}" includeEmptyDirs="false">
             <fileset dir="${dir.source}/" excludes="${file.default.exclude}, ${file.exclude}">
                 <!-- exclude files that are superseded by optimized versions with different names -->
@@ -440,10 +454,12 @@
         </copy>
         <echo message="A copy of all new non-dev files are now in: ./${dir.publish}."/>
     </target>
+
     <target name="-copyall" depends="-mkdirs">
         <!-- This is a private target -->
         <!-- Copies all files, including .css and .js files for when you aren't minifying-->
         <echo message="Copying over all files..."/>
+
         <copy todir="./${dir.publish}">
             <fileset dir="${dir.source}/" excludes="${file.default.exclude}, ${file.exclude}"></fileset>
         </copy>
@@ -453,9 +469,10 @@
     <!-- JAVASCRIPT -->
     <target name="-js.main.concat" depends="-js.all.minify" description="(PRIVATE) Concatenates the JS files in dir.js">
         <filelist id="file.root" dir="${dir.source}" files="${file.root.page}"/>
+
         <echo message="Concatenating Main JS scripts based on ${file.root.page}..."/>
-        <apply executable="java" parallel="false"
-          outputproperty="scripts.ordered">
+
+        <apply executable="java" parallel="false" outputproperty="scripts.ordered">
             <arg value="-cp"/>
             <arg value="./${dir.build.tools}"/>
             <arg value="ScriptsToConcat"/>
@@ -463,6 +480,7 @@
                 <filelist refid="file.root"/>
             </first>
         </apply>
+
         <filelist id="scripts.toconcat" dir="./${dir.intermediate}/" files="${scripts.ordered}">
         </filelist>
         
@@ -471,6 +489,7 @@
             <filelist refid="scripts.toconcat"/>
         </concat>
     </target>
+
     <target name="-js.scripts.concat" depends="-js.main.concat" if="build.concat.scripts">
         <echo message="Concatenating library file with main script file"/>
         <if>
@@ -508,8 +527,11 @@
             </then>
         </if>
     </target>
+
     <target name="-js.all.minify" depends="-mkdirs" description="(PRIVATE) Minifies the scripts.js files created by js.scripts.concat">
+
         <echo message="Minifying scripts"/>
+
         <copy todir="${dir.intermediate}/${dir.js}">
             <fileset dir="${dir.source}/${dir.js}" includes="${file.js.bypass}, **/*.min.js"/>
         </copy>
@@ -569,28 +591,35 @@
         <replaceregexp match="jquery-(\d|\d(\.\d)+)\.js" replace="jquery-\1.min.js" flags="g">
             <fileset dir="./${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <!-- switch any google CDN reference to minified -->
         <replaceregexp match="(\d|\d(\.\d)+)\/jquery\.js" replace="\1/jquery.min.js" flags="g">
             <fileset dir="./${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <echo>Kill off those versioning flags: ?v=2</echo>
         <replaceregexp match='\?v=\d+">' replace='">' flags="g">
             <fileset dir="./${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <echo>Remove favicon.ico reference if it is pointing to the root</echo>
         <replaceregexp match="&lt;link rel=[&quot;']shortcut icon[&quot;'] href=[&quot;']/favicon\.ico[&quot;']&gt;" replace="">
             <fileset dir="${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <!-- we maintain the apple-touch-icon reference for Android 2.2   www.ravelrumba.com/blog/android-apple-touch-icon
-      <replace token="&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/apple-touch-icon.png&quot;>" value="">
-          <fileset dir="${dir.intermediate}" includes="${page-files}"/>
-      </replace>
-      -->
+        <replace token="&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/apple-touch-icon.png&quot;>" value="">
+            <fileset dir="${dir.intermediate}" includes="${page-files}"/>
+        </replace>
+        -->
         
         <echo message="Update the HTML to reference our concatenated script file: ${scripts.js}"/>
+
         <!-- Determines which Regex for AMD use -->
         <var name="matchRegex" value=""/>
         <var name="replaceRegex" value=""/>
+
+        <echo message = "script.require.path = ${script.require.path}" />
         <if>
             <isset property="script.require.path"/>
             <then>
@@ -604,17 +633,21 @@
                 <var name="replaceRegex" value="&lt;script src='\1/${scripts.sha}.js\'&gt;&lt;/script&gt;" />
             </else>
         </if>
+
         <!-- style.css replacement handled as a replacetoken above -->
         <replaceregexp match="${matchRegex}" replace="${replaceRegex}" flags="m">
             <fileset dir="${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <!--[! use comments like this one to avoid having them get minified -->
         
         <echo message="Update the HTML to reference our name-mangled modules directory"/>
         <replaceregexp match="&lt;script.*src=['&quot;]?${dir.js.modules}/(.*)['&quot;]\s*&gt;"
-        replace="&lt;script src='${modules.js.dir}/\1'&gt;" flags="mg">
+                       replace="&lt;script src='${modules.js.dir}/\1'&gt;"
+                       flags="mg">
             <fileset dir="${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
+
         <echo message="Updating the HTML with the new css filename: ${style.css}"/>
         <replaceregexp match="&lt;link(.+)href=['&quot;]?(.*)/${file.root.stylesheet}(?:\?.*)?['&quot;\s]?(.*/?&gt;)"
         replace="&lt;link\1href='\2/${css.sha}.css'\3" flags="m">
@@ -637,11 +670,13 @@
         </if>
         <foreach list="${file.stylesheets}" param="css_file" target="-css-remove-concatenated-stylesheets" />
     </target>
+
     <target name="-htmlclean" depends="-usemin">
         <echo message="Run htmlcompressor on the HTML"/>
         <echo message=" - maintaining whitespace"/>
         <echo message=" - removing html comments"/>
         <echo message=" - compressing inline style/script tag contents"/>
+
         <apply executable="java" parallel="false">
             <fileset dir="${dir.intermediate}/" includes="${page-files}"/>
             <arg value="-jar"/>
@@ -653,11 +688,13 @@
             <targetfile/>
         </apply>
     </target>
+
     <target name="-htmlbuildkit" depends="-usemin">
         <echo message="Run htmlcompressor on the HTML"/>
         <echo message=" - maintaining whitespace"/>
         <echo message=" - retain html comments"/>
         <echo message=" - compressing inline style/script tag contents"/>
+
         <apply executable="java" parallel="false">
             <fileset dir="${dir.intermediate}/" includes="${page-files}"/>
             <arg value="-jar"/>
@@ -674,6 +711,7 @@
             <targetfile/>
         </apply>
     </target>
+
     <target name="-htmlcompress" depends="-usemin">
         <echo message="Run htmlcompressor on the HTML"/>
         <echo message=" - removing unnecessary whitespace"/>
@@ -699,11 +737,14 @@
     
     <target name="-css-remove-concatenated-stylesheets">
         <echo>Removing ${css_file} from html</echo>
+
         <replaceregexp match="&lt;link.+href=&quot;.*${css_file}&quot;.*&gt;" replace="  " byline="true">
             <fileset dir="${dir.intermediate}" includes="${page-files}"/>
         </replaceregexp>
     </target>
+
     <target name="css-split" description="turns style.css into multiple files @imported together">
+
         <copy file="${dir.source}/${dir.css}/${file.root.stylesheet}" tofile="${dir.source}/${dir.css}/${file.root.stylesheet}.temp"/>
         <replaceregexp file="${dir.source}/${dir.css}/${file.root.stylesheet}.temp"
                match=".*"
@@ -760,6 +801,7 @@
         <copy file="${dir.source}/${dir.css}/${file.root.stylesheet}" tofile="${dir.source}/${dir.css}/${file.root.stylesheet}.orig" overwrite="false"/>
         <move file="${dir.source}/${dir.css}/${file.root.stylesheet}.temp" tofile="${dir.source}/${dir.css}/${file.root.stylesheet}" overwrite="false"/>
     </target>
+
     <target name="-css" depends="-mkdirs" description="Concatenates and Minifies any stylesheets @imported via the file.stylesheets">
         <echo message="Concatenating any @imports..."/>
         
@@ -849,6 +891,7 @@
             <targetfile/>
         </apply>
     </target>
+
     <!-- bring back the glory of hot pink -->
     <target name="hawterize">
         <replace file="${dir.source}/${dir.css}/${file.root.stylesheet}"
@@ -858,10 +901,12 @@
     
     <!-- IMAGES -->
     <target name="-imagespng" depends="-mkdirs" description="(PRIVATE) Optimizes .png images using optipng">
-        <echo message="Optimizing images..."/>
+
+        <echo message="Optimizing png images..."/>
         <echo message="This part might take a while. But everything else is already done."/>
         <echo message=" "/>
         <echo message="First, we run optipng on the .png files..."/>
+
         <if>
             <equals arg1="${images.strip.metadata}" arg2="true"/>
             <then>
@@ -871,6 +916,7 @@
                 <var name="strip-meta-tags" value=""/>
             </else>
         </if>
+
         <!-- osfamily=unix is actually true on OS X as well -->
         <!-- On *nix's and OS X, check for optipng and give a helpful message if it's not installed -->
         <if>
@@ -940,8 +986,9 @@
             </elseif>
         </if>
     </target>
+
     <target name="-imagesjpg" depends="-mkdirs" description="(PRIVATE) Optimizes .jpg images using jpegtan">
-        <echo message="Now, we clean up those jpgs..."/>
+        <echo message="Optimizing jpg images..."/>
         <if>
             <equals arg1="${images.strip.metadata}" arg2="true"/>
             <then>
@@ -994,10 +1041,12 @@
             <!--<mapper type="glob" from="*.jpg" to="*.jpg"/>-->
         </apply>
     </target>
+
     <target name="-jsdoc3" description="(PRIVATE) Publishes documentation">
         <!-- Delete any existing docs directory -->
         <echo message="Deleting previous documentation"/>
         <delete dir="./${dir.docs}/"/>
+
         <if>
             <equals arg1="${build.jsdoc3}" arg2="true"/>
             <then>
@@ -1024,6 +1073,7 @@
             </else>
         </if>
     </target>
+
     <macrodef name="lessjs">
         <attribute name="input" />
         <attribute name="output" />
@@ -1035,6 +1085,7 @@
             <echo>Lessjs: generated @{output}</echo>
         </sequential>
     </macrodef>
+
     <macrodef name="scss">
         <attribute name="input"/>
         <attribute name="output"/>
