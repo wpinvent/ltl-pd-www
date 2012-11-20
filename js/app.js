@@ -20,7 +20,7 @@ define([
         CordovaNative,
         DesktopNative
     ) {
-        'use strict';
+        //'use strict';
 
         console.log("Entering js/app");
 
