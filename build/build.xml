@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
-<project name="Build" default="build" basedir="../">
+<project name="LTL Pickup and Delivery WWW Build"
+    default="build"
+    basedir="../">
     
     <!-- Load in Ant-Contrib to give us access to some very useful tasks! -->
     <!-- the .jar file is located in the tools directory -->
@@ -107,7 +109,7 @@
         depends="clean, mkdirs"
         description="(PRIVATE) Copies the source files to the build publish dir, except the files that will be optimized" >
 
-        <echo message="Copying ${dir.source} files (except those that will be optimized) to ${dir.publish}..."/>
+        <echo message="Copying ${dir.source} files (except those that will be optimized) to ${dir.intermediate}..."/>
 
         <copy todir="./${dir.intermediate}" includeEmptyDirs="true">
             <fileset dir="${dir.source}/" excludes="${file.excludes}">
@@ -131,17 +133,14 @@
         </java>
     </target>
 
-    <target name="copy-intermediate-to-publish"
-        depends="copy-source-to-intermediate"
-        description="Copies intermediate files to publish" >
+    <target name="finalize"
+        depends="run-rjs-on-intermediate"
+        description="Does the final cleanup on the published files">
 
-        <echo message="Copying ${dir.intermediate} files to ${dir.publish}..." />
-
-        <copy todir="./${dir.publish}">
-            <fileset dir="${dir.intermediate}/">
-            </fileset>
-        </copy>
+        <delete file="${dir.publish}/build.txt" />
+        <delete file="${dir.publish}/css/style.scss" />
     </target>
+
 
     <target name="build"
         description="Runs the -build.env target for the specified env (dev, test, production)"
@@ -152,7 +151,7 @@
         mkdirs,
         copy-source-to-intermediate,
         run-rjs-on-intermediate,
-        copy-intermediate-to-publish
+        finalize
         ">
     </target>
 
