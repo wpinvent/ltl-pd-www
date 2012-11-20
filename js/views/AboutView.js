@@ -1,21 +1,13 @@
-define(['jquery', 'underscore', 'backbone', 'text!html/AboutView.html'],
+/**
+ * Returns a contructor function for the AboutView
+ */
+define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/AboutView.html'],
 
-    function($, _, Backbone, Template) {
+    function($, _, Backbone, Marionette, app, template) {
         console.log('Entering js/views/AboutView');
 
-        var AboutView = Backbone.View.extend({
-            events: {
-                'click #nextView': 'onNextViewClick'
-            },
-
-            render: function() {
-                this.$el.html(_.template(Template));
-                return this;
-            },
-
-            onNextViewClick: function(event) {
-                alert('You clicked next!');
-            }
+        var AboutView = Marionette.ItemView.extend({
+            template: template,
         });
 
         return AboutView;

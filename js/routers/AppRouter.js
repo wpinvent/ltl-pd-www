@@ -1,58 +1,33 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'js/views/LoginView',
-    'js/views/AboutView'],
+/**
+ * Returns the main Backbone.Marionette.AppRouter instance
+ */
+define(['jquery', 'underscore', 'backbone', 'marionette', 'js/controllers/appController'],
 
-    function(
-        $,
-        _,
-        Backbone,
-        LoginView,
-        AboutView
-        ) {
+    function($, _, Backbone, Marionette, appController) {
 
-        console.log('Entering js/routers/AppRouter');
+        console.log('Entering js/routers/appRouter');
 
-        var AppRouter = Backbone.Router.extend({
+        var AppRouter = Marionette.AppRouter.extend({
 
             initialize: function() {
-                console.log('Entering AppRouter.initialize')
+                _.bindAll(this);
             },
 
-            routes: {
+            appRoutes: {
                 '': 'index',
                 'login': 'login',
                 'about': 'about',
-                '*other': 'default'
+                'boxes': 'boxes',
+                '*other': 'other'
             },
 
-            index: function() {
-                // ?
-            },
-
-            login: function() {
-                this.goTo(LoginView);
-            },
-
-            about: function() {
-                this.goTo(AboutView);
-            },
-
-            default: function(other) {
-                console.log("Invalid route: " + other);
-            },
-
-            /**
-             * Construct, render, and navigate to the given view.  (View should be a Backbone View constructor function)
-             */
-            goTo: function(View) {
-                var view = new View().render();
-                $('div#root').html(view.el);
+            triggerRoute: function(route) {
+                this.navigate(route, { trigger: true });
             }
         });
 
-        return AppRouter;
+        return new AppRouter({
+            controller: appController
+        });
     }
 );

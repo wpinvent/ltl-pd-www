@@ -1,5 +1,10 @@
+/**
+ * Returns an constructor function for the native wrapper for desktop (non-device) testing.
+ */
 define(['jquery', 'underscore', 'backbone'],
     function($, _, Backbone) {
+
+        console.log('Entering DesktopNative');
 
         var DesktopNative = function() {
             var self = this;

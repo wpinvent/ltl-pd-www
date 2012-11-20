@@ -8,6 +8,8 @@
         <!-- Twitter Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" href="lib/twitter-bootstrap-2.2.1/css/bootstrap.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="lib/twitter-bootstrap-2.2.1/css/bootstrap-responsive.css" media="screen" />
+
+        <!-- Applicaton CSS -->
         <link rel="stylesheet" type="text/css" href="css/master.css" media="screen" />
     </head>
 
@@ -17,13 +19,13 @@
             <p>Application loading, please wait...</p>
         </div>
 
-        <div id="root" class="container-fluid">
+        <div id="main" class="container-fluid">
         </div>
 
         <!-- Cordova JS (must load first, and outside the control of Require.js) -->
         <script type="text/javascript" src="lib/cordova-2.2.0/cordova-2.2.0.js"></script>
 
         <!-- Require.js entry point -->
-        <script type="text/javascript" data-main="main" src="lib/require-2.1.1/require.js"></script>
+        <script type="text/javascript" data-main="config" src="lib/require-2.1.1/require.js"></script>
     </body>
 </html>

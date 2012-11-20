@@ -1,27 +1,51 @@
-define(['jquery', 'underscore', 'backbone', 'text!html/LoginView.html'],
+/**
+ * Returns a contructor function for the LoginView
+ */
+define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session', 'tpl!html/LoginView.html'],
 
-    function($, _, Backbone, Template) {
+    function($, _, Backbone, Marionette, app, Session, template) {
+
         console.log('Entering js/views/LoginView');
 
-        var LoginView = Backbone.View.extend({
+        var LoginView = Marionette.ItemView.extend({
+
+            template: template,
+
+            initialize: function() {
+                console.log("Entering LoginView initialize");
+
+                _.bindAll(this);
+
+                this.model = new Session();
+            },
+
+            // Marionette converts these to jQuery objects...
+            ui: {
+                $userNameInput: '#userName',
+                $passwordInput: '#password'
+            },
+
             events: {
                 'click #login': 'onLoginClick'
             },
 
-            render: function() {
-                this.$el.html(_.template(Template));
-                return this;
-            },
-
             onLoginClick: function(event) {
-                var userName = $('#userName').val(),
-                    password = $('#password').val();
+                this.model.set('userName', this.ui.$userNameInput.val());
+                this.model.set('password', this.ui.$passwordInput.val());
 
-                app.native.login(userName, password, this.onLoginSuccess, this.onLoginFailure);
+                //var app = require('js/app');
+                app.native.login(
+                    this.model.get('userName'),
+                    this.model.get('password'),
+                    this.onLoginSuccess,
+                    this.onLoginFailure);
             },
 
-            onLoginSuccess: function() {
+            onLoginSuccess: function(userName, password) {
                 alert("Logged in!");
+
+                app.session = this.model;
+                app.router.triggerRoute('boxes');
             },
 
             onLoginFailure: function() {
