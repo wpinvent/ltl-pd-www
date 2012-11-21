@@ -1,2 +1,5 @@
-cd build
-ant csslint
+@echo off
+
+echo Running JSLINT on %1
+
+java -jar .\build\tools\rhino.jar .\build\tools\csslint-rhino.js %1

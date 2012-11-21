@@ -4,19 +4,34 @@
 <project name="LTL Pickup and Delivery Web Project Build"
     default="build"
     basedir="../">
+
+    <!--
+    ***************************************************************************
+    *
+    * Build Setup
+    *
+    * Note:
+    * This script borrowed a lot from the html5 boilerplate ant-build-script
+    * https://github.com/h5bp/ant-build-script
+    *
+    ***************************************************************************
+    -->
     
-    <!-- Use Ant Contrib (foreach task, etc.) -->
+    <!-- Ant Contrib -->
     <taskdef resource="net/sf/antcontrib/antlib.xml">
         <classpath>
             <pathelement location="${basedir}/build/tools/ant-contrib-1.0b3.jar"/>
         </classpath>
     </taskdef>
     
-    <!-- Load env vars -->
+    <!-- Load environment variables -->
     <property environment="ENV" />
 
-    <!-- Load Ant properties from file --> 
+    <!-- Load properties -->
     <property file="build/build.properties"/>
+
+    <!-- Load build macros -->
+    <import file="build.macros.xml" />
     
     <!-- Check Ant version -->
     <fail message="Ant version 1.8.2 or greater is required.">
@@ -27,12 +42,35 @@
         </condition>
     </fail>
 
-    <!-- TODO: check for node executable -->
+    <!-- TODO: check for availability Node.js executable (node) (required for r.js build, and probably other things) -->
 
-    <target name="scss"
-        description="Runs scss tool in ${dir.css}">
+    <!--
+    ***************************************************************************
+    *
+    * Build Targets
+    *
+    ***************************************************************************
+    -->
 
-        <foreach target="scss-single" param="file">
+    <target name="intro"
+        description="Prints a build starting message.">
+
+        <echo message="-------------------------------------------------" />
+        <echo message="Ant build starting..." />
+        <echo message="-------------------------------------------------" />
+
+        <!-- Show property values
+        <echoproperties />
+        -->
+    </target>
+
+    <target name="scss-all"
+        depends="intro"
+        description="Runs scss tool to generate .css files for all application .scss files (not including libs)">
+
+        <echo message="Running SCSS on all application .scss files..." />
+
+        <foreach target="-scss-single" param="file">
             <path>
                 <fileset dir="${dir.css}">
                     <include name="**/*.scss" />
@@ -41,10 +79,24 @@
         </foreach>
     </target>
 
-    <target name="jslint"
-        description="Runs jslint on the app javascript files">
+    <target name="-scss-single"
+        description="(PRIVATE) Runs SCSS on a single file (used in scss-all)">
 
-        <foreach target="jslint-single" param="file">
+        <!-- JRuby doesn't seem to like absolute paths (on Windows (?)), so force them back to relative -->
+        <basename file="${file}" suffix=".scss" property="file.basename" />
+        <property name="file.scss" value="${dir.css}/${file.basename}.scss" />
+        <property name="file.css" value="${dir.css}/${file.basename}.css" />
+
+        <scss input="${file.scss}" output="${file.css}" />
+    </target>
+
+    <target name="jslint-all"
+        depends="intro"
+        description="Runs jslint on all application javascript files (not including libs)">
+
+        <echo message="Running JSLINT on all application .scss files..." />
+
+        <foreach target="-jslint-single" param="file">
             <path>
                 <fileset dir="${dir.source}">
                     <include name="main.js" />
@@ -54,10 +106,18 @@
         </foreach>
     </target>
 
-    <target name="jshint"
-        description="Runs jshint on the app javascript files">
+    <target name="-jslint-single"
+        description="(PRIVATE) Runs JSLINT on a single file (used in jslint-all)">
+        <jslint input="${file}" />
+    </target>
 
-        <foreach target="jshint-single" param="file">
+    <target name="jshint-all"
+        depends="intro"
+        description="Runs jshint on all application javascript files (not including libs)">
+
+        <echo message="Running JSHINT on all application .scss files..." />
+
+        <foreach target="-jshint-single" param="file">
             <path>
                 <fileset dir="${dir.source}">
                     <include name="main.js" />
@@ -67,11 +127,18 @@
         </foreach>
     </target>
 
-    <target name="csslint"
-        depends="scss"
-        description="Runs csslint on the app css files">
+    <target name="-jshint-single"
+        description="(PRIVATE) Runs JSHINT on a single file (used in jshint-all)">
+        <jshint input="${file}" />
+    </target>
 
-        <foreach target="csslint-single" param="file">
+    <target name="csslint-all"
+        depends="intro, scss-all"
+        description="Runs csslint on all application .css files (not including libs)">
+
+        <echo message="Running CSSLINT on all application .css files..." />
+
+        <foreach target="-csslint-single" param="file">
             <path>
                 <fileset dir="${dir.css}">
                     <include name="**/*.css" />
@@ -80,88 +147,14 @@
         </foreach>
     </target>
 
-    <target name="scss-single"
-        description="Runs SCSS on a single file">
+    <target name="-csslint-single"
+        description="(PRIVATE) Runs CSSLINT on a single file (used in csslint-all)">
 
-        <echo message="---------------------------------------------------------" />
-        <echo message="SCSS: ${file}" />
-        <echo message="---------------------------------------------------------" />
-
-        <basename file="${file}" suffix=".scss" property="file.basename" />
-
-        <!-- JRuby doesn't seem to like absolute paths (on Windows (?)), so force them back to relative -->
-        <property name="file.scss" value="${dir.css}/${file.basename}.scss" />
-        <property name="file.css" value="${dir.css}/${file.basename}.css" />
-
-        <scss input="${file.scss}" output="${file.css}" />
-    </target>
-
-    <target name="jslint-single"
-        description="Runs JSLINT on a single file.">
-
-        <echo message="---------------------------------------------------------" />
-        <echo message="JSLINT: ${file}" />
-        <echo message="---------------------------------------------------------" />
-
-        <!-- TODO: Node - probably faster, but doesn't work right now -->
-        <!--
-        <exec executable="node" failonerror="true">
-            <arg path="${dir.build.tools}/${tool.jslint}" />
-            <arg path="${file}" />
-            <arg value="${tool.jslint.opts}" />
-        </exec>
-        -->
-
-        <!-- Rhino -->
-        <exec executable="java" failonerror="true">
-            <arg value="-jar" />
-            <arg path="${dir.build.tools}/${tool.rhino}" />
-            <arg path="${dir.build.tools}/${tool.jslint}" />
-            <arg path="${file}" />
-            <arg value="${tool.jslint.opts}" />
-        </exec>
-    </target>
-
-    <target name="jshint-single"
-        description="Runs JSHINT on a single file.">
-
-        <echo message="---------------------------------------------------------" />
-        <echo message="JSHINT: ${file}" />
-        <echo message="---------------------------------------------------------" />
-
-        <!-- TODO: Node -->
-
-        <!-- Rhino -->
-        <exec executable="java" failonerror="true">
-            <arg value="-jar" />
-            <arg path="${dir.build.tools}/${tool.rhino}" />
-            <arg path="${dir.build.tools}/${tool.jshint}" />
-            <arg path="${file}" />
-            <arg value="${tool.jshint.opts}" />
-        </exec>
-    </target>
-
-    <target name="csslint-single"
-        description="Runs CSSLINT on a single file.">
-
-        <echo message="---------------------------------------------------------" />
-        <echo message="CSSLINT: ${file}" />
-        <echo message="Prepare for useless errors..." />
-        <echo message="---------------------------------------------------------" />
-
-        <!-- TODO: Node -->
-
-        <!-- Rhino -->
-        <exec executable="java" failonerror="true">
-            <arg value="-jar" />
-            <arg path="${dir.build.tools}/${tool.rhino}" />
-            <arg path="${dir.build.tools}/${tool.csslint}" />
-            <arg path="${file}" />
-            <arg value="${tool.csslint.opts}" />
-        </exec>
+        <csslint input="${file}" />
     </target>
 
     <target name="clean"
+        depends="intro"
         description="Deletes build output dirs.">
 
         <echo message="Deleting dir: ${dir.intermediate}..."/>
@@ -172,9 +165,10 @@
     </target>
 
     <target name="mkdirs"
-        description="Creates the build output dirs." >
+        depends="intro"
+        description="Creates the initial build output dirs." >
 
-        <!-- TODO: r.js might create the publish dir now... -->
+        <!-- TODO: r.js creates the publish dir now, might be able to remove that from here... -->
 
         <condition property="publish.exists">
             <available file="${dir.publish}" type="dir"/>
@@ -228,6 +222,7 @@
     </target>
 
     <target name="copy-source-to-intermediate"
+        depends="mkdirs"
         description="Copies the source files to the intermediate staging area" >
 
         <echo message="Copying source files to intermediate..." />
@@ -238,6 +233,7 @@
     </target>
 
     <target name="run-rjs-on-intermediate"
+        depends="copy-source-to-intermediate"
         description="Runs Require's r.js optimizer on files in intermediate">
 
         <echo message="Running r.js on intermediate files..." />
@@ -251,78 +247,45 @@
     </target>
 
     <target name="finalize-build"
+        depends="run-rjs-on-intermediate"
         description="Does the final cleanup on the published files">
 
+        <echo message="Deleting build.txt" />
         <delete file="${dir.publish}/build.txt" />
 
+        <echo message="Deleting .scss files" />
         <delete>
             <fileset dir="${dir.publish}/css" includes="**/*.scss" />
+        </delete>
+
+        <echo message="Deleting .bat files" />
+        <delete>
+            <fileset dir="${dir.publish}/" includes="*.bat" />
         </delete>
     </target>
 
     <target name="build"
-        description="Runs a full build.">
-
-        <echo message="-------------------------------------------------" />
-        <echo message="Ant build starting..." />
-        <echo message="-------------------------------------------------" />
-
-        <!-- Show property values
-        <echoproperties />
-        -->
-
-        <antcall target="clean" />
-
-        <antcall target="scss" />
-
-        <antcall target="jslint" />
-
-        <antcall target="jshint" />
-
-        <!-- csslint seems to be pretty useless, consider removing -->
-        <antcall target="csslint" />
-
-        <antcall target="mkdirs" />
-
-        <antcall target="copy-source-to-intermediate" />
-
-        <antcall target="run-rjs-on-intermediate" />
-
+        description="Runs a full build."
+        depends="
+        intro,
+        clean,
+        scss-all,
+        jslint-all,
+        jshint-all,
+        csslint-all,
+        mkdirs,
+        copy-source-to-intermediate,
+        run-rjs-on-intermediate,
+        finalize-build
+        ">
         <!-- TODO: clean/compress html (see h5bp ant-build-script - htmlcompressor) -->
-
         <!-- TODO: clean/compress css (see h5bp ant-build-script - yuicompressor) -->
-
         <!-- TODO: optimize pngs (see h5bp ant-build-script) -->
-
         <!-- TODO: optimize jpgs (see h5bp ant-build-script) -->
-
         <!-- TODO: generate documentation (jsdoc3) -->
 
-        <antcall target="finalize-build" />
+        <echo message="----------------------------------------" />
+        <echo message="BUILD COMPLETE!" />
+        <echo message="----------------------------------------" />
     </target>
-
-    <!-- Macro for running the Ruby-based scss utility on a .scss/.sass file -->
-    <macrodef name="scss">
-        <attribute name="input"/>
-        <attribute name="output"/>
-
-        <sequential>
-            <path id="JRuby">
-                <fileset file="./${dir.build.tools}/jruby-complete-1.6.7.2.jar"/>
-                <fileset file="./${dir.build.tools}/gem-sass.jar"/>
-            </path>
-            <property name="scss.src" value="${basedir}/@{input}" />
-            <property name="scss.dest" value="${basedir}/@{output}" />
-
-            <script language="ruby" classpathref="JRuby">
-                <![CDATA[require 'rubygems'
-                    require 'sass'
-                    require 'sass/exec'
-                    opts = Sass::Exec::Sass.new([$project.getProperty('scss.src'), $project.getProperty('scss.dest')])
-                    opts.parse]]>
-            </script>
-
-            <echo>Sass (scss): generated @{output}</echo>
-        </sequential>
-    </macrodef>
 </project>
