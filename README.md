@@ -10,9 +10,11 @@ files (e.g. iOS, Android, etc.).
 
 ### Pre-requisites
 
-1. Java JDK 1.7+
+1. Java JDK 1.7+ (for build)
 1. Ant (for build)
 1. Node.js (for build)
+
+java, ant, and node must all exist somewhere in the PATH
 
 ### Submodule Info
 
