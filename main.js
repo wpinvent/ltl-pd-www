@@ -11,6 +11,7 @@ console.log('Entering main');
 require.config({
 
     // Paths to common dependencies
+    // If you change these, you also have to change them in the build/build.r.js file.
     paths: {
         // Require.js plugins
         text: 'lib/require-2.1.1/text',
@@ -40,6 +41,8 @@ require.config({
     },
 
     // Shim in dependencies that are not AMD-compliant by default
+    // TODO: not sure if any of these are needed since we are using AMD versions of everything
+    // (except maybe bootstrap?)
     shim: {
         jquery: {
             exports: '$'
