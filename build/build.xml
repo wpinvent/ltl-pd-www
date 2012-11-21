@@ -123,6 +123,13 @@
 
         <echo message="Running r.js..." />
 
+        <exec executable="node" failonerror="true">
+            <arg line="${basedir}/${tool.rjs}" />
+            <arg line="-o" />
+            <arg line="${basedir}/${tool.rjs.config}" />
+        </exec>
+
+        <!--
         <java classname="org.mozilla.javascript.tools.shell.Main">
             <classpath>
                 <pathelement location="./${dir.build.tools}/${tool.rhino}" />
@@ -131,6 +138,9 @@
             <arg value="-o" />
             <arg value="${basedir}/${tool.rjs.config}" />
         </java>
+        -->
+
+
     </target>
 
     <target name="finalize"
