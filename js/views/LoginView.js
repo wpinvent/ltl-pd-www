@@ -1,3 +1,8 @@
+/*global alert, console, define*/
+
+(function(alert, console, define) {
+'use strict';
+
 /**
  * Returns a contructor function for the LoginView
  */
@@ -56,3 +61,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/S
         return LoginView;
     }
 );
+
+}(alert, console, define));

@@ -1,3 +1,8 @@
+/*global alert, console, define*/
+
+(function(console, define) {
+'use strict';
+
 /**
  * app - Returns the main Backbone.Marionette.Application instance
  */
@@ -56,7 +61,7 @@ define([
          * Called after the the app is initialized
          */
         app.on('initialize:after', function() {
-            console.log("Entering app initialize:after function")
+            console.log("Entering app initialize:after function");
 
             console.log("Starting Backbone history!");
             Backbone.history.start({
@@ -100,10 +105,12 @@ define([
 
         app.initEvents = function(startOptions) {
             app.vent.on('boxes:event', function(args) {
-                alert('Event Aggregator: ' + args)
+                alert('Event Aggregator: ' + args);
             });
         };
 
         return app;
     }
 );
+
+}(console, define));

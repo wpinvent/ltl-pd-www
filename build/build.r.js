@@ -17,10 +17,12 @@
         jquery: 'lib/jquery-1.8.2/jquery',
 
         // Underscore
-        underscore: 'lib/underscore-1.4.2/underscore',
+        //underscore: 'lib/underscore-1.4.2/underscore',
+        underscore: 'lib/lodash-0.10.0/lodash',
 
         // Backbone
-        backbone: 'lib/backbone-0.9.2/backbone',
+        //backbone: 'lib/backbone-0.9.2/backbone',
+        backbone: 'lib/backbone-0.9.2/backbone-AMD',
 
         // Backbone.Marionette
         // Has AMD support built-in (doesn't need to be shimmed)

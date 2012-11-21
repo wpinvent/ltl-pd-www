@@ -8,6 +8,12 @@ This repository contains the raw web files for use in a Hybrid mobile
 application.  This repo should not contain any native or platform-specific
 files (e.g. iOS, Android, etc.).
 
+### Pre-requisites
+
+1. Java JDK 1.7+
+1. Ant (for build)
+1. Node.js (for build)
+
 ### Submodule Info
 
 This repository is intended to be used as the "www" folder in a Cordova-based
@@ -46,3 +52,4 @@ mobile application.  Here is one way to achieve this:
 1. Require.js (2.1.1)
 1. Twitter Bootstrap (2.2.1)
 1. JSON2 (2012-10-08)
+1. Various web project build tools

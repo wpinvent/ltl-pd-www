@@ -1,7 +1,13 @@
+/*global console, define, setTimeout */
+
+(function(console, define, setTimeout) {
+'use strict';
+
 /**
  * Returns an constructor function for the native wrapper for desktop (non-device) testing.
  */
 define(['jquery', 'underscore', 'backbone'],
+
     function($, _, Backbone) {
 
         console.log('Entering js/utils/DesktopNative');
@@ -19,3 +25,5 @@ define(['jquery', 'underscore', 'backbone'],
         return DesktopNative;
     }
 );
+
+}(console, define, setTimeout));

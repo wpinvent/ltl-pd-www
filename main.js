@@ -1,103 +1,111 @@
-//(function(console, require) {
+/*global console, cordova, define, document, navigator, require, setTimeout */
 
-    console.log('Entering main');
+(function(console, cordova, define, document, navigator, require, setTimeout) {
+'use strict';
 
-    /**
-     * Sets up require.js, and defines the main entry point into the application (js/main)
-     */
-    require.config({
+console.log('Entering main');
 
-        // Paths to common dependencies
-        paths: {
-            // Require.js plugins
-            text: 'lib/require-2.1.1/text',
-            domReady: 'lib/require-2.1.1/domReady',
-            i18n: 'lib/require-2.1.1/i18n',
-            tpl: 'lib/require-2.1.1/tpl',
+/**
+ * Sets up require.js, and defines the main entry point into the application (js/main)
+ */
+require.config({
 
-            // jQuery
-            jquery: 'lib/jquery-1.8.2/jquery',
+    // Paths to common dependencies
+    paths: {
+        // Require.js plugins
+        text: 'lib/require-2.1.1/text',
+        domReady: 'lib/require-2.1.1/domReady',
+        i18n: 'lib/require-2.1.1/i18n',
+        tpl: 'lib/require-2.1.1/tpl',
 
-            // Underscore
-            underscore: 'lib/underscore-1.4.2/underscore',
+        // jQuery
+        jquery: 'lib/jquery-1.8.2/jquery',
 
-            // Backbone
-            backbone: 'lib/backbone-0.9.2/backbone',
+        // Underscore
+        // Use lodash rather than underscore for AMD support
+        //underscore: 'lib/underscore-1.4.2/underscore',
+        underscore: 'lib/lodash-0.10.0/lodash',
 
-            // Backbone.Marionette
-            // Has AMD support built-in (doesn't need to be shimmed)
-            marionette: 'lib/backbone.marionette-1.0.0-beta5-AMD/backbone.marionette',
+        // Backbone
+        // Use AMD-enabled version of Backbone from github.com/amdjs/backbone
+        //backbone: 'lib/backbone-0.9.2/backbone',
+        backbone: 'lib/backbone-0.9.2/backbone-AMD',
 
-            // Twitter Bootstrap JavaScript
-            bootstrap: 'lib/twitter-bootstrap-2.2.1/js/bootstrap'
+        // Backbone.Marionette
+        // Has AMD support built-in (doesn't need to be shimmed)
+        marionette: 'lib/backbone.marionette-1.0.0-beta5-AMD/backbone.marionette',
+
+        // Twitter Bootstrap JavaScript
+        bootstrap: 'lib/twitter-bootstrap-2.2.1/js/bootstrap'
+    },
+
+    // Shim in dependencies that are not AMD-compliant by default
+    shim: {
+        jquery: {
+            exports: '$'
         },
 
-        // Shim in dependencies that are not AMD-compliant by default
-        shim: {
-            jquery: {
-                exports: '$'
-            },
+        underscore: {
+            exports: '_'
+        },
 
-            underscore: {
-                exports: '_'
-            },
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
 
-            backbone: {
-                deps: ['underscore', 'jquery'],
-                exports: 'Backbone'
-            },
-
-            bootstrap: {
-                deps: ['jquery'],
-                exports: 'bootstrap'
-            }
+        bootstrap: {
+            deps: ['jquery'],
+            exports: 'bootstrap'
         }
-    });
+    }
+});
 
-    /**
-     * Main entry point into the application
-     */
-    require(['domReady', 'jquery', 'underscore', 'backbone', 'js/app', 'js/routers/appRouter', 'bootstrap'],
-        function (domReady, $, _, Backbone, app, appRouter) {
+/**
+ * Main entry point into the application
+ */
+require(['domReady', 'jquery', 'underscore', 'backbone', 'js/app', 'js/routers/appRouter', 'bootstrap'],
+    function (domReady, $, _, Backbone, app, appRouter) {
 
-            console.log('Entering js/main');
+        console.log('Entering js/main');
 
-            // Wait for DOM ready...
-            domReady(function () {
+        // Wait for DOM ready...
+        domReady(function () {
 
-                console.log('DOM ready!');
+            console.log('DOM ready!');
 
-                // Function to run when Cordova is ready
-                var onDeviceReady = function(isDesktop) {
+            // Function to run when Cordova is ready
+            var onDeviceReady = function(isDesktop) {
 
-                    console.log('Device ready!');
+                console.log('Device ready!');
 
-                    if (isDesktop !== true) {
-                        cordova.exec(null, null, 'SplashScreen', 'hide', []);
-                    }
-
-                    app.start({
-                        isDesktop: isDesktop,
-                        router: appRouter
-                    });
-
-                    // Hide the static loading div
-                    $('#loading').slideUp(600);
-                };
-
-                // Setup listener for Cordova deviceready...
-                if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
-                    // Device - must wait for deviceready
-                    document.addEventListener('deviceready', function() {
-                        onDeviceReady(false)
-                    }, false);
-                } else {
-                    // Desktop - deviceready is N/A, just apply a simulated loading delay
-                    setTimeout(function() {
-                        onDeviceReady(true);
-                    }, 500);
+                if (isDesktop !== true) {
+                    cordova.exec(null, null, 'SplashScreen', 'hide', []);
                 }
-            });
-        }
-    );
-//}(console, require));
+
+                app.start({
+                    isDesktop: isDesktop,
+                    router: appRouter
+                });
+
+                // Hide the static loading div
+                $('#loading').slideUp(600);
+            };
+
+            // Setup listener for Cordova deviceready...
+            if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
+                // Device - must wait for deviceready
+                document.addEventListener('deviceready', function() {
+                    onDeviceReady(false);
+                }, false);
+            } else {
+                // Desktop - deviceready is N/A, just apply a simulated loading delay
+                setTimeout(function() {
+                    onDeviceReady(true);
+                }, 500);
+            }
+        });
+    }
+);
+
+}(console, cordova, define, document, navigator, require, setTimeout));

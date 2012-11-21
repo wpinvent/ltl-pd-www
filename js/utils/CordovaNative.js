@@ -1,3 +1,8 @@
+/*global console, define, setTimeout*/
+
+(function(console, define, setTimeout) {
+'use strict';
+
 /**
  * Returns an constructor function for the native wrapper that uses Cordova.
  */
@@ -23,3 +28,5 @@ define(['jquery', 'underscore', 'backbone'],
         return CordovaNative;
     }
 );
+
+}(console, define, setTimeout));

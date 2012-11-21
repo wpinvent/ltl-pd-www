@@ -1,4 +1,10 @@
+/*global console, define*/
+
+(function(console, define) {
+'use strict';
+
 define(['jquery', 'underscore', 'backbone', 'marionette'],
+
     function($, _, Backbone, Marionette) {
 
         console.log('Entering js/utils/marionetteConfig');
@@ -23,3 +29,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette'],
         };
     }
 );
+
+}(console, define));

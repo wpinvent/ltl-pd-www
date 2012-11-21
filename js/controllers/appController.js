@@ -1,3 +1,8 @@
+/*global console,define */
+
+(function(console, define) {
+'use strict';
+
 /**
  * Returns the main controller instance for the application
  * (Note: this is not the typical definition of a controller - see Marionette AppRouter/Controller docs.)
@@ -53,10 +58,12 @@ define([
 
             self.other = function(path) {
                 console.log("Entering other function");
-                console.log("Invalid route: " + path)
+                console.log("Invalid route: " + path);
             };
         };
 
         return new AppController();
     }
 );
+
+}(console, define));

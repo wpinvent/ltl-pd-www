@@ -1,3 +1,7 @@
+/*global console, define */
+
+(function(console, define) {
+
 /**
  * Returns a contructor function for the BoxesView
  */
@@ -34,3 +38,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/Bo
         return BoxesView;
     }
 );
+
+}(console, define));

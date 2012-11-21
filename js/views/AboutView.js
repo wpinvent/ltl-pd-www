@@ -1,5 +1,10 @@
+/*global console, define*/
+
+(function(console, define) {
+'use strict';
+
 /**
- * Returns a contructor function for the AboutView
+ * AboutView
  */
 define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/AboutView.html'],
 
@@ -7,9 +12,16 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/Ab
         console.log('Entering js/views/AboutView');
 
         var AboutView = Marionette.ItemView.extend({
-            template: template,
+
+            initialize: function() {
+                _.bindAll(this);
+            },
+
+            template: template
         });
 
         return AboutView;
     }
 );
+
+}(console, define));

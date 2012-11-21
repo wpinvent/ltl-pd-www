@@ -1,3 +1,8 @@
+/*global console, define*/
+
+(function(console, define) {
+'use strict';
+
 /**
  * Returns the main Backbone.Marionette.AppRouter instance
  */
@@ -31,3 +36,5 @@ define(['jquery', 'underscore', 'backbone', 'marionette', 'js/controllers/appCon
         });
     }
 );
+
+}(console, define));
