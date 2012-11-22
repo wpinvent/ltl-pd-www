@@ -1,4 +1,4 @@
-<div id="login-view">
+<div id="login-view" class="container-fluid">
 
     <!-- Nav bar -->
     <div class="navbar navbar-inverse navbar-static-top">
@@ -25,14 +25,18 @@
     </div>
 
     <!-- Login form -->
-    <form class="row span4 offset4">
-        <fieldset>
-            <legend>Please login:</legend>
+    <div class="row-fluid">
+        <div class="span4 offset4 padded">
+            <form class="padded-inner">
+                <fieldset>
+                    <legend>Please login:</legend>
 
-            <input id="userName" name="userName" class="span4" type="text" placeholder="Username" />
-            <input id="password" name="password" class="span4" type="password" placeholder="Password" />
+                    <input id="userName" name="userName" type="text" placeholder="Username" />
+                    <input id="password" name="password" type="password" placeholder="Password" />
 
-            <button id="login" type="button" class="btn btn-large btn-block btn-primary">Login</button>
-        </fieldset>
-    </form>
+                    <button id="login" type="button" class="btn btn-large btn-block btn-primary">Login</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>

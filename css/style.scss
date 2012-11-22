@@ -1,10 +1,8 @@
-/*
+/**
  * CODEGEN WARNING: This .css file was generated from a .scss file, do not edit by hand
  */
 
-///////////////////////////////////////////////////////////////////////////////
-// Commmon colors
-///////////////////////////////////////////////////////////////////////////////
+/* Colors */
 
 $gray: whiteSmoke;
 $white: white;
@@ -12,9 +10,7 @@ $lightBlue: #08c;
 $blue: #04c;
 $darkBlue: #002A80;
 
-///////////////////////////////////////////////////////////////////////////////
-// Common mixins
-///////////////////////////////////////////////////////////////////////////////
+/* Mixins */
 
 @mixin padding($pad) {
     padding: $pad;
@@ -25,21 +21,32 @@ $darkBlue: #002A80;
     border-radius: $radius;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Styles
-///////////////////////////////////////////////////////////////////////////////
+@mixin boxSizing($type) {
+    box-sizing: $type;
+}
+
+/* Styles */
 
 body {
     background-color: $gray;
 }
 
 #container {
-
-    /*
-    input {
-        margin-bottom: 1em;
+    .padded {
+        background-color: $white;
+        @include borderRadius(5px);
     }
-    */
+
+    .padded-inner {
+        margin: 5%;
+
+        input {
+            display: block;
+            @include boxSizing(border-box);
+            width: 100%;
+            height: 3em;
+        }
+    }
 }
 
 #loading {
@@ -58,11 +65,8 @@ body {
 }
 
 #login-view {
-    form {
-        @include borderRadius(5px);
-        background-color: $white;
-        padding: 2em;
-        margin-top: 2em;
+    .padded {
+        margin-top: 10%;
     }
 }
 
