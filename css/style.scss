@@ -1,37 +1,46 @@
-/**
- * CODEGEN WARNING: This .css file was generated from a .scss file, do not edit by hand
- */
+/*****************************************************************************/
+/* CODEGEN WARNING: This .css file was generated from a .scss file */
+/*****************************************************************************/
 
+/*****************************************************************************/
 /* Colors */
+/*****************************************************************************/
 
-$gray: whiteSmoke;
 $white: white;
+
+$lightGray: whiteSmoke;
+$gray: #a0a0a0;
+$darkGray: #404040;
+
 $lightBlue: #08c;
 $blue: #04c;
 $darkBlue: #002A80;
 
+/*****************************************************************************/
 /* Mixins */
+/*****************************************************************************/
 
-@mixin padding($pad) {
-    padding: $pad;
+@mixin borderRadius($val) {
+    -webkit-border-radius: $val;
+    border-radius: $val;
 }
 
-@mixin borderRadius($radius) {
-    -webkit-border-radius: $radius;
-    border-radius: $radius;
+@mixin boxSizing($val) {
+    -webkit-box-sizing: $val;
+    box-sizing: $val;
 }
 
-@mixin boxSizing($type) {
-    box-sizing: $type;
-}
-
-/* Styles */
+/*****************************************************************************/
+/* Global Styles */
+/*****************************************************************************/
 
 body {
-    background-color: $gray;
+    background-color: $lightGray;
 }
 
 #container {
+
+    /* For adding padding/margin for twitter bootstrap responsive grid cells */
     .padded {
         background-color: $white;
         @include borderRadius(5px);
@@ -40,17 +49,18 @@ body {
     .padded-inner {
         margin: 5%;
 
+        /* Make inputs fill the space */
         input {
             display: block;
-            @include boxSizing(border-box);
             width: 100%;
             height: 3em;
+            @include boxSizing(border-box);
         }
     }
 }
 
 #loading {
-    background-color: $gray;
+    background-color: $white;
     margin: 10%;
 
     h2, p {
@@ -64,6 +74,10 @@ body {
     }
 }
 
+/*****************************************************************************/
+/* View-Specific Styles */
+/*****************************************************************************/
+
 #login-view {
     .padded {
         margin-top: 10%;
@@ -71,4 +85,7 @@ body {
 }
 
 #about-view {
+}
+
+#settings-view {
 }
