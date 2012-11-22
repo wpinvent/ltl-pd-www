@@ -28,6 +28,9 @@
         // Has AMD support built-in (doesn't need to be shimmed)
         marionette: 'lib/backbone.marionette-1.0.0-beta5-AMD/backbone.marionette',
 
+        // Backbone.BackStack
+        backstack: 'lib/backstack-1.1.2/backstack',
+
         // Twitter Bootstrap JavaScript
         bootstrap: 'lib/twitter-bootstrap-2.2.1/js/bootstrap'
     },
