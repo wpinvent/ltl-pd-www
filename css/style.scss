@@ -2,9 +2,47 @@
  * CODEGEN WARNING: This .css file was generated from a .scss file, do not edit by hand
  */
 
+///////////////////////////////////////////////////////////////////////////////
+// Commmon colors
+///////////////////////////////////////////////////////////////////////////////
+
+$gray: whiteSmoke;
+$white: white;
+$lightBlue: #08c;
+$blue: #04c;
+$darkBlue: #002A80;
+
+///////////////////////////////////////////////////////////////////////////////
+// Common mixins
+///////////////////////////////////////////////////////////////////////////////
+
+@mixin padding($pad) {
+    padding: $pad;
+}
+
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Styles
+///////////////////////////////////////////////////////////////////////////////
+
+body {
+    background-color: $gray;
+}
+
+#main {
+
+    input {
+        margin-bottom: 1em;
+    }
+}
+
 #loading {
-    background-color: #cccccc;
-    margin: 10% 10% 10% 10%;
+    background-color: $gray;
+    margin: 10%;
 
     h2, p {
         text-align: center;
@@ -19,7 +57,10 @@
 
 #login-view {
     form {
-        margin-top: 20%;
+        @include borderRadius(5px);
+        background-color: $white;
+        padding: 2em;
+        margin-top: 2em;
     }
 }
 
