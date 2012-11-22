@@ -12,6 +12,7 @@
         'underscore',
         'backbone',
         'marionette',
+        'backstack',
         'js/app',
         'js/views/LoginView',
         'js/views/AboutView',
@@ -23,6 +24,7 @@
             _,
             Backbone,
             Marionette,
+            BackStack,
             app,
             LoginView,
             AboutView,
@@ -35,6 +37,7 @@
              */
             var AppController = function() {
                 var self = this;
+                    //stackNavigator = new BackStack.StackNavigator({el: '#container'});
 
                 self.index = function() {
                     console.log("Entering index function");
@@ -44,16 +47,19 @@
                 self.login = function() {
                     console.log("Entering login function");
                     app.mainRegion.show(new LoginView());
+                    //stackNavigator.pushView(new LoginView());
                 };
 
                 self.about = function() {
                     console.log("Entering about function");
                     app.mainRegion.show(new AboutView());
+                    //stackNavigator.pushView(new AboutView());
                 };
 
                 self.boxes = function() {
                     console.log("Entering boxes function");
                     app.mainRegion.show(new BoxesView());
+                    //stackNavigator.pushView(new BoxesView());
                 };
 
                 self.other = function(path) {

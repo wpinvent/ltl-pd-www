@@ -43,7 +43,7 @@
              * Adds the UI regions to the app
              */
             app.addRegions({
-                mainRegion: '#main'
+                mainRegion: '#container'
             });
 
             /**
@@ -79,13 +79,6 @@
                 console.log("Entering app.initRouter");
 
                 app.router = startOptions.router;
-
-                // This forces any link with role="nav-main" will navigate to the href via the main app.router
-                // TODO: not sure why/if this is actually needed... got it off the wide world of webs...
-                $('a[role=nav-main]').click(function(e) {
-                    e.preventDefault();
-                    app.router.triggerRoute($(this).attr('href'));
-                });
             };
 
             /**
