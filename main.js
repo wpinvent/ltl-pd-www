@@ -43,23 +43,8 @@
             bootstrap: 'lib/twitter-bootstrap-2.2.1/js/bootstrap'
         },
 
-        // Shim in dependencies that are not AMD-compliant by default
-        // TODO: not sure if any of these are needed since we are using AMD versions of everything
-        // (except maybe bootstrap?)
+        // Shim in dependencies that are not AMD-compliant
         shim: {
-            jquery: {
-                exports: '$'
-            },
-
-            underscore: {
-                exports: '_'
-            },
-
-            backbone: {
-                deps: ['underscore', 'jquery'],
-                exports: 'Backbone'
-            },
-
             bootstrap: {
                 deps: ['jquery'],
                 exports: 'bootstrap'
