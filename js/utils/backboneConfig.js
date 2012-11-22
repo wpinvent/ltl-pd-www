@@ -1,15 +1,14 @@
 /*global console, define */
 
-(function(console, define) {
-'use strict';
+(function() {
+    'use strict';
 
-define(['jquery', 'underscore', 'backbone'],
-    function($, _, Backbone, Marionette) {
+    define(['jquery', 'underscore', 'backbone'],
+        function($, _, Backbone) {
 
-        console.log('Entering js/utils/backboneConfig');
+            console.log('Entering js/utils/backboneConfig');
 
-        // Change global Backbone stuff here...
-    }
-);
-
-}(console, define));
+            // Change global Backbone stuff here...
+        }
+    );
+}());

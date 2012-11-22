@@ -1,27 +1,27 @@
 /*global console, define*/
 
-(function(console, define) {
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * AboutView
- */
-define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/AboutView.html'],
+    /**
+     * AboutView
+     */
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/AboutView.html'],
 
-    function($, _, Backbone, Marionette, app, template) {
-        console.log('Entering js/views/AboutView');
+        function($, _, Backbone, Marionette, app, template) {
+            console.log('Entering js/views/AboutView');
 
-        var AboutView = Marionette.ItemView.extend({
+            var AboutView = Marionette.ItemView.extend({
 
-            initialize: function() {
-                _.bindAll(this);
-            },
+                initialize: function() {
+                    _.bindAll(this);
+                },
 
-            template: template
-        });
+                template: template
+            });
 
-        return AboutView;
-    }
-);
+            return AboutView;
+        }
+    );
 
-}(console, define));
+}());

@@ -1,65 +1,64 @@
 /*global alert, console, define*/
 
-(function(alert, console, define) {
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * Returns a contructor function for the LoginView
- */
-define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session', 'tpl!html/LoginView.html'],
+    /**
+     * Returns a contructor function for the LoginView
+     */
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session', 'tpl!html/LoginView.html'],
 
-    function($, _, Backbone, Marionette, app, Session, template) {
+        function($, _, Backbone, Marionette, app, Session, template) {
 
-        console.log('Entering js/views/LoginView');
+            console.log('Entering js/views/LoginView');
 
-        var LoginView = Marionette.ItemView.extend({
+            var LoginView = Marionette.ItemView.extend({
 
-            template: template,
+                template: template,
 
-            initialize: function() {
-                console.log("Entering LoginView initialize");
+                initialize: function() {
+                    console.log("Entering LoginView initialize");
 
-                _.bindAll(this);
+                    _.bindAll(this);
 
-                this.model = new Session();
-            },
+                    this.model = new Session();
+                },
 
-            // Marionette converts these to jQuery objects...
-            ui: {
-                $userNameInput: '#userName',
-                $passwordInput: '#password'
-            },
+                // Marionette converts these to jQuery objects...
+                ui: {
+                    $userNameInput: '#userName',
+                    $passwordInput: '#password'
+                },
 
-            events: {
-                'click #login': 'onLoginClick'
-            },
+                events: {
+                    'click #login': 'onLoginClick'
+                },
 
-            onLoginClick: function(event) {
-                this.model.set('userName', this.ui.$userNameInput.val());
-                this.model.set('password', this.ui.$passwordInput.val());
+                onLoginClick: function(event) {
+                    this.model.set('userName', this.ui.$userNameInput.val());
+                    this.model.set('password', this.ui.$passwordInput.val());
 
-                //var app = require('js/app');
-                app.native.login(
-                    this.model.get('userName'),
-                    this.model.get('password'),
-                    this.onLoginSuccess,
-                    this.onLoginFailure);
-            },
+                    //var app = require('js/app');
+                    app.native.login(
+                        this.model.get('userName'),
+                        this.model.get('password'),
+                        this.onLoginSuccess,
+                        this.onLoginFailure);
+                },
 
-            onLoginSuccess: function(userName, password) {
-                alert("Logged in!");
+                onLoginSuccess: function(userName, password) {
+                    alert("Logged in!");
 
-                app.session = this.model;
-                app.router.triggerRoute('boxes');
-            },
+                    app.session = this.model;
+                    app.router.triggerRoute('boxes');
+                },
 
-            onLoginFailure: function() {
-                alert("Login error!");
-            }
-        });
+                onLoginFailure: function() {
+                    alert("Login error!");
+                }
+            });
 
-        return LoginView;
-    }
-);
-
-}(alert, console, define));
+            return LoginView;
+        }
+    );
+}());

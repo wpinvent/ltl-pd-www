@@ -1,42 +1,42 @@
 /*global console, define */
 
-(function(console, define) {
+(function() {
 
-/**
- * Returns a contructor function for the BoxesView
- */
-define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/BoxesView.html'],
+    /**
+     * Returns a contructor function for the BoxesView
+     */
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/BoxesView.html'],
 
-    function($, _, Backbone, Marionette, app, template) {
+        function($, _, Backbone, Marionette, app, template) {
 
-        console.log('Entering js/views/BoxesView');
+            console.log('Entering js/views/BoxesView');
 
-        var BoxesView = Marionette.ItemView.extend({
+            var BoxesView = Marionette.ItemView.extend({
 
-            template: template,
+                template: template,
 
-            initialize: function() {
-                console.log("Entering LoginView initialize");
+                initialize: function() {
+                    console.log("Entering LoginView initialize");
 
-                _.bindAll(this);
+                    _.bindAll(this);
 
-                var test = app.session;
-            },
+                    var test = app.session;
+                },
 
-            ui: {
-            },
+                ui: {
+                },
 
-            events: {
-                'click #event': 'onEventClick'
-            },
+                events: {
+                    'click #event': 'onEventClick'
+                },
 
-            onEventClick: function() {
-                app.vent.trigger('boxes:event', 'my param');
-            }
-        });
+                onEventClick: function() {
+                    app.vent.trigger('boxes:event', 'my param');
+                }
+            });
 
-        return BoxesView;
-    }
-);
+            return BoxesView;
+        }
+    );
 
-}(console, define));
+}());

@@ -1,29 +1,29 @@
 /*global console, define, setTimeout */
 
-(function(console, define, setTimeout) {
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * Returns an constructor function for the native wrapper for desktop (non-device) testing.
- */
-define(['jquery', 'underscore', 'backbone'],
+    /**
+     * Returns an constructor function for the native wrapper for desktop (non-device) testing.
+     */
+    define(['jquery', 'underscore', 'backbone'],
 
-    function($, _, Backbone) {
+        function($, _, Backbone) {
 
-        console.log('Entering js/utils/DesktopNative');
+            console.log('Entering js/utils/DesktopNative');
 
-        var DesktopNative = function() {
-            var self = this;
+            var DesktopNative = function() {
+                var self = this;
 
-            self.login = function(userName, password, onSuccess, onFailure) {
-                setTimeout(function() {
-                    onSuccess();
-                }, 500);
+                self.login = function(userName, password, onSuccess, onFailure) {
+                    setTimeout(function() {
+                        onSuccess();
+                    }, 500);
+                };
             };
-        };
 
-        return DesktopNative;
-    }
-);
+            return DesktopNative;
+        }
+    );
 
-}(console, define, setTimeout));
+}());

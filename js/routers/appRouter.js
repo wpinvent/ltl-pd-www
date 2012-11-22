@@ -1,40 +1,39 @@
 /*global console, define*/
 
-(function(console, define) {
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * Returns the main Backbone.Marionette.AppRouter instance
- */
-define(['jquery', 'underscore', 'backbone', 'marionette', 'js/controllers/appController'],
+    /**
+     * Returns the main Backbone.Marionette.AppRouter instance
+     */
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/controllers/appController'],
 
-    function($, _, Backbone, Marionette, appController) {
+        function($, _, Backbone, Marionette, appController) {
 
-        console.log('Entering js/routers/appRouter');
+            console.log('Entering js/routers/appRouter');
 
-        var AppRouter = Marionette.AppRouter.extend({
+            var AppRouter = Marionette.AppRouter.extend({
 
-            initialize: function() {
-                _.bindAll(this);
-            },
+                initialize: function() {
+                    _.bindAll(this);
+                },
 
-            appRoutes: {
-                '': 'index',
-                'login': 'login',
-                'about': 'about',
-                'boxes': 'boxes',
-                '*other': 'other'
-            },
+                appRoutes: {
+                    '': 'index',
+                    'login': 'login',
+                    'about': 'about',
+                    'boxes': 'boxes',
+                    '*other': 'other'
+                },
 
-            triggerRoute: function(route) {
-                this.navigate(route, { trigger: true });
-            }
-        });
+                triggerRoute: function(route) {
+                    this.navigate(route, { trigger: true });
+                }
+            });
 
-        return new AppRouter({
-            controller: appController
-        });
-    }
-);
-
-}(console, define));
+            return new AppRouter({
+                controller: appController
+            });
+        }
+    );
+}());
