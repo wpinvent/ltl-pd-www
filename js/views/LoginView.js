@@ -47,7 +47,7 @@
                 },
 
                 onLoginSuccess: function(userName, password) {
-                    alert("Logged in!");
+                    //alert("Logged in!");
 
                     app.session = this.model;
                     app.router.triggerRoute('boxes');

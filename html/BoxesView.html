@@ -1,9 +1,52 @@
-<div>
-    <h1>Inbox</h1>
-    <h1>Outbox</h1>
-    <h1>Sentbox</h1>
+<div id="boxes-view" class="container-fluid">
 
-    <a href="#login">Back</a>
+    <!-- Top nav bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">LTL P&D</a>
+            </div>
+        </div>
+    </div>
 
-    <button id="event">Trigger Event Aggregator</button>
+    <div id="tabs">
+        <div id="inboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Inbox</span></div>
+        <div id="outboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Outbox</span></div>
+        <div id="sentboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Sent</span></div>
+    </div>
+
+    <!-- Top nav bar -->
+    <!--
+    <div class="row-fluid">
+        <div class="span4">
+            <button id="inboxButton" type="button" class="btn btn-primary btn-large">Inbox</button>
+        </div>
+
+        <div class="span4 offset4">
+            <button id="outboxButton" type="button" class="btn btn-primary btn-large">Outbox</button>
+        </div>
+
+        <div class="span4 offset8">
+            <button id="sentboxButton" type="button" class="btn btn-primary btn-large">Sent</button>
+        </div>
+    </div>
+    -->
+
+    <!-- Login form -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span-content well">
+
+                <div class="tab-pane fade" id="inbox">
+                    <h1>Inbox</h1>
+                </div>
+                <div class="tab-pane fade" id="outbox">
+                    <h1>Outbox</h1>
+                </div>
+                <div class="tab-pane fade" id="sentbox">
+                    <h1>Sent</h1>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

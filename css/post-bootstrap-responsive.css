@@ -1,0 +1,7 @@
+@media (max-width: 979px) {
+
+    /* Undo extra margin on small-screen with navbat-fixed-top */
+    .navbar-fixed-top {
+        margin-bottom: 0px;
+    }
+}

@@ -21,13 +21,13 @@ $darkBlue: #002A80;
 /*****************************************************************************/
 
 @mixin borderRadius($val) {
-    -webkit-border-radius: $val;
     border-radius: $val;
+    -webkit-border-radius: $val;
 }
 
 @mixin boxSizing($val) {
-    -webkit-box-sizing: $val;
     box-sizing: $val;
+    -webkit-box-sizing: $val;
 }
 
 /*****************************************************************************/
@@ -40,18 +40,12 @@ body {
 
 #container {
 
-    /* For adding padding/margin for twitter bootstrap responsive grid cells */
-    .padded {
+    .span-content {
         background-color: $white;
+        margin-top: 1em;
         @include borderRadius(5px);
-    }
 
-    .padded-inner {
-        margin: 5%;
-
-        /* Make inputs fill the space */
         input {
-            display: block;
             width: 100%;
             height: 3em;
             @include boxSizing(border-box);
@@ -79,13 +73,53 @@ body {
 /*****************************************************************************/
 
 #login-view {
-    .padded {
-        margin-top: 10%;
-    }
 }
 
 #about-view {
 }
 
 #settings-view {
+}
+
+#boxes-view {
+    #tabs {
+        white-space: nowrap;
+    }
+
+    #inboxButton {
+    }
+
+    #outboxButton {
+    }
+
+    #sentboxButton {
+    }
+
+    .tab-button {
+        background-color: $blue;
+        display: inline-block;
+        width: 33%;
+        margin-top: 0.5em;
+        padding: 1em 0em 1em 0em;
+        text-align: center;
+
+        span {
+            color: $white;
+            text-align: center;
+            padding: 0.5em;
+        }
+
+    }
+}
+
+#collection-view {
+}
+
+#detail-view {
+}
+
+#edit-view {
+}
+
+#add-view {
 }
