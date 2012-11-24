@@ -43,7 +43,7 @@
              * Adds the UI regions to the app
              */
             app.addRegions({
-                mainRegion: '#container'
+                mainRegion: '#root'
             });
 
             /**

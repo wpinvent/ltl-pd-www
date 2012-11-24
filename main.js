@@ -65,7 +65,6 @@
 
                 console.log('DOM ready!');
 
-                // Function to run when Cordova is ready
                 var onDeviceReady = function(isDesktop) {
 
                     console.log('Device ready!');
@@ -79,19 +78,17 @@
                         router: appRouter
                     });
 
-                    // Hide the static loading div
                     $('#loading').slideUp(600);
                     //$('#loading').hide();
                 };
 
-                // Setup listener for Cordova deviceready...
                 if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
-                    // Device - must wait for deviceready
+                    // Device
                     document.addEventListener('deviceready', function() {
                         onDeviceReady(false);
                     }, false);
                 } else {
-                    // Desktop - deviceready is N/A, just apply a simulated loading delay
+                    // Desktop
                     setTimeout(function() {
                         onDeviceReady(true);
                     }, 500);

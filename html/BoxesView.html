@@ -1,4 +1,4 @@
-<div id="boxes-view" class="container-fluid">
+<div id="boxes-view">
 
     <!-- Top nav bar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -9,44 +9,37 @@
         </div>
     </div>
 
-    <div id="tabs">
-        <div id="inboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Inbox</span></div>
-        <div id="outboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Outbox</span></div>
-        <div id="sentboxButton" class="tab-button"><i class="icon-envelope icon-white"></i><span>Sent</span></div>
-    </div>
+    <div class="container-fluid">
 
-    <!-- Top nav bar -->
-    <!--
-    <div class="row-fluid">
-        <div class="span4">
-            <button id="inboxButton" type="button" class="btn btn-primary btn-large">Inbox</button>
-        </div>
+        <!-- Inbox/Outbox/Sentbox -->
+        <div id="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#inbox" data-toggle="tab">Inbox</a>
+                </li>
+                <li>
+                    <a href="#outbox" data-toggle="tab">Outbox</a>
+                </li>
+                <li>
+                    <a href="#sentbox" data-toggle="tab">Sent</a>
+                </li>
+            </ul>
 
-        <div class="span4 offset4">
-            <button id="outboxButton" type="button" class="btn btn-primary btn-large">Outbox</button>
-        </div>
-
-        <div class="span4 offset8">
-            <button id="sentboxButton" type="button" class="btn btn-primary btn-large">Sent</button>
-        </div>
-    </div>
-    -->
-
-    <!-- Login form -->
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="span-content well">
-
-                <div class="tab-pane fade" id="inbox">
+            <div class="tab-content">
+                <div id="inbox" class="tab-pane fade active in">
                     <h1>Inbox</h1>
+                    <p>This is the inbox</p>
                 </div>
-                <div class="tab-pane fade" id="outbox">
+                <div id="outbox" class="tab-pane fade">
                     <h1>Outbox</h1>
+                    <p>This is the outbox</p>
                 </div>
-                <div class="tab-pane fade" id="sentbox">
-                    <h1>Sent</h1>
+                <div id="sentbox" class="tab-pane fade">
+                    <h1>Sentbox</h1>
+                    <p>This is the sentbox</p>
                 </div>
-            </form>
+            </div>
         </div>
+
     </div>
 </div>

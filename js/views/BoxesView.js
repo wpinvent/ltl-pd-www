@@ -19,20 +19,42 @@
                     console.log("Entering LoginView initialize");
 
                     _.bindAll(this);
-
-                    var test = app.session;
                 },
 
                 ui: {
+                    $inboxTab: 'a[href="#inbox"]',
+                    $outboxTab: 'a[href="#outbox"]',
+                    $sentboxTab: 'a[href="#sentbox"]',
+                    $inbox: '#inbox',
+                    $outbox: '#outbox',
+                    $sentbox: '#sentbox'
                 },
 
                 events: {
-                    'click #event': 'onEventClick'
+                    /*
+                    'click a[href="#inbox"]': 'showInbox',
+                    'click a[href="#outbox"]': 'showOutbox',
+                    'click a[href="#sentbox"]': 'showSentbox'
+                    */
                 },
 
-                onEventClick: function() {
-                    app.vent.trigger('boxes:event', 'my param');
+                onRender: function() {
+                    //this.showInbox();
+                },
+
+                /*
+                showInbox: function(e) {
+                    this.ui.$inboxTab.tab('show');
+                },
+
+                showOutbox: function(e) {
+                    this.ui.$outboxTab.tab('show');
+                },
+
+                showSentbox: function(e) {
+                    this.ui.$sentboxTab.tab('show');
                 }
+                */
             });
 
             return BoxesView;

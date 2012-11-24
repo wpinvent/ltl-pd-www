@@ -1,3 +1,4 @@
 body {
-    padding-top: 40px;
+    /* Spacing for navbar-fixed-top style */
+    padding-top: 50px;
 }

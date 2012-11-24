@@ -38,11 +38,10 @@ body {
     background-color: $lightGray;
 }
 
-#container {
+#root {
 
     .span-content {
         background-color: $white;
-        margin-top: 1em;
         @include borderRadius(5px);
 
         input {
@@ -82,44 +81,16 @@ body {
 }
 
 #boxes-view {
-    #tabs {
-        white-space: nowrap;
-    }
-
-    #inboxButton {
-    }
-
-    #outboxButton {
-    }
-
-    #sentboxButton {
-    }
-
-    .tab-button {
-        background-color: $blue;
-        display: inline-block;
-        width: 33%;
-        margin-top: 0.5em;
-        padding: 1em 0em 1em 0em;
-        text-align: center;
-
-        span {
-            color: $white;
-            text-align: center;
-            padding: 0.5em;
-        }
-
-    }
 }
 
-#collection-view {
+#item-collection-view {
 }
 
-#detail-view {
+#item-detail-view {
 }
 
-#edit-view {
+#item-edit-view {
 }
 
-#add-view {
+#item-add-view {
 }
