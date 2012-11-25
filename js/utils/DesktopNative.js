@@ -15,10 +15,64 @@
             var DesktopNative = function() {
                 var self = this;
 
+                /**
+                 * Login
+                 */
                 self.login = function(userName, password, onSuccess, onFailure) {
                     setTimeout(function() {
                         onSuccess();
                     }, 500);
+                };
+
+                /**
+                 * Get node by id
+                 */
+                self.getNode = function(id, onSuccess, onFailure) {
+
+                    setTimeout(function() {
+
+                        $.ajax({
+                            url: 'data/data.json', 
+                            dataType: 'json',
+                            success: function(data, textStatus, jqXHR) {
+                                var children = _.where(data, { "id": id });
+                                onSuccess(children);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.log("Error in getNode");
+                                console.log(jqXHR);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                            }
+                        });
+
+                    }, 500);
+                };
+
+                /**
+                 * Get child nodes by parentId
+                 */
+                self.getChildNodes = function(parentId, onSuccess, onFailure) {
+
+                    setTimeout(function() {
+
+                        $.ajax({
+                            url: 'data/data.json', 
+                            dataType: 'json',
+                            success: function(data, textStatus, jqXHR) {
+                                var children = _.where(data, { "parentId": parentId });
+                                onSuccess(children);
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.log("Error in getChildNodes");
+                                console.log(jqXHR);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                            }
+                        });
+
+                    }, 500);
+
                 };
             };
 

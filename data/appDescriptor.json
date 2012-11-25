@@ -1,0 +1,51 @@
+{
+    "templates": {
+
+        "transaction": {
+            "collection": {
+            },
+
+            "detail": {
+            }
+        },
+
+        "stop": {
+            "collection": {
+                "templateName": "StopItemCollectionView",
+                "actions": [
+                    "openItem"
+                ]
+            },
+
+            "detail": {
+                "templateName": "StopItemDetailView",
+                "actions": [
+                ]
+            },
+
+            "edit": {
+                "templateName": "StopItemEditView",
+                "actions": [
+                ]
+            },
+
+            "add": {
+                "templateName": "StopItemAddView",
+                "actions": [
+                ]
+            },
+
+            "delete": {
+                "templateName": "StopItemDeleteView",
+                "actions": [
+                ]
+            }
+        },
+
+        "pickup": {
+        },
+
+        "delivery": {
+        }
+    }
+}

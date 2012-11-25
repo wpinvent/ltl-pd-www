@@ -13,6 +13,7 @@
         'marionette',
         'js/utils/CordovaNative',
         'js/utils/DesktopNative',
+        'js/views/ViewFactory',
         'js/utils/backboneConfig',
         'js/utils/marionetteConfig'
         ],
@@ -23,71 +24,30 @@
             Backbone,
             Marionette,
             CordovaNative,
-            DesktopNative
+            DesktopNative,
+            ViewFactory
         ) {
-            //'use strict';
 
             console.log("Entering js/app");
 
-            /**
-             * Creates an instance of a Backbone.Marionette.Application
-             */
             var app = new Marionette.Application();
 
-            /**
-             * Defines the root URL path for the application
-             */
             app.root = 'login';
 
-            /**
-             * Adds the UI regions to the app
-             */
             app.addRegions({
                 mainRegion: '#root'
             });
 
-            /**
-             * Called during application initialization
-             */
-            app.addInitializer(function(startOptions) {
-                console.log("Entering app initializer");
+            app.initializeRouter = function(options) {
+                console.log("Initializing router...");
 
-                app.initRouter(startOptions);
-                app.initNative(startOptions);
-                app.initEvents(startOptions);
-            });
-
-            /**
-             * Called after the the app is initialized
-             */
-            app.on('initialize:after', function() {
-                console.log("Entering app initialize:after function");
-
-                console.log("Starting Backbone history!");
-                Backbone.history.start({
-                    pushState: false
-                    // Apparently, setting root here doesn't work when not using pushState (i.e. it doesn't trigger the root route)
-                });
-
-                app.router.triggerRoute('login');
-            });
-
-            /**
-             * Initializes the application's layout
-             */
-            app.initRouter = function(startOptions) {
-                console.log("Entering app.initRouter");
-
-                app.router = startOptions.router;
+                app.router = options.router;
             };
 
-            /**
-             * Initializes the native code async invocation wrapper
-             */
-            app.initNative = function(startOptions) {
-                console.log("Entering app.initNative");
+            app.initializeNative = function(options) {
+                console.log("Initializing native...");
 
-                if (startOptions.isDesktop === true) {
+                if (options.isDesktop === true) {
                     console.log('Using DesktopNative');
                     app.native = new DesktopNative();
                 } else {
@@ -96,11 +56,72 @@
                 }
             };
 
-            app.initEvents = function(startOptions) {
-                app.vent.on('boxes:event', function(args) {
-                    alert('Event Aggregator: ' + args);
+            app.initializeEventAggregator = function(options) {
+                console.log("Initializing event aggregator...");
+            };
+
+            app.initializeAppSchema = function(options) {
+                console.log('Initializing app schema...');
+
+                // TODO: switch to native call with deferred/promise???
+                $.ajax({
+                    url: 'data/appSchema.json',
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    console.log("Got appSchema: " + data);
+                    app.schema = data;
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("Failed to get app schema: " + textStatus);
                 });
             };
+
+            app.initializeAppDescriptor = function(options) {
+                console.log('Initializing app descriptor...');
+
+                var afterGetAppDescriptor = _.after(1, function() {
+                    app.descriptor = data;
+                });
+
+                // TODO: switch to native call with deferred/promise???
+                $.ajax({
+                    url: 'data/appDescriptor.json',
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    console.log("Got appDescriptor: " + data);
+                    app.descriptor = data;
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("Failed to get app descriptor: " + textStatus);
+                });
+            };
+
+            app.initializeViewFactory = function(options) {
+                app.viewFactory = new ViewFactory();
+                app.viewFactory.initialize(app);
+            };
+
+            app.addInitializer(app.initializeRouter);
+            app.addInitializer(app.initializeNative);
+            app.addInitializer(app.initializeEventAggregator);
+            app.addInitializer(app.initializeAppSchema);
+            app.addInitializer(app.initializeAppDescriptor);
+            app.addInitializer(app.initializeViewFactory);
+
+            app.on('initialize:after', function() {
+                console.log("Entering app initialize:after function");
+
+                console.log("Starting Backbone history!");
+
+                Backbone.history.start({
+                    pushState: false
+                    // Apparently, setting root here doesn't work when not using pushState (i.e. it doesn't trigger the root route)
+                });
+
+                app.router.triggerRoute('login');
+            });
 
             return app;
         }

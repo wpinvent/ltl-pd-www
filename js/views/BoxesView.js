@@ -1,60 +1,60 @@
 /*global console, define */
 
 (function() {
+    'use strict';
 
     /**
      * Returns a contructor function for the BoxesView
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'tpl!html/BoxesView.html'],
+    define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'marionette',
+        'js/app',
+        'js/views/BoxView',
+        'tpl!html/BoxesView.html'
+        ],
 
-        function($, _, Backbone, Marionette, app, template) {
-
+        function(
+            $,
+            _,
+            Backbone,
+            Marionette,
+            app,
+            BoxView,
+            template
+        ) {
             console.log('Entering js/views/BoxesView');
 
-            var BoxesView = Marionette.ItemView.extend({
+            var BoxesView = Marionette.Layout.extend({
 
                 template: template,
 
                 initialize: function() {
-                    console.log("Entering LoginView initialize");
-
+                    console.log("Entering BoxesView initialize");
                     _.bindAll(this);
                 },
 
-                ui: {
-                    $inboxTab: 'a[href="#inbox"]',
-                    $outboxTab: 'a[href="#outbox"]',
-                    $sentboxTab: 'a[href="#sentbox"]',
-                    $inbox: '#inbox',
-                    $outbox: '#outbox',
-                    $sentbox: '#sentbox'
-                },
-
-                events: {
-                    /*
-                    'click a[href="#inbox"]': 'showInbox',
-                    'click a[href="#outbox"]': 'showOutbox',
-                    'click a[href="#sentbox"]': 'showSentbox'
-                    */
+                regions: {
+                    inbox: '#inbox',
+                    outbox: '#outbox',
+                    sentbox: '#sentbox'
                 },
 
                 onRender: function() {
-                    //this.showInbox();
-                },
+                    this.inbox.show(new BoxView({
+                        parentId: 'inbox'
+                    }));
 
-                /*
-                showInbox: function(e) {
-                    this.ui.$inboxTab.tab('show');
-                },
+                    this.outbox.show(new BoxView({
+                        parentId: 'outbox'
+                    }));
 
-                showOutbox: function(e) {
-                    this.ui.$outboxTab.tab('show');
+                    this.sentbox.show(new BoxView({
+                        parentId: 'sentbox'
+                    }));
                 },
-
-                showSentbox: function(e) {
-                    this.ui.$sentboxTab.tab('show');
-                }
-                */
             });
 
             return BoxesView;

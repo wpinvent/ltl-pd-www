@@ -1,0 +1,73 @@
+[
+    {
+        "nodeType": "collection",
+        "type": "stop",
+        "id": "inbox",
+        "title": "Inbox"
+    },
+    {
+        "nodeType": "collection",
+        "type": "transaction",
+        "id": "outbox",
+        "title": "Outbox"
+    },
+    {
+        "nodeType": "collection",
+        "type": "transaction",
+        "id": "sentbox",
+        "title": "Sent"
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-12345",
+        "title": "Stop 12345",
+        "properties": {
+            "name": "Stop 12345",
+            "address": "123 Main St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "pickup",
+        "parentId": "stop-12345",
+        "id": "stop-12345-pickup-11111",
+        "title": "Pickup 11111",
+        "properties": {
+            "pickupId": "11111",
+            "pickupField1": "Pickup Field 1",
+            "pickupField1": "Pickup Field 2"
+        }
+    },
+    {
+        "nodeType": "item",         
+        "type": "order",            
+        "parentId": "stop-12345-pickup-11111",   
+        "id": "stop-12345-pickup-11111-order-001",     
+        "title": "Order 001",       
+        "properties": { 
+            "orderId": "001",
+            "orderField1": "Field 1",
+            "orderField2": "Field 2",
+            "orderField3": 123,
+            "orderField4": 7.0
+        }
+    },
+    {
+        "nodeType": "item",         
+        "type": "order-line",            
+        "parentId": "order-0001",   
+        "id": "stop-12345-pickup-11111-order-001-line-1",     
+        "title": "Order 001 Line 1",       
+        "properties": { 
+            "orderId": "001",
+            "line": 1,
+            "lineField1": "Field 1",
+            "lineField2": "Field 2",
+            "lineField3": 123,
+            "lineField4": 7.0
+        }
+    }
+]

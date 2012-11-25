@@ -1,0 +1,200 @@
+{
+    "transaction": {
+        "properties": {
+            "id": { 
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "createdDateTime": {
+                "isEditable": false,
+                "dataType": "dateTime"
+            },
+            "updatedDateTime": {
+                "isEditable": false,
+                "dataType": "dateTime"
+            },
+            "userId": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "password": {
+                "isEditable": false,
+                "dataType": "password"
+            },
+            "status": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "body": {
+                "isEditable": false,
+                "dataType": "text"
+            }
+        },
+
+        "allowedParents": [],
+
+        "allowedChildren": []
+    },
+
+    "stop": {
+        "properties": {
+            "stopId": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "customerName": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "customerAddress": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "customerPhone": {
+                "isEditable": false,
+                "dataType": "text"
+            }
+        },
+
+        "allowedParents": [
+        ],
+
+        "allowedChildren": [
+            "pickup",
+            "delivery",
+            "image",
+            "signature",
+            "note"
+        ]
+    },
+
+    "pickup": {
+        "properties": {
+            "pickupId": {
+                "isEditable": false,
+                "dataType": "text"
+            }
+        },
+
+        "allowedParents": [
+            "stop"
+        ],
+
+        "allowedChildren": [
+            "order",
+            "image",
+            "signature",
+            "note"
+        ]
+    },
+
+    "delivery": {
+
+        "properties": {
+            "deliveryId": {
+                "isEditable": false,
+                "dataType": "text"
+            }
+        },
+
+        "allowedParents": [
+            "stop"
+        ],
+
+        "allowedChildren": [
+            "order",
+            "image",
+            "signature",
+            "note"
+        ]
+    },
+
+    "order": {
+        "properties": {
+            "orderId": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "orderField1": {
+                "name": "orderField1",
+                "isEditable": true,
+                "isRequired": true,
+                "dataType": "text",
+                "minLength": 0,
+                "maxLength": 20
+            },
+            "orderField2": {
+                "isEditable": true,
+                "isRequired": true,
+                "dataType": "text",
+                "values": [
+                    { "id": "VAL1", "display": "Value 1" },
+                    { "id": "VAL2", "display": "Value 2" },
+                    { "id": "VAL3", "display": "Value 3" },
+                    { "id": "VAL4", "display": "Value 4" }
+                ]
+            },
+            "orderField3": {
+                "isEditable": true,
+                "isRequired": false,
+                "dataType": "integer",
+                "minValue": 0,
+                "maxValue": 20
+            },
+            "orderField4": {
+                "isEditable": true,
+                "isRequired": false,
+                "dataType": "decimal",
+                "minValue": -10.0,
+                "maxValue": 10.0
+            }
+        },
+
+        "allowedParents": [
+            "pickup",
+            "delivery"
+        ],
+
+        "allowedChildren": [
+            "order-line",
+            "image",
+            "signature",
+            "note"
+        ]
+    },
+
+    "image": {
+        "properties": {
+            "fileName": {
+                "isEditable": false,
+                "dataType": "text"
+            }
+        }
+    },
+
+    "note": {
+        "properties": {
+            "text": {
+                "isEditable": true,
+                "dataType": "text"
+            }
+        }
+    },
+
+    "signature": {
+        "properties": {
+            "fileName": {
+                "isEditable": false,
+                "dataType": "text"
+            },
+            "signatorName": {
+                "isEditable": true,
+                "dataType": "text"
+            },
+            "dateTime": {
+                "isEditable": false,
+                "dataType": "dateTime"
+            }
+        }
+    }
+}
