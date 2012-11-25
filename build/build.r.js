@@ -27,6 +27,7 @@
         // Backbone.Marionette
         // Has AMD support built-in (doesn't need to be shimmed)
         marionette: 'lib/backbone.marionette-1.0.0-beta5-AMD/backbone.marionette',
+        marionette.async: 'lib/backbone.marionette.async-0.2.0-AMD/backbone.marionette.async',
 
         // Backbone.BackStack
         backstack: 'lib/backstack-1.1.2/backstack',
@@ -39,7 +40,5 @@
         {
             name: "main"
         }
-    ],
-
-
+    ]
 })

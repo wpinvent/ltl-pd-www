@@ -6,15 +6,15 @@
     /**
      * Returns a contructor function for the LoginView
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session', 'tpl!html/LoginView.html'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session'],
 
-        function($, _, Backbone, Marionette, app, Session, template) {
+        function($, _, Backbone, Marionette, app, Session) {
 
             console.log('Entering js/views/LoginView');
 
             var LoginView = Marionette.ItemView.extend({
 
-                template: template,
+                template: 'LoginView',
 
                 initialize: function() {
                     console.log("Entering LoginView initialize");

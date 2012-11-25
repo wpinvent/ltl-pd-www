@@ -16,6 +16,20 @@
                 var self = this;
 
                 /**
+                 * Gets the app schema (returns a $.Deferred for caller to handle)
+                 */
+                self.getAppSchema = function() {
+                    return $.getJSON('data/appSchema.json');
+                };
+
+                /**
+                 * Gets the app descriptor (returns a $.Deferred for caller to handle)
+                 */
+                self.getAppDescriptor = function() {
+                    return $.getJSON('data/appDescriptor.json');
+                };
+
+                /**
                  * Login
                  */
                 self.login = function(userName, password, onSuccess, onFailure) {

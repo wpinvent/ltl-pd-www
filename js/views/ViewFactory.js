@@ -29,19 +29,6 @@
 
                 _.bindAll(self);
 
-                self.initialize = function(app) {
-                    var type, viewType;
-
-                    self.app = app;
-
-                    for (type in app.descriptor.templates) {
-                        for (viewType in type) {
-
-                            console.log(type + ' ' + viewtype);
-                        }
-                    }
-                };
-
                 self.createItemView = function(type, viewType) {
 
                     var templateName = self.app.descriptor.templates[type][viewType],

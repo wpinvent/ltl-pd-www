@@ -10,24 +10,15 @@
         'jquery',
         'underscore',
         'backbone',
-        'marionette',
-        'js/utils/CordovaNative',
-        'js/utils/DesktopNative',
-        'js/views/ViewFactory',
-        'js/utils/backboneConfig',
-        'js/utils/marionetteConfig'
+        'marionette'
         ],
 
         function(
             $,
             _,
             Backbone,
-            Marionette,
-            CordovaNative,
-            DesktopNative,
-            ViewFactory
+            Marionette
         ) {
-
             console.log("Entering js/app");
 
             var app = new Marionette.Application();
@@ -35,75 +26,45 @@
             app.root = 'login';
 
             app.addRegions({
-                mainRegion: '#root'
+                rootRegion: '#root'
             });
 
-            app.initializeRouter = function(options) {
-                console.log("Initializing router...");
+            app.initializeAppController = function(options) {
+                app.controller = options.controller;
+                app.controller.app = app;
+            };
 
+            app.initializeAppRouter = function(options) {
                 app.router = options.router;
+                //app.router.controller = app.controller;
+                app.router.app = app;
             };
 
             app.initializeNative = function(options) {
-                console.log("Initializing native...");
-
-                if (options.isDesktop === true) {
-                    console.log('Using DesktopNative');
-                    app.native = new DesktopNative();
-                } else {
-                    console.log('Using CordovaNative');
-                    app.native = new CordovaNative();
-                }
+                app.native = options.native;
+                app.native.app = app;
             };
 
             app.initializeEventAggregator = function(options) {
-                console.log("Initializing event aggregator...");
+                app.vent = options.vent;
+                app.vent.app = app;
             };
 
             app.initializeAppSchema = function(options) {
-                console.log('Initializing app schema...');
-
-                // TODO: switch to native call with deferred/promise???
-                $.ajax({
-                    url: 'data/appSchema.json',
-                    dataType: 'json'
-                })
-                .done(function(data) {
-                    console.log("Got appSchema: " + data);
-                    app.schema = data;
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log("Failed to get app schema: " + textStatus);
-                });
+                app.schema = options.appSchema;
             };
 
             app.initializeAppDescriptor = function(options) {
-                console.log('Initializing app descriptor...');
-
-                var afterGetAppDescriptor = _.after(1, function() {
-                    app.descriptor = data;
-                });
-
-                // TODO: switch to native call with deferred/promise???
-                $.ajax({
-                    url: 'data/appDescriptor.json',
-                    dataType: 'json'
-                })
-                .done(function(data) {
-                    console.log("Got appDescriptor: " + data);
-                    app.descriptor = data;
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log("Failed to get app descriptor: " + textStatus);
-                });
+                app.descriptor = options.appDescriptor;
             };
 
             app.initializeViewFactory = function(options) {
-                app.viewFactory = new ViewFactory();
-                app.viewFactory.initialize(app);
+                app.viewFactory = options.viewFactory;
+                app.viewFactory.app = app;
             };
 
-            app.addInitializer(app.initializeRouter);
+            app.addInitializer(app.initializeAppController);
+            app.addInitializer(app.initializeAppRouter);
             app.addInitializer(app.initializeNative);
             app.addInitializer(app.initializeEventAggregator);
             app.addInitializer(app.initializeAppSchema);

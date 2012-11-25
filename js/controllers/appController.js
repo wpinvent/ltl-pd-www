@@ -4,16 +4,15 @@
     'use strict';
 
     /**
-     * Returns the main controller instance for the application
-     * (Note: this is not the typical definition of a controller - see Marionette AppRouter/Controller docs.)
+     * Returns a constructor function for AppController
+     * (Note: this is not the typical definition of a controller - it's more of just a utility class.
+     * See Marionette AppRouter/Controller docs.)
      */
     define([
         'jquery',
         'underscore',
         'backbone',
         'marionette',
-        'backstack',
-        'js/app',
         'js/views/LoginView',
         'js/views/AboutView',
         'js/views/BoxesView'
@@ -24,51 +23,45 @@
             _,
             Backbone,
             Marionette,
-            BackStack,
-            app,
             LoginView,
             AboutView,
             BoxesView
         ) {
-            console.log('Entering js/appController');
+            console.log('Entering js/controller/AppController');
 
             /**
              * Constructor function for AppController
+             * Caller needs to set the "app" property on this object before use.
              */
             var AppController = function() {
                 var self = this;
-                    //stackNavigator = new BackStack.StackNavigator({el: '#container'});
 
                 self.index = function() {
-                    console.log("Entering index function");
-                    //app.router.triggerRoute('login'});
+                    console.log("AppController: Entering index function (no-op)");
                 };
 
                 self.login = function() {
-                    console.log("Entering login function");
-                    app.mainRegion.show(new LoginView());
-                    //stackNavigator.pushView(new LoginView());
+                    console.log("AppController: Entering login function");
+                    self.app.rootRegion.show(new LoginView());
                 };
 
                 self.about = function() {
-                    console.log("Entering about function");
-                    app.mainRegion.show(new AboutView());
-                    //stackNavigator.pushView(new AboutView());
+                    console.log("AppController: Entering about function");
+                    self.app.rootRegion.show(new AboutView());
                 };
 
                 self.boxes = function() {
-                    console.log("Entering boxes function");
-                    app.mainRegion.show(new BoxesView());
-                    //stackNavigator.pushView(new BoxesView());
+                    console.log("AppController: Entering boxes function");
+                    self.app.rootRegion.show(new BoxesView());
                 };
 
                 self.other = function(path) {
-                    console.log("Entering other function");
-                    console.log("Invalid route: " + path);
+                    console.log("AppController: Entering other function");
+                    console.log("Unknown route: " + path);
                 };
             };
 
-            return new AppController();
+            return AppController;
         }
     );
 }());

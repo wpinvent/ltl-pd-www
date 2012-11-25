@@ -8,7 +8,14 @@
 
             console.log('Entering js/utils/backboneConfig');
 
-            // Change global Backbone stuff here...
+            var backboneConfig = {
+
+                initialize: function(app) {
+                    // Change global Backbone stuff here...
+                }
+            };
+
+            return backboneConfig;
         }
     );
 }());

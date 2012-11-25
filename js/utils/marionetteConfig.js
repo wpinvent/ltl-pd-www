@@ -9,24 +9,42 @@
 
             console.log('Entering js/utils/marionetteConfig');
 
-            // Change global Marionette stuff here...
+            var marionetteConfig = {
 
-            // Change Marionette to use pre-fetched templates, rather than looking for them by DOM element id selector
-            // https://github.com/marionettejs/backbone.marionette/wiki/Using-marionette-with-requirejs
-            // TODO: I don't think this actually gets used when you have the tpl plugin for require.js...
-            Marionette.TemplateCache.prototype.loadTemplate = function(templateId) {
-                var template = templateId;
+                initialize: function(app) {
+                    // Change global Marionette stuff here...
 
-                if (!template || template.length === 0) {
-                    var message = "Could not find template: '" + templateId + "'",
-                        error = new Error(message);
+                    // Change marionette to load templates via a native lookup.
+                    Marionette.TemplateCache.prototype.loadTemplate = function(templateId, callback) {
 
-                    error.name = "NoTemplateError";
-                    throw error;
+                        // Original implementation: Load from DOM by ID
+                        //var template = $(templateId).html();
+                  
+                        app.native.loadtemplate(templateId)
+                            .done(function(template) {
+                                if (!template || template.length === 0){
+                                    var msg = "Could not find template: '" + templateId + "'";
+                                    var err = new Error(msg);
+                                    err.name = "NoTemplateError";
+                                    throw err;
+                                }
+                          
+                                template = this.compileTemplate(template);
+                          
+                                callback.call(this, template);
+                            })
+                            .fail(function(error) {
+                                var msg = "Could not find template: '" + templateId + "' - " + error;
+                                var err = new Error(msg);
+                                err.name = "NoTemplateError";
+                                throw err;
+                            });
+
+                    };
                 }
+            }
 
-                return template;
-            };
+            return marionetteConfig;
         }
     );
 }());
