@@ -16,14 +16,6 @@
 
                 template: 'LoginView',
 
-                initialize: function() {
-                    console.log("Entering LoginView initialize");
-                    _.bindAll(this);
-
-                    this.model = new Session();
-                },
-
-                // Marionette converts these to jQuery objects...
                 ui: {
                     $userNameInput: '#userName',
                     $passwordInput: '#password'
@@ -31,6 +23,13 @@
 
                 events: {
                     'click #login': 'onLoginClick'
+                },
+
+                initialize: function() {
+                    console.log("Entering LoginView initialize");
+                    _.bindAll(this);
+
+                    this.model = new Session();
                 },
 
                 onLoginClick: function(event) {

@@ -26,8 +26,7 @@
 
                 initialize: function() {
                     console.log("Entering Node initialize");
-                },
-
+                }
             });
 
             return Node;

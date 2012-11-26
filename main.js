@@ -99,22 +99,9 @@
             console.log('Entering main');
 
                 /**
-                 * Function to run when Cordova (or Desktop browser) is ready
-                 */
-            var onDeviceReady = function(isDesktop) {
-                    console.log('Device ready!');
-
-                    app.isDesktop = isDesktop;
-
-                    preStartApp();
-                    startApp();
-                    postStartApp();
-                },
-
-                /**
                  * Initializes the Marionette AppController
                  */
-                initializeAppController = function() {
+            var initializeAppController = function() {
                     var deferred = new $.Deferred();
 
                     console.log("Initializing AppController...");
@@ -359,6 +346,19 @@
                  */
                 postStartApp = function() {
                     $('#loading').slideUp(600);
+                },
+
+                /**
+                 * Function to run when Cordova (or Desktop browser) is ready
+                 */
+                onDeviceReady = function(isDesktop) {
+                    console.log('Device ready!');
+
+                    app.isDesktop = isDesktop;
+
+                    preStartApp();
+                    startApp();
+                    postStartApp();
                 };
 
             // Application entry point: wait for DOM ready...

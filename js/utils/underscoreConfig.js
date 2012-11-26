@@ -14,7 +14,7 @@
                 initialize: function(app) {
                     // Change global jQuery stuff here...
                 }
-            }
+            };
 
             return underscoreConfig;
         }

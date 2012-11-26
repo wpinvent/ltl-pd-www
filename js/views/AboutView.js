@@ -17,7 +17,7 @@
 
                 initialize: function() {
                     _.bindAll(this);
-                },
+                }
             });
 
             return AboutView;

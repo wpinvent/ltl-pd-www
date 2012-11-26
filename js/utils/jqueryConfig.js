@@ -1,4 +1,4 @@
-/*global console, define*/
+/*global alert, console, define*/
 
 (function() {
     'use strict';
@@ -14,7 +14,7 @@
                 initialize: function(app) {
                     // Change global jQuery stuff here...
                 }
-            }
+            };
 
             return jqueryConfig;
         }

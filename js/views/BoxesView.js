@@ -45,7 +45,7 @@
                     this.inbox.show(new BoxView({ parentId: 'inbox' }));
                     this.outbox.show(new BoxView({ parentId: 'outbox' }));
                     this.sentbox.show(new BoxView({ parentId: 'sentbox' }));
-                },
+                }
             });
 
             return BoxesView;

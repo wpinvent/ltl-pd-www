@@ -92,9 +92,9 @@
 
     <target name="jslint-all"
         depends="intro"
-        description="Runs jslint on all application javascript files (not including libs)">
+        description="Runs jslint on all application .js files (not including libs)">
 
-        <echo message="Running JSLINT on all application .scss files..." />
+        <echo message="Running JSLINT on all application .js files..." />
 
         <foreach target="-jslint-single" param="file">
             <path>
@@ -113,9 +113,9 @@
 
     <target name="jshint-all"
         depends="intro"
-        description="Runs jshint on all application javascript files (not including libs)">
+        description="Runs jshint on all application .js files (not including libs)">
 
-        <echo message="Running JSHINT on all application .scss files..." />
+        <echo message="Running JSHINT on all application .js files..." />
 
         <foreach target="-jshint-single" param="file">
             <path>

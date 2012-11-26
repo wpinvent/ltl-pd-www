@@ -18,8 +18,7 @@
 
                 initialize: function() {
                     console.log("Entering NodeCollection initialize");
-                },
-
+                }
             });
 
             return NodeCollection;

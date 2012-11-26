@@ -1,3 +1,4 @@
+/*global alert, console, define*/
 (function() {
     'use strict';
 
@@ -36,7 +37,7 @@
                         model: item,
                         template: templateName
                     });
-                }
+                };
 
                 /**
                  * Returns the generic item View constructor function for the given viewType
