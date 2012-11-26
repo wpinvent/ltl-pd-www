@@ -29,7 +29,7 @@
                     // Apparently, setting root here doesn't work when not using pushState (i.e. it doesn't trigger the root route)
                 });
 
-                app.router.triggerRoute('login');
+                //app.router.triggerRoute('login');
             });
 
             return app;

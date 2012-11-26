@@ -12,8 +12,7 @@
         'backbone',
         'marionette',
         'js/app',
-        'js/views/BoxView',
-        'tpl!html/BoxesView.html'
+        'js/views/BoxView'
         ],
 
         function(
@@ -29,12 +28,7 @@
 
             var BoxesView = Marionette.Layout.extend({
 
-                template: template,
-
-                initialize: function() {
-                    console.log("Entering BoxesView initialize");
-                    _.bindAll(this);
-                },
+                template: 'BoxesView',
 
                 regions: {
                     inbox: '#inbox',
@@ -42,18 +36,15 @@
                     sentbox: '#sentbox'
                 },
 
+                initialize: function() {
+                    console.log("Entering BoxesView initialize");
+                    _.bindAll(this);
+                },
+
                 onRender: function() {
-                    this.inbox.show(new BoxView({
-                        parentId: 'inbox'
-                    }));
-
-                    this.outbox.show(new BoxView({
-                        parentId: 'outbox'
-                    }));
-
-                    this.sentbox.show(new BoxView({
-                        parentId: 'sentbox'
-                    }));
+                    this.inbox.show(new BoxView({ parentId: 'inbox' }));
+                    this.outbox.show(new BoxView({ parentId: 'outbox' }));
+                    this.sentbox.show(new BoxView({ parentId: 'sentbox' }));
                 },
             });
 

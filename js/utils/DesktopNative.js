@@ -12,89 +12,120 @@
 
             console.log('Entering js/utils/DesktopNative');
 
+            /**
+             * Constructs an object that provides desktop stubs for native calls
+             */
             var DesktopNative = function() {
                 var self = this;
 
                 /**
-                 * Gets the app schema (returns a $.Deferred for caller to handle)
+                 * Gets the app schema (returns a promise)
                  */
                 self.getAppSchema = function() {
-                    return $.getJSON('data/appSchema.json');
+                    var gettingAppSchema = new $.Deferred();
+
+                    $.getJSON('data/appSchema.json')
+                        .done(function(data, textStatus, jqXHR) {
+                            gettingAppSchema.resolve(data);
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            gettingAppSchema.reject(textStatus);
+                        });
+
+                    return gettingAppSchema.promise();
                 };
 
                 /**
-                 * Gets the app descriptor (returns a $.Deferred for caller to handle)
+                 * Gets the app descriptor (returns a promise)
                  */
                 self.getAppDescriptor = function() {
-                    return $.getJSON('data/appDescriptor.json');
+                    var gettingAppDescriptor = new $.Deferred();
+
+                    $.getJSON('data/appDescriptor.json')
+                        .done(function(data, textStatus, jqXHR) {
+                            gettingAppDescriptor.resolve(data);
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            gettingAppDescriptor.reject(textStatus);
+                        });
+
+                    return gettingAppDescriptor.promise();
                 };
 
                 /**
-                 * Gets a template from the html/ folder (adds a .html extension)
+                 * Gets a template from the html/ folder (returns a promise)
                  */
                 self.loadTemplate = function(templateName) {
-                    var url = 'html/' + templateName + '.html';
-                    return $.get(url);
-                };
+                    var url = 'html/' + templateName + '.html',
+                        loadingTemplate = new $.Deferred();
 
-                /**
-                 * Attempts a user login operation
-                 */
-                self.login = function(userName, password, onSuccess, onFailure) {
-                    setTimeout(function() {
-                        onSuccess();
-                    }, 500);
-                };
-
-                /**
-                 * Get node by id
-                 */
-                self.getNode = function(id, onSuccess, onFailure) {
-
-                    setTimeout(function() {
-
-                        $.ajax({
-                            url: 'data/data.json', 
-                            dataType: 'json',
-                            success: function(data, textStatus, jqXHR) {
-                                var children = _.where(data, { "id": id });
-                                onSuccess(children);
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.log("Error in getNode");
-                                console.log(jqXHR);
-                                console.log(textStatus);
-                                console.log(errorThrown);
-                            }
+                    $.get(url)
+                        .done(function(data, textStatus, jqXHR) {
+                            loadingTemplate.resolve(data);
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            loadingTemplate.reject(textStatus);
                         });
 
-                    }, 500);
+                    return loadingTemplate.promise();
                 };
 
                 /**
-                 * Get child nodes by parentId
+                 * Attempts a user login operation (returns a promise)
                  */
-                self.getChildNodes = function(parentId, onSuccess, onFailure) {
+                self.login = function(userName, password) {
+                    var loggingIn = new $.Deferred();
 
                     setTimeout(function() {
-
-                        $.ajax({
-                            url: 'data/data.json', 
-                            dataType: 'json',
-                            success: function(data, textStatus, jqXHR) {
-                                var children = _.where(data, { "parentId": parentId });
-                                onSuccess(children);
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.log("Error in getChildNodes");
-                                console.log(jqXHR);
-                                console.log(textStatus);
-                                console.log(errorThrown);
-                            }
-                        });
-
+                        // no-op for testing
+                        loggingIn.resolve();
                     }, 500);
 
+                    return loggingIn.promise();
+                };
+
+                /**
+                 * Get node by id (returns a promise)
+                 */
+                self.getNode = function(id) {
+                    var gettingNode = new $.Deferred();
+
+                    $.getJSON('data/data.json')
+                        .done(function(data, textStatus, jqXHR) {
+                            var children = _.where(data, { "id": id });
+                            gettingNode.resolve(children);
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            console.log("Error in DesktopNative getNode");
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                            gettingNode.reject(textStatus);
+                        });
+
+                    return gettingNode.promise();
+                };
+
+                /**
+                 * Get child nodes by parentId (returns a promise)
+                 */
+                self.getChildNodes = function(parentId) {
+                    var gettingChildNodes = new $.Deferred();
+
+                    $.getJSON('data/data.json')
+                        .done(function(data, textStatus, jqXHR) {
+                            var children = _.where(data, { "parentId": parentId });
+                            gettingChildNodes.resolve(children);
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            console.log("Error in DesktopNative getChildNodes");
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                            gettingChildNodes.reject(textStatus);
+                        });
+
+                    return gettingChildNodes.promise();
                 };
             };
 

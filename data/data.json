@@ -69,5 +69,101 @@
             "lineField3": 123,
             "lineField4": 7.0
         }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-22222",
+        "title": "Stop 22222",
+        "properties": {
+            "name": "Stop 22222",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-33333",
+        "title": "Stop 33333",
+        "properties": {
+            "name": "Stop 33333",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-44444",
+        "title": "Stop 44444",
+        "properties": {
+            "name": "Stop 44444",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-55555",
+        "title": "Stop 55555",
+        "properties": {
+            "name": "Stop 55555",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-66666",
+        "title": "Stop 66666",
+        "properties": {
+            "name": "Stop 66666",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-77777",
+        "title": "Stop 77777",
+        "properties": {
+            "name": "Stop 77777",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-88888",
+        "title": "Stop 88888",
+        "properties": {
+            "name": "Stop 88888",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
+    },
+    {
+        "nodeType": "item",
+        "type": "stop",
+        "parentId": "inbox",
+        "id": "stop-99999",
+        "title": "Stop 99999",
+        "properties": {
+            "name": "Stop 99999",
+            "address": "456 2nd St., Denver, CO 80111",
+            "phone": "303-555-1234"
+        }
     }
 ]

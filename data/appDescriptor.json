@@ -11,32 +11,32 @@
 
         "stop": {
             "collection": {
-                "templateName": "StopItemCollectionView",
+                "templateName": "StopCollectionItemView",
                 "actions": [
                     "openItem"
                 ]
             },
 
             "detail": {
-                "templateName": "StopItemDetailView",
+                "templateName": "StopDetailView",
                 "actions": [
                 ]
             },
 
             "edit": {
-                "templateName": "StopItemEditView",
+                "templateName": "StopEditView",
                 "actions": [
                 ]
             },
 
             "add": {
-                "templateName": "StopItemAddView",
+                "templateName": "StopAddView",
                 "actions": [
                 ]
             },
 
             "delete": {
-                "templateName": "StopItemDeleteView",
+                "templateName": "StopDeleteView",
                 "actions": [
                 ]
             }

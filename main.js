@@ -3,7 +3,7 @@
 (function() {
     'use strict';
 
-    console.log('Entering main');
+    console.log('Entering main (require.config)');
 
     /**
      * Sets up require.js, and defines the main entry point into the application (js/main)
@@ -75,8 +75,8 @@
         'js/utils/underscoreConfig',
         'js/utils/backboneConfig',
         'js/utils/marionetteConfig',
-        'marionetteAsync', // No export - modifies existing Marionette stuff
-        'bootstrap' // No export needed at this time
+        'marionetteAsync', // No export (modifies existing Marionette stuff), but add here to execute module
+        'bootstrap' // No export needed at this time, but add here to execute module
         ],
         function (
             domReady,
@@ -96,8 +96,11 @@
             backboneConfig,
             marionetteConfig
         ) {
-            console.log('Entering js/main');
+            console.log('Entering main');
 
+                /**
+                 * Function to run when Cordova (or Desktop browser) is ready
+                 */
             var onDeviceReady = function(isDesktop) {
                     console.log('Device ready!');
 
@@ -108,6 +111,9 @@
                     postStartApp();
                 },
 
+                /**
+                 * Initializes the Marionette AppController
+                 */
                 initializeAppController = function() {
                     var deferred = new $.Deferred();
 
@@ -121,6 +127,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes the Marionette AppRouter with the AppController
+                 */
                 initializeAppRouter = function() {
                     var deferred = new $.Deferred();
 
@@ -134,6 +143,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes the "native" wrapper object
+                 */
                 initializeNative = function() {
                     var deferred = new $.Deferred();
 
@@ -151,6 +163,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes a Marionette EventAggregator instance
+                 */
                 initializeEventAggregator = function() {
                     var deferred = new $.Deferred();
 
@@ -164,6 +179,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes the appSchema object (using native call)
+                 */
                 initializeAppSchema = function() {
 
                     var deferred = new $.Deferred();
@@ -186,6 +204,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes the app descriptor object (using native)
+                 */
                 initializeAppDescriptor = function() {
                     var deferred = new $.Deferred();
 
@@ -207,11 +228,15 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes the generic ViewFactory
+                 */
                 initializeViewFactory = function() {
                     var deferred = new $.Deferred();
 
                     console.log("Initializing viewFactory...");
                     app.viewFactory = new ViewFactory();
+                    app.viewFactory.app = app;
 
                     console.log("Done initialzing viewFactory.");
                     deferred.resolve();
@@ -219,6 +244,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes global jQuery settings
+                 */
                 initializeJQuery = function() {
                     var deferred = new $.Deferred();
 
@@ -231,6 +259,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes global Underscore settings
+                 */
                 initializeUnderscore = function() {
                     var deferred = new $.Deferred();
 
@@ -243,6 +274,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes global Backbone settings
+                 */
                 initializeBackbone = function() {
                     var deferred = new $.Deferred();
 
@@ -255,6 +289,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Initializes global Marionette settings
+                 */
                 initializeMarionette = function() {
                     var deferred = new $.Deferred();
 
@@ -267,6 +304,9 @@
                     return deferred;
                 },
 
+                /**
+                 * Function to call before startApp
+                 */
                 preStartApp = function() {
                     // Hide the Cordova splash screen.  Not sure if this is really needed.
                     if (app.isDesktop !== true) {
@@ -274,12 +314,15 @@
                     }
                 },
 
+                /**
+                 * Initializes app dependencies and then starts the Marionette app instance
+                 */
                 startApp = function() {
 
                     console.log("Loading application using async initialize tasks...");
 
                     // Pre-load a bunch of stuff (using jQuery Deferreds) before starting the Marionette Application.
-                    // This is done this way because the Applicationi addInitializer/etc. support does not
+                    // This is done this way because the Marionette Application addInitializer/etc. stuff does not
                     // seem to provide an async initialization mechanism that can wait for async tasks
                     // to finish before proceeding.  Note that some of these are not actually async, but we're using
                     // Deferred anyway, so they work nicely with the $.when function.
@@ -311,12 +354,14 @@
                     });
                 },
 
+                /**
+                 * Function to run after startApp
+                 */
                 postStartApp = function() {
                     $('#loading').slideUp(600);
                 };
-            // end var declarations
 
-            // Wait for DOM ready...
+            // Application entry point: wait for DOM ready...
             domReady(function () {
 
                 console.log('DOM ready!');

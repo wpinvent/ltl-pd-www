@@ -37,7 +37,8 @@
                 var self = this;
 
                 self.index = function() {
-                    console.log("AppController: Entering index function (no-op)");
+                    console.log("AppController: Entering index function (triggerRoute -> login)");
+                    self.app.router.triggerRoute('login');
                 };
 
                 self.login = function() {

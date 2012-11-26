@@ -18,7 +18,6 @@
 
                 initialize: function() {
                     console.log("Entering LoginView initialize");
-
                     _.bindAll(this);
 
                     this.model = new Session();
@@ -38,22 +37,19 @@
                     this.model.set('userName', this.ui.$userNameInput.val());
                     this.model.set('password', this.ui.$passwordInput.val());
 
-                    //var app = require('js/app');
                     app.native.login(
                         this.model.get('userName'),
-                        this.model.get('password'),
-                        this.onLoginSuccess,
-                        this.onLoginFailure);
+                        this.model.get('password'))
+                        .done(this.onLoginSuccess)
+                        .fail(this.onLoginFailure);
                 },
 
-                onLoginSuccess: function(userName, password) {
-                    //alert("Logged in!");
-
+                onLoginSuccess: function() {
                     app.session = this.model;
                     app.router.triggerRoute('boxes');
                 },
 
-                onLoginFailure: function() {
+                onLoginFailure: function(error) {
                     alert("Login error!");
                 }
             });

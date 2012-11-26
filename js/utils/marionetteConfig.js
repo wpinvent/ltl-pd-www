@@ -24,7 +24,8 @@
 
                         var self = this;
 
-                        console.log("Getting template named: " + templateId);
+                        console.log("Getting template named: ");
+                        console.log(templateId);
 
                         app.native.loadTemplate(templateId)
                             .done(function(template) {

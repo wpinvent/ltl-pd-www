@@ -13,8 +13,7 @@
         'marionette',
         'js/app',
         'js/models/Node',
-        'js/collections/NodeCollection',
-        'tpl!html/BoxView.html'
+        'js/collections/NodeCollection'
         ],
 
         function(
@@ -32,19 +31,26 @@
 
             var BoxView = Marionette.CollectionView.extend({
 
-                template: template,
+                template: 'BoxView',
 
                 initialize: function(options) {
                     console.log("Entering BoxView initialize");
+                    _.bindAll(this);
 
                     this.collection = new NodeCollection();
                     this.parentId = options.parentId;
-
-                    _.bindAll(this);
+                    this.viewType = 'collection';
                 },
 
                 getItemView: function(item) {
-                    return app.viewFactory.createItemView(item.get('type'), 'collection');
+                    return app.viewFactory.getItemViewType(this.viewType);
+                },
+
+                buildItemView: function(item, ItemViewType, itemViewOptions) {
+                    var type = item.get('type'),
+                        viewType = this.viewType;
+
+                    return app.viewFactory.createView(item, type, viewType, ItemViewType);
                 },
 
                 onRender: function() {
@@ -52,25 +58,28 @@
                 },
 
                 loadData: function() {
-                    app.native.getChildNodes(
-                        this.parentId,
-                        this.loadDataSuccess,
-                        this.loadDataFailure);
+                    console.log("Getting child nodes for parent: " + this.parentId);
+
+                    app.native.getChildNodes(this.parentId)
+                        .done(this.loadDataDone)
+                        .fail(this.loadDataFailure);
                 },
 
-                loadDataSuccess: function(data) {
-                    var i, node;
+                loadDataDone: function(data) {
+                    var i,
+                        length = data.length,
+                        node;
 
-                    console.log('loadDataSuccess: ' + data);
+                    console.log("Got " + length + " nodes for " + this.parentId);
 
-                    for (i = 0; i < data.length; i+=1) {
+                    for (i = 0; i < length; i+=1) {
                         node = new Node(data[i]);
                         this.collection.add(node);
                     }
                 },
 
                 loadDataFailure: function(error) {
-                    console.log("loadDataFailure:");
+                    console.log("loadData failure:");
                     console.log(error);
                 }
             });

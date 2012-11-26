@@ -29,10 +29,21 @@
 
                 _.bindAll(self);
 
-                self.createItemView = function(type, viewType) {
+                self.createView = function(item, type, viewType, View) {
+                    var templateName = self.app.descriptor.templates[type][viewType].templateName;
 
-                    var templateName = self.app.descriptor.templates[type][viewType],
-                        View = null;
+                    return new View({
+                        model: item,
+                        template: templateName
+                    });
+                }
+
+                /**
+                 * Returns the generic item View constructor function for the given viewType
+                 */
+                self.getItemViewType = function(viewType) {
+
+                    var View = null;
 
                     switch (viewType) {
                         case 'collection':
@@ -45,19 +56,18 @@
 
                         case 'edit':
                             View = ItemEditView;
+                            break;
 
                         case 'add':
                             View = ItemAddView;
+                            break;
 
                         case 'delete':
                             View = ItemDeleteView;
+                            break;
                     }
 
-                    if (_.isNull(View)) {
-                        return null;
-                    }
-
-                    return new View({ template: template });
+                    return View;
                 };
             };
 
