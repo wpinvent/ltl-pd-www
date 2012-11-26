@@ -366,6 +366,8 @@
 
                 console.log('DOM ready!');
 
+                console.log('User agent: ' + navigator.userAgent);
+
                 if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
 
                     // Running on device, wait for Cordova's deviceready to proceed

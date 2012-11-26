@@ -6,7 +6,7 @@
     /**
      * app - Returns the main Backbone.Marionette.Application instance
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
 
         function($, _, Backbone, Marionette) {
             console.log("Entering js/app");
