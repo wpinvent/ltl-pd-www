@@ -30,7 +30,15 @@
                 };
 
                 /**
-                 * Login
+                 * Gets a template from the html/ folder (adds a .html extension)
+                 */
+                self.loadTemplate = function(templateName) {
+                    var url = 'html/' + templateName + '.html';
+                    return $.get(url);
+                };
+
+                /**
+                 * Attempts a user login operation
                  */
                 self.login = function(userName, password, onSuccess, onFailure) {
                     setTimeout(function() {

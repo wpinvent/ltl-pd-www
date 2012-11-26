@@ -11,27 +11,33 @@
 
             var marionetteConfig = {
 
+                /**
+                 * Initializes Marionette settings that depend on the app or one or more app services.
+                 */
                 initialize: function(app) {
-                    // Change global Marionette stuff here...
 
-                    // Change marionette to load templates via a native lookup.
+                    /**
+                     * Updates the Marionette TemplateCache loadtemplate function to 
+                     * attempt to load templates using a native implementation.
+                     */
                     Marionette.TemplateCache.prototype.loadTemplate = function(templateId, callback) {
 
-                        // Original implementation: Load from DOM by ID
-                        //var template = $(templateId).html();
-                  
-                        app.native.loadtemplate(templateId)
+                        var self = this;
+
+                        console.log("Getting template named: " + templateId);
+
+                        app.native.loadTemplate(templateId)
                             .done(function(template) {
                                 if (!template || template.length === 0){
-                                    var msg = "Could not find template: '" + templateId + "'";
+                                    var msg = "Invalid/empty template: '" + templateId + "'";
                                     var err = new Error(msg);
-                                    err.name = "NoTemplateError";
+                                    err.name = "EmptyTemplateError";
                                     throw err;
                                 }
                           
-                                template = this.compileTemplate(template);
+                                template = self.compileTemplate(template);
                           
-                                callback.call(this, template);
+                                callback.call(self, template);
                             })
                             .fail(function(error) {
                                 var msg = "Could not find template: '" + templateId + "' - " + error;
