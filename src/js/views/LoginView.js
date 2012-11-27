@@ -6,7 +6,7 @@
     /**
      * Returns a contructor function for the LoginView
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'js/models/Session', 'marionetteAsync'],
 
         function($, _, Backbone, Marionette, app, Session) {
 

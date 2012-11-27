@@ -6,7 +6,7 @@
     /**
      * Returns a constructor function for AppRouter
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
 
         function($, _, Backbone, Marionette) {
 

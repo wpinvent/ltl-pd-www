@@ -3,8 +3,8 @@
 (function() {
     'use strict';
 
-    define(['jquery', 'underscore', 'backbone', 'marionette'],
-        function($, _, Backbone, Marionette) {
+    define(['jquery', 'underscore', 'backbone'],
+        function($, _, Backbone) {
 
             var Session = Backbone.Model.extend({
 
@@ -20,5 +20,4 @@
             return Session;
         }
     );
-
 }());

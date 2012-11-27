@@ -12,7 +12,7 @@
             var underscoreConfig = {
 
                 initialize: function(app) {
-                    // Change global jQuery stuff here...
+                    // Change global Underscore stuff here...
                 }
             };
 

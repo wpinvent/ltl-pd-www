@@ -12,7 +12,8 @@
         'backbone',
         'marionette',
         'js/app',
-        'js/views/BoxView'
+        'js/views/BoxView',
+        'marionetteAsync'
         ],
 
         function(
@@ -21,8 +22,7 @@
             Backbone,
             Marionette,
             app,
-            BoxView,
-            template
+            BoxView
         ) {
             console.log('Entering js/views/BoxesView');
 

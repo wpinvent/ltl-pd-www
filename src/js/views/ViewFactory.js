@@ -11,7 +11,8 @@
         'js/views/ItemDetailView',
         'js/views/ItemEditView',
         'js/views/ItemAddView',
-        'js/views/ItemDeleteView'
+        'js/views/ItemDeleteView',
+        'marionetteAsync'
         ],
         function(
             $,

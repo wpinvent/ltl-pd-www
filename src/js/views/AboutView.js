@@ -6,9 +6,9 @@
     /**
      * AboutView
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/app', 'marionetteAsync'],
 
-        function($, _, Backbone, Marionette, app, template) {
+        function($, _, Backbone, Marionette, app) {
             console.log('Entering js/views/AboutView');
 
             var AboutView = Marionette.ItemView.extend({

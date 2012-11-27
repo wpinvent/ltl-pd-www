@@ -2,7 +2,7 @@
 (function() {
     'use strict';
 
-    define(['jquery', 'underscore', 'backbone', 'marionette'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
         function($, _, Backbone, Marionette) {
 
             var ItemCollectionItemView = Marionette.ItemView.extend({

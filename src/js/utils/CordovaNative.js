@@ -6,9 +6,9 @@
     /**
      * Returns an constructor function for the native wrapper that uses Cordova.
      */
-    define(['jquery', 'underscore', 'backbone'],
+    define(['jquery', 'underscore'],
 
-        function($, _, Backbone) {
+        function($, _) {
 
             console.log("Entering js/utils/CordovaNative");
 

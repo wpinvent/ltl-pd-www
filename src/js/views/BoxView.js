@@ -13,7 +13,8 @@
         'marionette',
         'js/app',
         'js/models/Node',
-        'js/collections/NodeCollection'
+        'js/collections/NodeCollection',
+        'marionetteAsync'
         ],
 
         function(
@@ -23,8 +24,7 @@
             Marionette,
             app,
             Node,
-            NodeCollection,
-            template
+            NodeCollection
         ) {
 
             console.log('Entering js/views/BoxView');
@@ -61,11 +61,11 @@
                     console.log("Getting child nodes for parent: " + this.parentId);
 
                     app.native.getChildNodes(this.parentId)
-                        .done(this.loadDataDone)
-                        .fail(this.loadDataFailure);
+                        .done(this.onLoadDataSuccess)
+                        .fail(this.onLoadDataFailure);
                 },
 
-                loadDataDone: function(data) {
+                onLoadDataSuccess: function(data) {
                     var i,
                         length = data.length,
                         node;
@@ -78,7 +78,7 @@
                     }
                 },
 
-                loadDataFailure: function(error) {
+                onLoadDataFailure: function(error) {
                     console.log("loadData failure:");
                     console.log(error);
                 }

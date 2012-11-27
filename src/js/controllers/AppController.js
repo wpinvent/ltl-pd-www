@@ -15,7 +15,8 @@
         'marionette',
         'js/views/LoginView',
         'js/views/AboutView',
-        'js/views/BoxesView'
+        'js/views/BoxesView',
+        'marionetteAsync'
         ],
 
         function(
@@ -27,7 +28,7 @@
             AboutView,
             BoxesView
         ) {
-            console.log('Entering js/controller/AppController');
+            console.log('Entering js/controllers/AppController');
 
             /**
              * Constructor function for AppController
@@ -37,8 +38,8 @@
                 var self = this;
 
                 self.index = function() {
-                    console.log("AppController: Entering index function (triggerRoute -> login)");
-                    self.app.router.triggerRoute('login');
+                    console.log("AppController: Entering index function - triggerRoute -> " + self.app.root);
+                    self.app.router.triggerRoute(self.app.root);
                 };
 
                 self.login = function() {

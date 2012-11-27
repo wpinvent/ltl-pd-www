@@ -17,8 +17,10 @@
                 initialize: function(app) {
 
                     /**
-                     * Updates the Marionette TemplateCache loadtemplate function to 
-                     * attempt to load templates using a native implementation.
+                     * Updates the Marionette Async TemplateCache loadTemplate function to
+                     * attempt to load templates using a "native" implementation.  This could be
+                     * a standard AJAX get for a file, or it could load the template from a database
+                     * file in native-land.
                      */
                     Marionette.TemplateCache.prototype.loadTemplate = function(templateId, callback) {
 
