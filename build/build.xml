@@ -17,7 +17,7 @@
     ***************************************************************************
     -->
     
-    <!-- Ant Contrib -->
+    <!-- Load Ant Contrib (foreach, etc.) -->
     <taskdef resource="net/sf/antcontrib/antlib.xml">
         <classpath>
             <pathelement location="${basedir}/build/tools/ant-contrib-1.0b3.jar"/>
@@ -27,7 +27,7 @@
     <!-- Load environment variables -->
     <property environment="ENV" />
 
-    <!-- Load properties -->
+    <!-- Load properties file -->
     <property file="build/build.properties"/>
 
     <!-- Load build macros -->
@@ -42,7 +42,7 @@
         </condition>
     </fail>
 
-    <!-- TODO: check for availability Node.js executable (node) (required for r.js build, and probably other things) -->
+    <!-- TODO: check Node availability -->
 
     <!--
     ***************************************************************************
@@ -98,9 +98,9 @@
 
         <foreach target="-jslint-single" param="file">
             <path>
-                <fileset dir="${dir.source}">
+                <fileset dir="${dir.src}">
                     <include name="main.js" />
-                    <include name="${dir.js}/**/*.js" />
+                    <include name="js/**/*.js" />
                 </fileset>
             </path>
         </foreach>
@@ -119,9 +119,9 @@
 
         <foreach target="-jshint-single" param="file">
             <path>
-                <fileset dir="${dir.source}">
+                <fileset dir="${dir.src}">
                     <include name="main.js" />
-                    <include name="${dir.js}/**/*.js" />
+                    <include name="js/**/*.js" />
                 </fileset>
             </path>
         </foreach>
@@ -203,17 +203,17 @@
                         <echo message="Creating dir: ${dir.intermediate}..." />
                         <mkdir dir="${dir.intermediate}"/>
 
-                        <echo message="Copying ${dir.source} files (except excludes) to ${dir.intermediate}..." />
+                        <echo message="Copying ${dir.src} files (except excludes) to ${dir.intermediate}..." />
                         <copy todir="${dir.intermediate}" includeEmptyDirs="true">
-                            <dirset dir="${dir.source}/" excludes="${file.excludes}"/>
+                            <dirset dir="${dir.src}/" excludes="${file.excludes}"/>
                         </copy>
 
                         <echo message="Creating dir: ${dir.publish}..." />
                         <mkdir dir="${dir.publish}"/>
 
-                        <echo message="Copying ${dir.source} files (except excludes) to ${dir.intermediate}..." />
+                        <echo message="Copying ${dir.src} files (except excludes) to ${dir.intermediate}..." />
                         <copy todir="${dir.publish}" includeEmptyDirs="true">
-                            <dirset dir="${dir.source}/" excludes="${file.excludes}" />
+                            <dirset dir="${dir.src}/" excludes="${file.excludes}" />
                         </copy>
                     </else>
                 </if>
@@ -228,7 +228,7 @@
         <echo message="Copying source files to intermediate..." />
 
         <copy todir="./${dir.intermediate}" includeEmptyDirs="true">
-            <fileset dir="${dir.source}/" excludes="${file.excludes}" />
+            <fileset dir="${dir.src}/" excludes="${file.excludes}" />
         </copy>
     </target>
 
@@ -256,11 +256,6 @@
         <echo message="Deleting .scss files" />
         <delete>
             <fileset dir="${dir.publish}/css" includes="**/*.scss" />
-        </delete>
-
-        <echo message="Deleting .bat files" />
-        <delete>
-            <fileset dir="${dir.publish}/" includes="*.bat" />
         </delete>
     </target>
 
