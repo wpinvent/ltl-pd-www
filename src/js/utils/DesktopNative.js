@@ -21,20 +21,13 @@
                 /**
                  * Wrapper for $.getJSON
                  */
-                self.getJSON = function(url, filter) {
+                self.getJSON = function(url) {
                     var gettingJSON = new $.Deferred();
 
-                    console.log('Getting json for url: ' + url + ', and filter: ');
-                    console.log(filter);
+                    console.log('Getting json for url: ' + url);
 
                     $.getJSON(url)
                         .done(function(data, textStatus, jqXHR) {
-
-                            /* Filter the results using Underscore "where" if filter is provided */
-                            if (filter) {
-                                data = _.where(data, filter);
-                            }
-
                             gettingJSON.resolve(data);
                         })
                         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -106,14 +99,41 @@
                  * Get node by id (returns a promise)
                  */
                 self.getNode = function(id) {
-                    return self.getJSON('data/data.json', { "id": id });
+                    var gettingNode = new $.Deferred();
+
+                    self.getJSON('data/data.json')
+                        .done(function(data) {
+                            var inserts = data.inserts,
+                                nodes = _.where(inserts, { "id": id }),
+                                node = _.first(nodes);
+
+                            gettingNode.resolve(node);
+                        })
+                        .fail(function(error) {
+                            gettingNode.reject(error);
+                        });
+
+                    return gettingNode;
                 };
 
                 /**
                  * Get child nodes by parentId (returns a promise)
                  */
                 self.getChildNodes = function(parentId) {
-                    return self.getJSON('data/data.json', { "parentId": parentId });
+                    var gettingChildNodes = new $.Deferred();
+
+                    self.getJSON('data/data.json')
+                        .done(function(data) {
+                            var inserts = data.inserts,
+                                nodes = _.where(inserts, { "parentId": parentId });
+
+                            gettingChildNodes.resolve(nodes);
+                        })
+                        .fail(function(error) {
+                            gettingChildNodes.reject(error);
+                        });
+
+                    return gettingChildNodes;
                 };
             };
 

@@ -37,24 +37,63 @@
             var AppController = function() {
                 var self = this;
 
+                /**
+                 * Shows a view
+                 */
+                self.showView = function(view) {
+                    self.app.rootRegion.show(view);
+                };
+
+                /**
+                 * Triggers a route via the router
+                 */
+                self.triggerRoute = function(route) {
+                    self.app.router.triggerRoute(self.app.root);
+                };
+
                 self.index = function() {
                     console.log("AppController: Entering index function - triggerRoute -> " + self.app.root);
-                    self.app.router.triggerRoute(self.app.root);
+                    self.triggerRoute(self.app.root);
                 };
 
                 self.login = function() {
                     console.log("AppController: Entering login function");
-                    self.app.rootRegion.show(new LoginView());
+                    self.showView(new LoginView());
                 };
 
                 self.about = function() {
                     console.log("AppController: Entering about function");
-                    self.app.rootRegion.show(new AboutView());
+                    self.showView(new AboutView());
                 };
 
                 self.boxes = function() {
                     console.log("AppController: Entering boxes function");
-                    self.app.rootRegion.show(new BoxesView());
+                    self.showView(new BoxesView());
+                };
+
+                self.view = function(type, nodeType, id) {
+                    //var view = self.app.viewFactory.createView
+                    alert("Showing Detail View: " + id);
+                };
+
+                self.edit = function(type, nodeType, id) {
+                    alert("Showing Edit View: " + id);
+                };
+
+                self['delete'] = function(type, nodeType, id) {
+                    alert("Showing Delete View: " + id);
+                };
+
+                self.addImage = function(type, nodeType, id) {
+                    alert("Showing Add Image View: " + id);
+                };
+
+                self.addSignature = function(type, nodeType, id) {
+                    alert("Showing Add Signature View: " + id);
+                };
+
+                self.addNote = function(type, nodeType, id) {
+                    alert("Showing Add Note View: " + id);
                 };
 
                 self.other = function(path) {

@@ -34,16 +34,24 @@
                 self.createView = function(item, type, viewType, View) {
                     var templateName = self.app.descriptor.templates[type][viewType].templateName;
 
+                    if (!View) {
+                        View = self.getItemViewConstructor(viewType);
+                    }
+
                     return new View({
+                        // Don't change the property names "model" and "template" - these are special
                         model: item,
-                        template: templateName
+                        template: templateName,
+                        type: type,
+                        viewType: viewType,
+                        app: this.app
                     });
                 };
 
                 /**
                  * Returns the generic item View constructor function for the given viewType
                  */
-                self.getItemViewType = function(viewType) {
+                self.getItemViewConstructor = function(viewType) {
 
                     var View = null;
 

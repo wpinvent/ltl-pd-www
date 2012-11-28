@@ -43,7 +43,7 @@
                 },
 
                 getItemView: function(item) {
-                    return app.viewFactory.getItemViewType(this.viewType);
+                    return app.viewFactory.getItemViewConstructor(this.viewType);
                 },
 
                 buildItemView: function(item, ItemViewType, itemViewOptions) {
@@ -54,7 +54,12 @@
                 },
 
                 onRender: function() {
+                    this.addDynamicControls();
                     this.loadData();
+                },
+
+                addDynamicControls: function() {
+                    console.log("Adding dynamic controls to " + this.parentId);
                 },
 
                 loadData: function() {

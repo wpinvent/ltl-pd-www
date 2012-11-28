@@ -13,31 +13,54 @@
             "collection": {
                 "templateName": "StopCollectionItemView",
                 "actions": [
-                    "openItem"
+                    "viewItem",
+                    "viewItemInline",
+                    "addItem",
+                    "addItemInline",
+                    "editItem",
+                    "editItemInline",
+                    "deleteItem",
+                    "deleteItemInline",
+                    "addImageToItem",
+                    "addSignatureToItem",
+                    "addNoteToItem"
                 ]
             },
 
             "detail": {
                 "templateName": "StopDetailView",
                 "actions": [
+                    "editItem",
+                    "deleteItem",
+                    "addImageToItem",
+                    "addSignatureToItem",
+                    "addNoteToItem",
+                    "viewChildren",
+                    "viewChildrenInline"
                 ]
             },
 
             "edit": {
                 "templateName": "StopEditView",
                 "actions": [
+                    "saveItem",
+                    "cancel"
                 ]
             },
 
             "add": {
                 "templateName": "StopAddView",
                 "actions": [
+                    "saveItem",
+                    "cancel"
                 ]
             },
 
             "delete": {
                 "templateName": "StopDeleteView",
                 "actions": [
+                    "deleteItem",
+                    "cancel"
                 ]
             }
         },

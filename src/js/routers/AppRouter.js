@@ -33,6 +33,12 @@
                     'login': 'login',
                     'about': 'about',
                     'boxes': 'boxes',
+                    'view/:type/:nodeType/:id': 'view',
+                    'edit/:type/:nodeType/:id': 'edit',
+                    'delete/:type/:nodeType/:id': 'delete',
+                    'addImage/:type/:nodeType/:id': 'addImage',
+                    'addSignature/:type/:nodeType/:id': 'addSignature',
+                    'addNote/:type/:nodeType/:id': 'addNote',
                     '*other': 'other'
                 },
 
