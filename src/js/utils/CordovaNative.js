@@ -1,4 +1,4 @@
-/*global console, define, setTimeout*/
+/*global cordova, define*/
 
 (function() {
     'use strict';

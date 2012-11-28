@@ -1,4 +1,4 @@
-/*global console, cordova, define, document, navigator, require, setTimeout */
+/*global cordova, define, require*/
 
 (function() {
     'use strict';
@@ -386,5 +386,4 @@
             });
         }
     );
-
 }());

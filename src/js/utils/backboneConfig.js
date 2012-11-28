@@ -1,5 +1,4 @@
-/*global console, define */
-
+/*global define*/
 (function() {
     'use strict';
 

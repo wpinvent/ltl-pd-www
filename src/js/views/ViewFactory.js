@@ -1,4 +1,4 @@
-/*global alert, console, define*/
+/*global define*/
 
 (function() {
     'use strict';
@@ -79,16 +79,17 @@
                  */
                 self.getViewConstructor = function(options) {
                     var viewTypes = _.keys(self.viewTypeToViewConstructorMap),
-                        viewType = options.viewType;
+                        viewType = options.viewType,
+                        error;
 
                     if (!viewType) {
-                        var error = new Error('View type is required.');
+                        error = new Error('View type is required.');
                         error.Name = "MissingViewTypeError";
                         throw error;
                     }
 
                     if (!_.contains(viewTypes, viewType)) {
-                        var error = new Error('Invalid view type: ' + viewType);
+                        error = new Error('Invalid view type: ' + viewType);
                         error.Name = "InvalidViewTypeError";
                         throw error;
                     }
@@ -99,7 +100,8 @@
                 self.getViewTemplate = function(options) {
                     var type = options.type,
                         viewType = options.viewType,
-                        templates = self.app.descriptor.templates;
+                        templates = self.app.descriptor.templates,
+                        error;
 
                     if (templates[type] && templates[type][viewType]) {
                         return templates[type][viewType].templateName;
@@ -109,7 +111,7 @@
                         return self.viewTypeToViewTemplateMap[viewType];
                     }
 
-                    var error = new Error('Unable to determine template.');
+                    error = new Error('Unable to determine template.');
                     error.Name = "UnknownTemplateError";
                     throw error;
                 };

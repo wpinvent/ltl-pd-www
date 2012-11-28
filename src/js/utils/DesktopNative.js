@@ -1,4 +1,4 @@
-/*global console, define, setTimeout */
+/*global define*/
 
 (function() {
     'use strict';
