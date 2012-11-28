@@ -1,4 +1,5 @@
 /*global alert, console, define*/
+
 (function() {
     'use strict';
 
@@ -7,6 +8,11 @@
         'underscore',
         'backbone',
         'marionette',
+        'js/views/LoginView',
+        'js/views/AboutView',
+        'js/views/SettingsView',
+        'js/views/BoxesView',
+        'js/views/ItemCollectionView',
         'js/views/ItemCollectionItemView',
         'js/views/ItemDetailView',
         'js/views/ItemEditView',
@@ -19,6 +25,11 @@
             _,
             Backbone,
             Marionette,
+            LoginView,
+            AboutView,
+            SettingsView,
+            BoxesView,
+            ItemCollectionView,
             ItemCollectionItemView,
             ItemDetailView,
             ItemEditView,
@@ -31,53 +42,92 @@
 
                 _.bindAll(self);
 
-                self.createView = function(item, type, viewType, View) {
-                    var templateName = self.app.descriptor.templates[type][viewType].templateName;
-
-                    if (!View) {
-                        View = self.getItemViewConstructor(viewType);
-                    }
-
-                    return new View({
-                        // Don't change the property names "model" and "template" - these are special
-                        model: item,
-                        template: templateName,
-                        type: type,
-                        viewType: viewType,
-                        app: this.app
-                    });
+                /**
+                 * Mapping of the viewType string to the view's constructor function
+                 */
+                self.viewTypeToViewConstructorMap = {
+                    'login': LoginView,
+                    'about': AboutView,
+                    'settings': SettingsView,
+                    'boxes': BoxesView,
+                    'itemCollection': ItemCollectionView,
+                    'itemCollectionItem': ItemCollectionItemView,
+                    'itemDetail': ItemDetailView,
+                    'itemEdit': ItemEditView,
+                    'itemAdd': ItemAddView,
+                    'itemDelete': ItemDeleteView
                 };
 
                 /**
-                 * Returns the generic item View constructor function for the given viewType
+                 * Mapping of the viewType string to well-known (non-configured) template names
                  */
-                self.getItemViewConstructor = function(viewType) {
+                self.viewTypeToViewTemplateMap = {
+                    'login': 'LoginView',
+                    'about': 'AboutView',
+                    'settings': 'SettingsView',
+                    'boxes': 'BoxesView',
+                    'itemCollection': 'ItemCollectionView',
+                    'itemCollectionItem': 'ItemCollectionItemView',
+                    'itemDetail': 'ItemDetailView',
+                    'itemEdit': 'ItemEditView',
+                    'itemAdd': 'ItemAddView',
+                    'itemDelete': 'ItemDeleteView'
+                };
 
-                    var View = null;
+                /**
+                 * Gets a view constructor function for the given view type string
+                 */
+                self.getViewConstructor = function(options) {
+                    var viewTypes = _.keys(self.viewTypeToViewConstructorMap),
+                        viewType = options.viewType;
 
-                    switch (viewType) {
-                        case 'collection':
-                            View = ItemCollectionItemView;
-                            break;
-
-                        case 'detail':
-                            View = ItemDetailView;
-                            break;
-
-                        case 'edit':
-                            View = ItemEditView;
-                            break;
-
-                        case 'add':
-                            View = ItemAddView;
-                            break;
-
-                        case 'delete':
-                            View = ItemDeleteView;
-                            break;
+                    if (!viewType) {
+                        var error = new Error('View type is required.');
+                        error.Name = "MissingViewTypeError";
+                        throw error;
                     }
 
-                    return View;
+                    if (!_.contains(viewTypes, viewType)) {
+                        var error = new Error('Invalid view type: ' + viewType);
+                        error.Name = "InvalidViewTypeError";
+                        throw error;
+                    }
+
+                    return self.viewTypeToViewConstructorMap[viewType];
+                };
+
+                self.getViewTemplate = function(options) {
+                    var type = options.type,
+                        viewType = options.viewType,
+                        templates = self.app.descriptor.templates;
+
+                    if (templates[type] && templates[type][viewType]) {
+                        return templates[type][viewType].templateName;
+                    }
+
+                    if (self.viewTypeToViewTemplateMap[viewType]) {
+                        return self.viewTypeToViewTemplateMap[viewType];
+                    }
+
+                    var error = new Error('Unable to determine template.');
+                    error.Name = "UnknownTemplateError";
+                    throw error;
+                };
+
+                /**
+                 * Creates a view
+                 * options are passed through to the View's constructor
+                 * If options contains a View constructor function it is used
+                 */
+                self.createView = function(options) {
+                    var View = options.View || self.getViewConstructor(options),
+                        template = options.template || self.getViewTemplate(options);
+
+                    options.View = View;
+                    options.template = template;
+                    options.app = self.app;
+
+                    return new View(options);
                 };
             };
 

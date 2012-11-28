@@ -22,7 +22,7 @@
                 },
 
                 events: {
-                    'click #login': 'onLoginClick'
+                    'click a[data-action="login"]': 'onLoginClick'
                 },
 
                 initialize: function() {
@@ -32,9 +32,10 @@
                     this.model = new Session();
                 },
 
-                onLoginClick: function(event) {
+                onLoginClick: function(e) {
                     this.model.set('userName', this.ui.$userNameInput.val());
                     this.model.set('password', this.ui.$passwordInput.val());
+                    this.nextUrl = $(e.target).attr('href');
 
                     app.native.login(
                         this.model.get('userName'),
@@ -45,7 +46,7 @@
 
                 onLoginSuccess: function() {
                     app.session = this.model;
-                    app.router.triggerRoute('boxes');
+                    app.router.triggerRoute(this.nextUrl);
                 },
 
                 onLoginFailure: function(error) {

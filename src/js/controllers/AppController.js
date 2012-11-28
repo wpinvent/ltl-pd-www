@@ -8,26 +8,10 @@
      * (Note: this is not the typical definition of a controller - it's more of just a utility class.
      * See Marionette AppRouter/Controller docs.)
      */
-    define([
-        'jquery',
-        'underscore',
-        'backbone',
-        'marionette',
-        'js/views/LoginView',
-        'js/views/AboutView',
-        'js/views/BoxesView',
-        'marionetteAsync'
-        ],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
 
-        function(
-            $,
-            _,
-            Backbone,
-            Marionette,
-            LoginView,
-            AboutView,
-            BoxesView
-        ) {
+        function( $, _, Backbone, Marionette) {
+
             console.log('Entering js/controllers/AppController');
 
             /**
@@ -38,67 +22,194 @@
                 var self = this;
 
                 /**
-                 * Shows a view
+                 * Helper method to show a view object in the root application region
                  */
-                self.showView = function(view) {
+                self._showView = function(view) {
                     self.app.rootRegion.show(view);
                 };
 
                 /**
-                 * Triggers a route via the router
+                 * Helper method to trigger a URL route via the app router
                  */
-                self.triggerRoute = function(route) {
+                self._triggerRoute = function(route) {
                     self.app.router.triggerRoute(self.app.root);
                 };
 
+                /**
+                 * Index - redirects to the Login View
+                 */
                 self.index = function() {
-                    console.log("AppController: Entering index function - triggerRoute -> " + self.app.root);
-                    self.triggerRoute(self.app.root);
+                    console.log("AppController: index -> triggerRoute " + self.app.root);
+
+                    self._triggerRoute(self.app.root);
                 };
 
+                /**
+                 * Login - shows the Login View
+                 */
                 self.login = function() {
-                    console.log("AppController: Entering login function");
-                    self.showView(new LoginView());
+                    console.log("AppController: login");
+
+                    var view;
+                    view = self.app.viewFactory.createView({ viewType: 'login' });
+                    self._showView(view);
                 };
 
+                /**
+                 * About - shows the About View
+                 */
                 self.about = function() {
-                    console.log("AppController: Entering about function");
-                    self.showView(new AboutView());
+                    var view;
+
+                    console.log("AppController: about");
+
+                    view = self.app.viewFactory.createView({ viewType: 'about' });
+                    self._showView(view);
                 };
 
+                /**
+                 * Settings
+                 */
+                self.settings = function() {
+                    var view;
+
+                    console.log("AppController: settings");
+
+                    view = self.app.viewFactory.createView({ viewType: 'settings' });
+                    self._showView(view);
+                };
+
+                /**
+                 * Boxes - shows the inbox/outbox/sent box view
+                 */
                 self.boxes = function() {
-                    console.log("AppController: Entering boxes function");
-                    self.showView(new BoxesView());
+                    var view;
+
+                    console.log("AppController: boxes");
+
+                    view = self.app.viewFactory.createView({ viewType: 'boxes' });
+                    self._showView(view);
                 };
 
-                self.view = function(type, nodeType, id) {
-                    //var view = self.app.viewFactory.createView
-                    alert("Showing Detail View: " + id);
+                /**
+                 * View Item - shows the item detail view
+                 */
+                self.viewItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: view for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'itemDetail',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
-                self.edit = function(type, nodeType, id) {
-                    alert("Showing Edit View: " + id);
+                /**
+                 * Edit item - shows the item edit view
+                 */
+                self.editItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: edit for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'itemEdit',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
-                self['delete'] = function(type, nodeType, id) {
-                    alert("Showing Delete View: " + id);
+                /**
+                 * Delete item - shows the item delete confirmation view
+                 */
+                self.deleteItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: delete for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'itemDelete',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
-                self.addImage = function(type, nodeType, id) {
-                    alert("Showing Add Image View: " + id);
+                /**
+                 * Add image - shows the add image view
+                 */
+                self.addImageToItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: addImage for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'addImageToItem',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
-                self.addSignature = function(type, nodeType, id) {
-                    alert("Showing Add Signature View: " + id);
+                /**
+                 * Add signature
+                 */
+                self.addSignatureToItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: addSignature for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'addSignatureToItem',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
-                self.addNote = function(type, nodeType, id) {
-                    alert("Showing Add Note View: " + id);
+                /**
+                 * Add note
+                 */
+                self.addNoteToItem = function(type, id) {
+                    var view;
+
+                    console.log("AppController: addSignature for type: " + type + ", id:" + id);
+
+                    // TODO: lookup model here, or just pass id and let view handle the model?
+
+                    view = self.app.viewFactory.createView({
+                        viewType: 'addNoteToItem',
+                        type: type,
+                        id: id
+                    });
+
+                    self._showView(view);
                 };
 
+                /**
+                 * Other/Unknown
+                 */
                 self.other = function(path) {
-                    console.log("AppController: Entering other function");
-                    console.log("Unknown route: " + path);
+                    console.log("AppController: ignoring unknown route: " + path);
                 };
             };
 

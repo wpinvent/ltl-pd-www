@@ -6,29 +6,12 @@
     /**
      * Returns a contructor function for the BoxesView
      */
-    define([
-        'jquery',
-        'underscore',
-        'backbone',
-        'marionette',
-        'js/app',
-        'js/views/BoxView',
-        'marionetteAsync'
-        ],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
 
-        function(
-            $,
-            _,
-            Backbone,
-            Marionette,
-            app,
-            BoxView
-        ) {
+        function($, _, Backbone, Marionette) {
             console.log('Entering js/views/BoxesView');
 
             var BoxesView = Marionette.Layout.extend({
-
-                template: 'BoxesView',
 
                 regions: {
                     inbox: '#inbox',
@@ -36,15 +19,31 @@
                     sentbox: '#sentbox'
                 },
 
-                initialize: function() {
+                initialize: function(options) {
                     console.log("Entering BoxesView initialize");
                     _.bindAll(this);
+
+                    this.app = options.app;
                 },
 
                 onRender: function() {
-                    this.inbox.show(new BoxView({ parentId: 'inbox' }));
-                    this.outbox.show(new BoxView({ parentId: 'outbox' }));
-                    this.sentbox.show(new BoxView({ parentId: 'sentbox' }));
+                    this.inbox.show(
+                        this.app.viewFactory.createView({
+                            parentId: 'inbox',
+                            viewType: 'itemCollection'
+                        }));
+
+                    this.outbox.show(
+                        this.app.viewFactory.createView({
+                            parentId: 'outbox',
+                            viewType: 'itemCollection'
+                        }));
+
+                    this.sentbox.show(
+                        this.app.viewFactory.createView({
+                            parentId: 'sentbox',
+                            viewType: 'itemCollection'
+                        }));
                 }
             });
 

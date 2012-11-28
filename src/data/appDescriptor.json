@@ -2,15 +2,10 @@
     "templates": {
 
         "transaction": {
-            "collection": {
-            },
-
-            "detail": {
-            }
         },
 
         "stop": {
-            "collection": {
+            "itemCollectionItem": {
                 "templateName": "StopCollectionItemView",
                 "actions": [
                     "viewItem",
@@ -27,7 +22,7 @@
                 ]
             },
 
-            "detail": {
+            "itemDetail": {
                 "templateName": "StopDetailView",
                 "actions": [
                     "editItem",
@@ -40,7 +35,7 @@
                 ]
             },
 
-            "edit": {
+            "itemEdit": {
                 "templateName": "StopEditView",
                 "actions": [
                     "saveItem",
@@ -48,7 +43,7 @@
                 ]
             },
 
-            "add": {
+            "itemAdd": {
                 "templateName": "StopAddView",
                 "actions": [
                     "saveItem",
@@ -56,7 +51,7 @@
                 ]
             },
 
-            "delete": {
+            "itemDelete": {
                 "templateName": "StopDeleteView",
                 "actions": [
                     "deleteItem",

@@ -19,7 +19,7 @@
             var AppRouter = Marionette.AppRouter.extend({
 
                 /**
-                 * Initializer
+                 * AppRouter initializer
                  */
                 initialize: function() {
                     _.bindAll(this);
@@ -33,12 +33,12 @@
                     'login': 'login',
                     'about': 'about',
                     'boxes': 'boxes',
-                    'view/:type/:nodeType/:id': 'view',
-                    'edit/:type/:nodeType/:id': 'edit',
-                    'delete/:type/:nodeType/:id': 'delete',
-                    'addImage/:type/:nodeType/:id': 'addImage',
-                    'addSignature/:type/:nodeType/:id': 'addSignature',
-                    'addNote/:type/:nodeType/:id': 'addNote',
+                    'viewItem/:type/:id': 'viewItem',
+                    'editItem/:type/:nodeType/:id': 'editItem',
+                    'deleteItem/:type/:nodeType/:id': 'deleteItem',
+                    'addImageToItem/:type/:nodeType/:id': 'addImageToItem',
+                    'addSignatureToItem/:type/:nodeType/:id': 'addSignatureToItem',
+                    'addNoteToItem/:type/:nodeType/:id': 'addNoteToItem',
                     '*other': 'other'
                 },
 

@@ -39,7 +39,7 @@
                 },
 
                 createActionUrl: function(action) {
-                    return action + '/' + this.type + '/' + this.nodeType + '/' + this.id;
+                    return action + '/' + this.type + '/' + this.id;
                 },
 
                 triggerActionRoute: function(action) {
@@ -48,7 +48,7 @@
                 },
 
                 onViewItem: function() {
-                    this.triggerActionRoute('view');
+                    this.triggerActionRoute('viewItem');
                 },
 
                 onViewItemInline: function() {
@@ -56,7 +56,7 @@
                 },
 
                 onEditItem: function() {
-                    this.triggerActionRoute('edit');
+                    this.triggerActionRoute('editItem');
                 },
 
                 onEditItemInline: function() {
@@ -64,7 +64,7 @@
                 },
 
                 onDeleteItem: function() {
-                    this.triggerActionRoute('delete');
+                    this.triggerActionRoute('deleteItem');
                 },
 
                 onDeleteItemInline: function() {
@@ -73,15 +73,15 @@
                 },
 
                 onAddImageToItem: function() {
-                    this.triggerActionRoute('addImage');
+                    this.triggerActionRoute('addImageToItem');
                 },
 
                 onAddSignatureToItem: function() {
-                    this.triggerActionRoute('addSignature');
+                    this.triggerActionRoute('addSignatureToItem');
                 },
 
                 onAddNoteToItem: function() {
-                    this.triggerActionRoute('addNote');
+                    this.triggerActionRoute('addNoteToItem');
                 },
 
                 enableViewItem: function() {

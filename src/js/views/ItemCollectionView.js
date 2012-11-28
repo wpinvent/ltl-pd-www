@@ -11,7 +11,6 @@
         'underscore',
         'backbone',
         'marionette',
-        'js/app',
         'js/models/Node',
         'js/collections/NodeCollection',
         'marionetteAsync'
@@ -22,55 +21,55 @@
             _,
             Backbone,
             Marionette,
-            app,
             Node,
             NodeCollection
         ) {
 
-            console.log('Entering js/views/BoxView');
+            console.log('Entering js/views/ItemCollectionView');
 
-            var BoxView = Marionette.CollectionView.extend({
-
-                template: 'BoxView',
+            var ItemCollectionView = Marionette.CollectionView.extend({
 
                 initialize: function(options) {
-                    console.log("Entering BoxView initialize");
+                    console.log("Entering ItemCollectionView initialize");
                     _.bindAll(this);
 
-                    this.collection = new NodeCollection();
+                    this.app = options.app;
                     this.parentId = options.parentId;
-                    this.viewType = 'collection';
+                    this.viewType = 'itemCollection';
+                    this.itemViewType = 'itemCollectionItem';
+                    this.collection = new NodeCollection();
                 },
 
                 getItemView: function(item) {
-                    return app.viewFactory.getItemViewConstructor(this.viewType);
+                    return this.app.viewFactory.getViewConstructor({ viewType: this.itemViewType });
                 },
 
                 buildItemView: function(item, ItemViewType, itemViewOptions) {
-                    var type = item.get('type'),
-                        viewType = this.viewType;
+                    var options = {
+                        model: item,
+                        type: item.get('type'),
+                        viewType: this.itemViewType,
+                        View: ItemViewType
+                    };
 
-                    return app.viewFactory.createView(item, type, viewType, ItemViewType);
+                    _.extend(options, itemViewOptions);
+
+                    return this.app.viewFactory.createView(options);
                 },
 
                 onRender: function() {
-                    this.addDynamicControls();
                     this.loadData();
-                },
-
-                addDynamicControls: function() {
-                    console.log("Adding dynamic controls to " + this.parentId);
                 },
 
                 loadData: function() {
                     console.log("Getting child nodes for parent: " + this.parentId);
 
-                    app.native.getChildNodes(this.parentId)
-                        .done(this.onLoadDataSuccess)
-                        .fail(this.onLoadDataFailure);
+                    this.app.native.getChildNodes(this.parentId)
+                        .done(this.onLoadDataDone)
+                        .fail(this.onLoadDataFail);
                 },
 
-                onLoadDataSuccess: function(data) {
+                onLoadDataDone: function(data) {
                     var i,
                         length = data.length,
                         node;
@@ -83,13 +82,13 @@
                     }
                 },
 
-                onLoadDataFailure: function(error) {
+                onLoadDataFail: function(error) {
                     console.log("loadData failure:");
                     console.log(error);
                 }
             });
 
-            return BoxView;
+            return ItemCollectionView;
         }
     );
 
