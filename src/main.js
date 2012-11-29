@@ -64,6 +64,7 @@
         'underscore',
         'backbone',
         'marionette',
+        'js/utils/guard',
         'js/controllers/AppController',
         'js/routers/AppRouter',
         'js/utils/DesktopNative',
@@ -84,6 +85,7 @@
             _,
             Backbone,
             Marionette,
+            guard,
             AppController,
             AppRouter,
             DesktopNative,
@@ -101,7 +103,18 @@
                 /**
                  * Initializes the Marionette AppController
                  */
-            var initializeAppController = function() {
+            var initializeGuard = function() {
+                    var deferred = new $.Deferred();
+
+                    console.log("Initializing guard");
+                    app.guard = guard;
+                    app.guard.app = app;
+                    deferred.resolve();
+
+                    return deferred;
+                },
+
+                initializeAppController = function() {
                     var deferred = new $.Deferred();
 
                     console.log("Initializing AppController...");
@@ -317,6 +330,7 @@
                     // TODO: later tasks may be dependent on earlier tasks (e.g. initializeAppSchema depends on initializeNative).
                     // May need to split this initialize chained whens if things get processed out of order.
                     $.when(
+                        initializeGuard(),
                         initializeAppController(),
                         initializeAppRouter(),
                         initializeNative(),

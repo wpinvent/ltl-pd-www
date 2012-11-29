@@ -5,16 +5,14 @@
     /**
      * app - Returns the main Backbone.Marionette.Application instance
      */
-    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/utils/guard', 'marionetteAsync'],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'marionetteAsync'],
 
-        function($, _, Backbone, Marionette, guard) {
+        function($, _, Backbone, Marionette) {
             console.log("Entering js/app");
 
             var app = new Marionette.Application();
 
             app.root = 'login';
-
-            app.guard = guard;
 
             app.addRegions({
                 rootRegion: '#root'

@@ -1,14 +1,42 @@
 <div class="stop-collection-item-view">
 
     <div class="span3 span-content well">
-        <h1>{{ title }}</h1>
-        <strong>Name:</strong><p>{{ properties.name }}</p>
-        <strong>Address:</strong><p>{{ properties.address }}</p>
-        <strong>Phone:</strong><p>{{ properties.phone }}</p>
+        <h1>{{- title }}</h1>
+        <strong>Stop Field 1:</strong><p>{{- properties.stopField1 }}</p>
+        <strong>Stop Field 2:</strong><p>{{- properties.stopField2 }}</p>
+        <strong>Stop Field 3:</strong><p>{{- properties.stopField3 }}</p>
 
-        <a data-action="itemDetail" href="#itemDetail/{{ type }}/{{ id }}" class="btn btn-primary">Open</a>
-        <a data-action="itemEdit" href="#itemEdit/{{ type }}/{{ id }}" class="btn">Edit</a>
-        <a data-action="itemDelete" href="#itemDelete/{{ type }}/{{ id }}" class="btn btn-danger">Delete</a>
+        <strong>Contact 1</strong>
+        {{ if (obj.refs && obj.refs.contact1) { }}
+            <p>
+                {{- refs.contact1.type }} - {{- refs.contact1.id }}
+                <a class="btn" href="#itemDetail/{{- refs.contact2.type }}/{{- refs.contact2.id }}">Contact 1</a>
+            </p>
+        {{ } else { }}
+            <p>None</p>
+        {{ } }}
+
+        <strong>Contact 2</strong>
+        {{ if (obj.refs && obj.refs.contact2) { }}
+            <p>
+                {{- refs.contact2.type }} - {{- refs.contact2.id }}
+                <a class="btn" href="#itemDetail/{{- refs.contact2.type }}/{{- refs.contact2.id }}">Contact 2</a>
+            </p>
+        {{ } else { }}
+            <p>None</p>
+        {{ } }}
+
+        <strong>Children</strong>
+        {{ if (obj.children && obj.children.length > 0) { }}
+            {{ for (var i = 0; i < obj.children.length; ++i) { }}
+                <p>{{- obj.children[i] }}</p>
+            {{ } }}
+        {{ } }}
+
+
+        <a data-action="itemDetail" href="#itemDetail/{{- type }}/{{- id }}" class="btn btn-primary">Open</a>
+        <a data-action="itemEdit" href="#itemEdit/{{- type }}/{{- id }}" class="btn">Edit</a>
+        <a data-action="itemDelete" href="#itemDelete/{{- type }}/{{- id }}" class="btn btn-danger">Delete</a>
     </div>
 
 </div>

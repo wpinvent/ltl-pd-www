@@ -29,22 +29,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/data/appDescriptor.json" />
-        <option value="$PROJECT_DIR$/src/data/data.json" />
-        <option value="$PROJECT_DIR$/src/js/models/Node.js" />
-        <option value="$PROJECT_DIR$/src/js/models/Session.js" />
-        <option value="$PROJECT_DIR$/src/js/utils/DesktopNative.js" />
-        <option value="$PROJECT_DIR$/src/js/utils/guard.js" />
-        <option value="$PROJECT_DIR$/src/js/utils/marionetteConfig.js" />
         <option value="$PROJECT_DIR$/src/js/views/ItemCollectionView.js" />
         <option value="$PROJECT_DIR$/src/js/views/ViewFactory.js" />
         <option value="$PROJECT_DIR$/src/js/collections/NodeCollection.js" />
         <option value="$PROJECT_DIR$/src/js/controllers/AppController.js" />
         <option value="$PROJECT_DIR$/src/js/routers/AppRouter.js" />
         <option value="$PROJECT_DIR$/src/js/utils/CordovaNative.js" />
-        <option value="$PROJECT_DIR$/src/js/utils/underscoreConfig.js" />
         <option value="$PROJECT_DIR$/src/js/views/BoxesView.js" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/js/app.js" />
+        <option value="$PROJECT_DIR$/src/data/data2.json" />
+        <option value="$PROJECT_DIR$/src/js/utils/underscoreConfig.js" />
+        <option value="$PROJECT_DIR$/src/html/StopCollectionItemView.html" />
+        <option value="$PROJECT_DIR$/src/data/appDescriptor.json" />
         <option value="$PROJECT_DIR$/src/data/appSchema.json" />
+        <option value="$PROJECT_DIR$/src/data/data.json" />
+        <option value="$PROJECT_DIR$/src/data/appWorkflow.json" />
       </list>
     </option>
   </component>
@@ -102,7 +102,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -149,40 +148,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ltl-pd-www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ltl-pd-www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="Settings.JavaScript.Linters.JSLint" />
     <property name="recentsLimit" value="5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="options.lastSelected" value="Settings.JavaScript.Linters.JSLint" />
     <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -247,9 +229,8 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17200854" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30662394" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15181866" sideWeight="0.69337606" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13231418" sideWeight="0.69337606" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -258,6 +239,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30662394" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -316,114 +298,106 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/collections/NodeCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.38141027">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/controllers/AppController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="19" selection-end="19" vertical-scroll-proportion="0.02724359">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/routers/AppRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="63" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.95352566">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/AppEventAggregator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="328" selection-end="328" vertical-scroll-proportion="0.2724359">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/backboneConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="58" selection-start="335" selection-end="335" vertical-scroll-proportion="0.2996795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/CordovaNative.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="12" selection-start="555" selection-end="555" vertical-scroll-proportion="0.599359">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/DesktopNative.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="10" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.8173077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/utils/guard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.95352566">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/utils/jqueryConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="325" selection-end="325" vertical-scroll-proportion="0.40865386">
-          <folding />
-        </state>
+        <state line="15" column="13" selection-start="325" selection-end="325" vertical-scroll-proportion="0.40865386" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/utils/marionetteConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.38141027">
+        <state line="29" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.38141027" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/views/BoxesView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="44" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.95352566" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/views/AboutView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="324" column="24" selection-start="10946" selection-end="10946" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="398" selection-end="398" vertical-scroll-proportion="0.27991217">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/utils/underscoreConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="47" selection-start="309" selection-end="309" vertical-scroll-proportion="0.38141027">
+        <state line="21" column="39" selection-start="667" selection-end="667" vertical-scroll-proportion="0.39187706">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/views/BoxesView.js">
+    <entry file="file://$PROJECT_DIR$/src/html/LoginView.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="44" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.95352566">
+        <state line="11" column="49" selection-start="499" selection-end="499" vertical-scroll-proportion="0.21129943">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/views/AboutView.js">
+    <entry file="file://$PROJECT_DIR$/src/html/AboutView.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0">
+        <state line="19" column="23" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.37041286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/StopCollectionItemView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="-4.576923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/appSchema.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="5" selection-start="440" selection-end="440" vertical-scroll-proportion="0.43589744">
+        <state line="45" column="12" selection-start="834" selection-end="834" vertical-scroll-proportion="0.8397366">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/appDescriptor.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/appWorkflow.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="355" selection-end="355" vertical-scroll-proportion="0.35455543">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/data.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="9" selection-start="232" selection-end="232" vertical-scroll-proportion="0.2996795">
+        <state line="52" column="28" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.97036225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/data2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="31" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.29088914">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.010976949">
           <folding />
         </state>
       </provider>

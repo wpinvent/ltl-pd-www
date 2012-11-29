@@ -1,0 +1,20 @@
+{
+    "workflow": {
+
+        "views": {
+            "LoginView": {
+                "class": "LoginView",
+                "template": "LoginView",
+                "actions": {
+
+                }
+            },
+            "AboutView": {
+            },
+            "TransactionListView": {
+            }
+        },
+
+        "initialView": "LoginView"
+    }
+}

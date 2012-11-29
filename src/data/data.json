@@ -16,15 +16,68 @@
             "title": "Sent"
         },
         {
+            "type": "contact",
+            "id": "contact-001",
+            "title": "John Doe",
+            "properties": {
+                "contactId": "001",
+                "name": "John Doe",
+                "address": "123 Main St.",
+                "phone": "720-111-2222"
+            }
+        },
+        {
+            "type": "contact",
+            "id": "contact-002",
+            "title": "Jane Doe",
+            "properties": {
+                "contactId": "002",
+                "name": "Jane Doe",
+                "address": "456 Main St.",
+                "phone": "720-222-2222"
+            }
+        },
+        {
             "type": "stop",
             "id": "stop-12345",
             "parentType": "inbox",
             "parentId": "inbox",
             "title": "Stop 12345",
             "properties": {
-                "name": "Stop 12345",
-                "address": "123 Main St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 12345,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
+            },
+            "refs": {
+                "contact1": {
+                    "type": "contact",
+                    "id": "contact-001"
+                },
+                "contact2": {
+                    "type": "contact",
+                    "id": "contact-002"
+                }
+            }
+        },
+        {
+            "type": "instruction",
+            "id": "stop-12345-instruction-1",
+            "parentType": "stop",
+            "parentId": "stop-12345",
+            "title": "Order #: 4449263",
+            "properties": {
+                "instruction": "Please ring bell three times if dock is closed"
+            }
+        },
+        {
+            "type": "instruction",
+            "id": "stop-12345-instruction-2",
+            "parentType": "stop",
+            "parentId": "stop-12345",
+            "title": "Order #: 4449263",
+            "properties": {
+                "instruction": "Wipe shoes before entering mezzanine level.  Customer has complained of shoe prints in past."
             }
         },
         {
@@ -36,7 +89,7 @@
             "properties": {
                 "pickupId": "11111",
                 "pickupField1": "Pickup Field 1",
-                "pickupField1": "Pickup Field 2"
+                "pickupField2": "Pickup Field 2"
             }
         },
         {
@@ -75,9 +128,10 @@
             "parentId": "inbox",
             "title": "Stop 22222",
             "properties": {
-                "name": "Stop 22222",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 22222,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -87,9 +141,10 @@
             "parentId": "inbox",
             "title": "Stop 33333",
             "properties": {
-                "name": "Stop 33333",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 33333,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -99,9 +154,10 @@
             "parentId": "inbox",
             "title": "Stop 44444",
             "properties": {
-                "name": "Stop 44444",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 44444,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -111,9 +167,10 @@
             "parentId": "inbox",
             "title": "Stop 55555",
             "properties": {
-                "name": "Stop 55555",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 55555,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -123,9 +180,10 @@
             "parentId": "inbox",
             "title": "Stop 66666",
             "properties": {
-                "name": "Stop 66666",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 66666,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -135,9 +193,10 @@
             "parentId": "inbox",
             "title": "Stop 77777",
             "properties": {
-                "name": "Stop 77777",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 77777,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -147,9 +206,10 @@
             "parentId": "inbox",
             "title": "Stop 88888",
             "properties": {
-                "name": "Stop 88888",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 88888,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         },
         {
@@ -159,9 +219,10 @@
             "parentId": "inbox",
             "title": "Stop 99999",
             "properties": {
-                "name": "Stop 99999",
-                "address": "456 2nd St., Denver, CO 80111",
-                "phone": "303-555-1234"
+                "stopId": 99999,
+                "stopField1": "field 1",
+                "stopField2": "field 2",
+                "stopField3": "field 3"
             }
         }
     ],

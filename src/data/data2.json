@@ -1,0 +1,84 @@
+{
+    "inserts": [
+        {
+            "type": "location",
+            "id": "location-org1-10000",
+            "title": "Location 10000 (ORG1)",
+            "properties": {
+                "locationId": "10000",
+                "orgId": "ORG1",
+                "description": "Test Location 10000"
+            }
+        },
+        {
+            "type": "equipment",
+            "id": "equipment-org1-10000",
+            "title": "Equipment 10000 (ORG1)",
+            "properties": {
+                "equipmentId": "10000",
+                "orgId": "ORG1",
+                "equipmentTypeId": "A",
+                "description": "Test Equipment 10000"
+            },
+            "refs": {
+                "location": {
+                    "type": "location",
+                    "id": "location-org1-10000"
+                }
+            }
+        },
+        {
+            "type": "employee",
+            "id": "employee-00001",
+            "title": "Joe Manager",
+            "properties": {
+                "tradeId": "MGR",
+                "salary": 90000
+            }
+        },
+        {
+            "type": "employee",
+            "id": "employee-00002",
+            "title": "Joe Blow",
+            "properties": {
+                "tradeId": "MECH",
+                "salary": 50000
+            }
+        },
+        {
+            "type": "workOrder",
+            "id": "work-order-10001",
+            "parentType": "inbox",
+            "parentId": "inbox",
+            "properties": {
+                "workOrderId": "10001",
+                "orgId": "ORG1",
+                "classId": "TESTCLASS",
+                "description": "Test WO 1",
+                "scheduledStartDate": "2012-01-01",
+                "statusId": "R",
+                "statusDescription": "Released"
+            },
+            "refs": {
+                "reportedByEmployee": {
+                    "type": "employee",
+                    "id": "employee-00001"
+                },
+                "assignedToEmployee": {
+                    "type": "employee",
+                    "id": "employee-00002"
+                },
+                "equipment": {
+                    "type": "equipment",
+                    "id": "equipment-org1-10000"
+                }
+            }
+        }
+    ],
+
+    "updates": [
+    ],
+
+    "deletes": [
+    ]
+}

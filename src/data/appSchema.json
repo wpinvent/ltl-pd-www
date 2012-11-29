@@ -5,13 +5,15 @@
         "parentType",
         "parentId",
         "title",
-        "properties"
+        "properties",
+        "refs"
     ],
 
-    "typeDefaults": {
+    "nodeDefaults": {
         "description": "No Description",
         "properties": { },
-        "childTypes": []
+        "refs": { },
+        "children": []
     },
 
     "propertyDataTypes": [
@@ -33,24 +35,25 @@
         "maxLength": 0,
         "minValue": 0,
         "maxValue": 0,
-        "values": []
+        "values": [],
+        "values-ref": {}
     },
 
     "types": {
         "inbox": {
-            "childTypes": [
+            "children": [
                 "stop"
             ]
         },
 
         "outbox": {
-            "childTypes": [
+            "children": [
                 "transaction"
             ]
         },
 
         "sentbox": {
-            "childTypes": [
+            "children": [
                 "transaction"
             ]
         },
@@ -90,7 +93,7 @@
                 }
             },
 
-            "childTypes": [
+            "children": [
                 "pickup",
                 "delivery",
                 "image",
@@ -111,7 +114,7 @@
                 }
             },
 
-            "childTypes": [
+            "children": [
                 "order",
                 "image",
                 "signature",
@@ -132,7 +135,7 @@
                 }
             },
 
-            "childTypes": [
+            "children": [
                 "order",
                 "image",
                 "signature",
@@ -181,7 +184,7 @@
                 }
             },
 
-            "childTypes": [
+            "children": [
                 "orderLine",
                 "image",
                 "signature",
