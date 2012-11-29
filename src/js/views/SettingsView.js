@@ -7,6 +7,11 @@
 
             var SettingsView = Marionette.ItemView.extend({
 
+                viewName: 'SettingsView',
+
+                initialize: function(options) {
+
+                }
             });
 
             return SettingsView;

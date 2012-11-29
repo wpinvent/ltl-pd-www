@@ -79,20 +79,10 @@
                  */
                 self.getViewConstructor = function(options) {
                     var viewTypes = _.keys(self.viewTypeToViewConstructorMap),
-                        viewType = options.viewType,
-                        error;
+                        viewType = options.viewType;
 
-                    if (!viewType) {
-                        error = new Error('View type is required.');
-                        error.Name = "MissingViewTypeError";
-                        throw error;
-                    }
-
-                    if (!_.contains(viewTypes, viewType)) {
-                        error = new Error('Invalid view type: ' + viewType);
-                        error.Name = "InvalidViewTypeError";
-                        throw error;
-                    }
+                    self.app.guard.isNotNullOrUndefined(viewType, 'viewType', 'ViewFactory getViewConstructor');
+                    self.app.guard.collectionContains(viewTypes, viewType, 'viewTypes', 'viewType', 'ViewFactory getViewConstructor');
 
                     return self.viewTypeToViewConstructorMap[viewType];
                 };
@@ -111,9 +101,7 @@
                         return self.viewTypeToViewTemplateMap[viewType];
                     }
 
-                    error = new Error('Unable to determine template.');
-                    error.Name = "UnknownTemplateError";
-                    throw error;
+                    self.app.guard.throwError('UnknownTemplateError', 'Unable to determine template.', 'ViewFactory getViewTemplate');
                 };
 
                 /**
@@ -123,13 +111,19 @@
                  */
                 self.createView = function(options) {
                     var View = options.View || self.getViewConstructor(options),
-                        template = options.template || self.getViewTemplate(options);
+                        template = options.template || self.getViewTemplate(options),
+                        view;
 
                     options.View = View;
                     options.template = template;
                     options.app = self.app;
 
-                    return new View(options);
+                    view = new View(options);
+
+                    console.log("Created view: ", view.viewName || "viewName not set");
+                    console.log(options);
+
+                    return view;
                 };
             };
 

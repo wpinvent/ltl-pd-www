@@ -10,9 +10,12 @@
             console.log('Entering js/utils/underscoreConfig');
 
             var underscoreConfig = {
-
                 initialize: function(app) {
-                    // Change global Underscore stuff here...
+
+                    // Use {{ }} style templates rather than the <%= %> style
+                    _.templateSettings = {
+                        interpolate: /\{\{(.+?)\}\}/g
+                    };
                 }
             };
 

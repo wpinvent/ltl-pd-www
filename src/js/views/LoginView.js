@@ -13,7 +13,7 @@
 
             var LoginView = Marionette.ItemView.extend({
 
-                template: 'LoginView',
+                viewName: 'LoginView',
 
                 ui: {
                     $userNameInput: '#userName',
@@ -39,16 +39,16 @@
                     app.native.login(
                         this.model.get('userName'),
                         this.model.get('password'))
-                        .done(this.onLoginSuccess)
-                        .fail(this.onLoginFailure);
+                        .done(this.onLoginDone)
+                        .fail(this.onLoginFail);
                 },
 
-                onLoginSuccess: function() {
+                onLoginDone: function() {
                     app.session = this.model;
                     app.router.triggerRoute(this.nextUrl);
                 },
 
-                onLoginFailure: function(error) {
+                onLoginFail: function(error) {
                     alert("Login error!");
                 }
             });

@@ -23,30 +23,22 @@
                      * file in native-land.
                      */
                     Marionette.TemplateCache.prototype.loadTemplate = function(templateId, callback) {
-
                         var self = this;
 
-                        console.log("Getting template named: ");
-                        console.log(templateId);
+                        console.log("Marionette.TemplateCache (override): loadTemplate: ", templateId);
+                        self.templateId = templateId;
 
                         app.native.loadTemplate(templateId)
                             .done(function(template) {
-                                if (!template || template.length === 0){
-                                    var msg = "Invalid/empty template: '" + templateId + "'";
-                                    var err = new Error(msg);
-                                    err.name = "EmptyTemplateError";
-                                    throw err;
-                                }
-                          
+                                app.guard.isNotEmptyString(template, 'template', 'Marionette.TemplateCache.loadTemplate');
+
                                 template = self.compileTemplate(template);
-                          
+
                                 callback.call(self, template);
                             })
                             .fail(function(error) {
-                                var msg = "Could not find template: '" + templateId + "' - " + error;
-                                var err = new Error(msg);
-                                err.name = "NoTemplateError";
-                                throw err;
+                                console.log(error);
+                                app.guard.throwError('TemplateRetrievalError', 'Failed to retrieve template: ' + self.templateId, 'Marionette.TemplateCache.loadTemplate');
                             });
 
                     };

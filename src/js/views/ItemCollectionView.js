@@ -4,51 +4,49 @@
     'use strict';
 
     /**
-     * Returns a contructor function for the BoxView
+     * ItemCollectionView
+     * Constructor Function
+     * Displays a raw list of items, with no header/footer/etc.
      */
-    define([
-        'jquery',
-        'underscore',
-        'backbone',
-        'marionette',
-        'js/models/Node',
-        'js/collections/NodeCollection',
-        'marionetteAsync'
-        ],
+    define(['jquery', 'underscore', 'backbone', 'marionette', 'js/models/Node', 'js/collections/NodeCollection', 'marionetteAsync'],
 
-        function(
-            $,
-            _,
-            Backbone,
-            Marionette,
-            Node,
-            NodeCollection
-        ) {
+        function( $, _, Backbone, Marionette, Node, NodeCollection ) {
 
             console.log('Entering js/views/ItemCollectionView');
 
             var ItemCollectionView = Marionette.CollectionView.extend({
+
+                viewName: 'ItemCollectionView',
+
+                itemViewOptions: {
+                    viewType: 'itemCollectionItem'
+                },
 
                 initialize: function(options) {
                     console.log("Entering ItemCollectionView initialize");
                     _.bindAll(this);
 
                     this.app = options.app;
+                    this.app.guard.isNotNullOrUndefined(options.parentType, 'options.parentType', 'ItemCollectionView initialize');
+                    this.app.guard.isNotNullOrUndefined(options.parentId, 'options.parentId', 'ItemCollectionView initialize');
+                    this.app.guard.isNotNullOrUndefined(options.viewType, 'options.viewType', 'ItemCollectionView initialize');
+
+                    this.parentType = options.parentType;
                     this.parentId = options.parentId;
-                    this.viewType = 'itemCollection';
-                    this.itemViewType = 'itemCollectionItem';
+                    this.viewType = options.viewType;
                     this.collection = new NodeCollection();
                 },
 
                 getItemView: function(item) {
-                    return this.app.viewFactory.getViewConstructor({ viewType: this.itemViewType });
+                    return this.app.viewFactory.getViewConstructor({
+                        viewType: this.itemViewOptions.viewType
+                    });
                 },
 
                 buildItemView: function(item, ItemViewType, itemViewOptions) {
                     var options = {
                         model: item,
                         type: item.get('type'),
-                        viewType: this.itemViewType,
                         View: ItemViewType
                     };
 
@@ -64,7 +62,7 @@
                 loadData: function() {
                     console.log("Getting child nodes for parent: " + this.parentId);
 
-                    this.app.native.getChildNodes(this.parentId)
+                    this.app.native.getChildNodes(this.parentType, this.parentId)
                         .done(this.onLoadDataDone)
                         .fail(this.onLoadDataFail);
                 },
@@ -91,5 +89,4 @@
             return ItemCollectionView;
         }
     );
-
 }());

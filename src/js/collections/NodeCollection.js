@@ -16,7 +16,6 @@
                 model: Node,
 
                 initialize: function() {
-                    console.log("Entering NodeCollection initialize");
                 }
             });
 

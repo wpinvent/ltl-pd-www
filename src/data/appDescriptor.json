@@ -5,58 +5,23 @@
         },
 
         "stop": {
+            "itemCollection": {
+                "templateName": "StopCollectionView"
+            },
             "itemCollectionItem": {
-                "templateName": "StopCollectionItemView",
-                "actions": [
-                    "viewItem",
-                    "viewItemInline",
-                    "addItem",
-                    "addItemInline",
-                    "editItem",
-                    "editItemInline",
-                    "deleteItem",
-                    "deleteItemInline",
-                    "addImageToItem",
-                    "addSignatureToItem",
-                    "addNoteToItem"
-                ]
+                "templateName": "StopCollectionItemView"
             },
-
             "itemDetail": {
-                "templateName": "StopDetailView",
-                "actions": [
-                    "editItem",
-                    "deleteItem",
-                    "addImageToItem",
-                    "addSignatureToItem",
-                    "addNoteToItem",
-                    "viewChildren",
-                    "viewChildrenInline"
-                ]
+                "templateName": "StopDetailView"
             },
-
             "itemEdit": {
-                "templateName": "StopEditView",
-                "actions": [
-                    "saveItem",
-                    "cancel"
-                ]
+                "templateName": "StopEditView"
             },
-
             "itemAdd": {
-                "templateName": "StopAddView",
-                "actions": [
-                    "saveItem",
-                    "cancel"
-                ]
+                "templateName": "StopAddView"
             },
-
             "itemDelete": {
-                "templateName": "StopDeleteView",
-                "actions": [
-                    "deleteItem",
-                    "cancel"
-                ]
+                "templateName": "StopDeleteView"
             }
         },
 

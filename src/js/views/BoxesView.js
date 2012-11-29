@@ -13,6 +13,8 @@
 
             var BoxesView = Marionette.Layout.extend({
 
+                viewName: 'BoxesView',
+
                 regions: {
                     inbox: '#inbox',
                     outbox: '#outbox',
@@ -29,18 +31,21 @@
                 onRender: function() {
                     this.inbox.show(
                         this.app.viewFactory.createView({
+                            parentType: 'inbox',
                             parentId: 'inbox',
                             viewType: 'itemCollection'
                         }));
 
                     this.outbox.show(
                         this.app.viewFactory.createView({
+                            parentType: 'outbox',
                             parentId: 'outbox',
                             viewType: 'itemCollection'
                         }));
 
                     this.sentbox.show(
                         this.app.viewFactory.createView({
+                            parentType: 'sentbox',
                             parentId: 'sentbox',
                             viewType: 'itemCollection'
                         }));

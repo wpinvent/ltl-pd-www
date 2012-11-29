@@ -13,7 +13,7 @@
                 },
 
                 isLoggedIn: function() {
-                    return typeof this.userName !== 'undefined';
+                    return this.userName !== undefined;
                 }
             });
 

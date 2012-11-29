@@ -13,6 +13,8 @@
 
             var AboutView = Marionette.ItemView.extend({
 
+                viewName: 'AboutView',
+
                 initialize: function() {
                     _.bindAll(this);
                 }

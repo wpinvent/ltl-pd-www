@@ -29,17 +29,18 @@
                  * Mapping of URL routes to controller functions
                  */
                 appRoutes: {
-                    '': 'index',
-                    'login': 'login',
-                    'about': 'about',
-                    'boxes': 'boxes',
-                    'viewItem/:type/:id': 'viewItem',
-                    'editItem/:type/:nodeType/:id': 'editItem',
-                    'deleteItem/:type/:nodeType/:id': 'deleteItem',
-                    'addImageToItem/:type/:nodeType/:id': 'addImageToItem',
-                    'addSignatureToItem/:type/:nodeType/:id': 'addSignatureToItem',
-                    'addNoteToItem/:type/:nodeType/:id': 'addNoteToItem',
-                    '*other': 'other'
+                    ''                                          : 'index',
+                    'login'                                     : 'login',
+                    'about'                                     : 'about',
+                    'boxes'                                     : 'boxes',
+                    'itemDetail/:type/:id'                      : 'itemDetail',
+                    'itemEdit/:type/:id'                        : 'itemEdit',
+                    'itemDelete/:type/:id'                      : 'itemDelete',
+                    'itemAdd/:parentType/:parentId/:itemType'   : 'itemAdd',
+                    'itemAddImage/:type/:id'                    : 'itemAddImage',
+                    'itemAddSignature/:type/:id'                : 'itemAddSignature',
+                    'itemAddNote/:type/:id'                     : 'itemAddNote',
+                    '*other'                                    : 'other'
                 },
 
                 /**

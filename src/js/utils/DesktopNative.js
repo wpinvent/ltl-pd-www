@@ -98,13 +98,13 @@
                 /**
                  * Get node by id (returns a promise)
                  */
-                self.getNode = function(id) {
+                self.getNode = function(type, id) {
                     var gettingNode = new $.Deferred();
 
                     self.getJSON('data/data.json')
                         .done(function(data) {
                             var inserts = data.inserts,
-                                nodes = _.where(inserts, { "id": id }),
+                                nodes = _.where(inserts, { "type": type, "id": id }),
                                 node = _.first(nodes);
 
                             gettingNode.resolve(node);
@@ -119,13 +119,13 @@
                 /**
                  * Get child nodes by parentId (returns a promise)
                  */
-                self.getChildNodes = function(parentId) {
+                self.getChildNodes = function(parentType, parentId) {
                     var gettingChildNodes = new $.Deferred();
 
                     self.getJSON('data/data.json')
                         .done(function(data) {
                             var inserts = data.inserts,
-                                nodes = _.where(inserts, { "parentId": parentId });
+                                nodes = _.where(inserts, { "parentType": parentType, "parentId": parentId });
 
                             gettingChildNodes.resolve(nodes);
                         })

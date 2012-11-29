@@ -1,5 +1,4 @@
 /*global define*/
-
 (function() {
     'use strict';
 
@@ -15,17 +14,15 @@
             var Node = Backbone.Model.extend({
 
                 defaults: {
-                    nodeType: 'none',
-                    type: 'none',
+                    type: null,
+                    id: null,
+                    parentType: null,
                     parentId: null,
-                    id: '',
                     title: '',
-                    properties: {
-                    }
+                    properties: { }
                 },
 
-                initialize: function() {
-                    console.log("Entering Node initialize");
+                initialize: function(options) {
                 }
             });
 

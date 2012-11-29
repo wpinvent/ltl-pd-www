@@ -7,6 +7,11 @@
 
             var ItemAddView = Marionette.ItemView.extend({
 
+                viewName: 'ItemAddView',
+
+                initialize: function(options) {
+                    _.bindAll(this);
+                }
             });
 
             return ItemAddView;

@@ -1,28 +1,25 @@
 {
     "inserts": [
         {
-            "nodeType": "collection",
-            "type": "stop",
+            "type": "inbox",
             "id": "inbox",
             "title": "Inbox"
         },
         {
-            "nodeType": "collection",
-            "type": "transaction",
+            "type": "outbox",
             "id": "outbox",
             "title": "Outbox"
         },
         {
-            "nodeType": "collection",
-            "type": "transaction",
+            "type": "sentbox",
             "id": "sentbox",
             "title": "Sent"
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-12345",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 12345",
             "properties": {
                 "name": "Stop 12345",
@@ -31,10 +28,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "pickup",
-            "parentId": "stop-12345",
             "id": "stop-12345-pickup-11111",
+            "parentType": "stop",
+            "parentId": "stop-12345",
             "title": "Pickup 11111",
             "properties": {
                 "pickupId": "11111",
@@ -43,11 +40,11 @@
             }
         },
         {
-            "nodeType": "item",         
-            "type": "order",            
-            "parentId": "stop-12345-pickup-11111",   
-            "id": "stop-12345-pickup-11111-order-001",     
-            "title": "Order 001",       
+            "type": "order",
+            "id": "stop-12345-pickup-11111-order-001",
+            "parentType": "stop",
+            "parentId": "stop-12345-pickup-11111",
+            "title": "Order 001",
             "properties": { 
                 "orderId": "001",
                 "orderField1": "Field 1",
@@ -57,11 +54,11 @@
             }
         },
         {
-            "nodeType": "item",         
-            "type": "order-line",            
-            "parentId": "order-0001",   
-            "id": "stop-12345-pickup-11111-order-001-line-1",     
-            "title": "Order 001 Line 1",       
+            "type": "order-line",
+            "id": "stop-12345-pickup-11111-order-001-line-1",
+            "parentType": "order",
+            "parentId": "order-0001",
+            "title": "Order 001 Line 1",
             "properties": { 
                 "orderId": "001",
                 "line": 1,
@@ -72,10 +69,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-22222",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 22222",
             "properties": {
                 "name": "Stop 22222",
@@ -84,10 +81,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-33333",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 33333",
             "properties": {
                 "name": "Stop 33333",
@@ -96,10 +93,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-44444",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 44444",
             "properties": {
                 "name": "Stop 44444",
@@ -108,10 +105,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-55555",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 55555",
             "properties": {
                 "name": "Stop 55555",
@@ -120,10 +117,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-66666",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 66666",
             "properties": {
                 "name": "Stop 66666",
@@ -132,10 +129,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-77777",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 77777",
             "properties": {
                 "name": "Stop 77777",
@@ -144,10 +141,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-88888",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 88888",
             "properties": {
                 "name": "Stop 88888",
@@ -156,10 +153,10 @@
             }
         },
         {
-            "nodeType": "item",
             "type": "stop",
-            "parentId": "inbox",
             "id": "stop-99999",
+            "parentType": "inbox",
+            "parentId": "inbox",
             "title": "Stop 99999",
             "properties": {
                 "name": "Stop 99999",
