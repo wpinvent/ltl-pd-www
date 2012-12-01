@@ -1,0 +1,21 @@
+{
+  "name": "ltl-pd-www",
+  "version": "0.0.0",
+  "description": "Less-than-Truckload Pickup and Delivery Web App",
+  "main": "src/main.js",
+  "dependencies": {
+    "grunt": "~0.3.17",
+    "weinre": "~2.0.0-pre-H9PU2WST-incubating"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:andywhite37/ltl-pd-www.git"
+  },
+  "author": "Blue Dot Solutions",
+  "license": "None",
+  "readmeFilename": "README.md"
+}
