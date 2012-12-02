@@ -23,7 +23,8 @@ module.exports = function(grunt) {
             main: 'src/main.js',
             js: 'src/js/**/*.js',
             //lib: 'src/lib/**/*.js',
-            test: 'test/**/*.js'
+            test: 'test/test.js',
+            testjs: 'test/js/**/*.js'
         },
 
         // List of files to test with QUnit
