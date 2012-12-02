@@ -1,5 +1,6 @@
 # Ant build script generated files
 intermediate/
 publish/
+dist/
 .sass-cache/
 css/style.css

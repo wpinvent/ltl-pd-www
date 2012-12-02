@@ -4,11 +4,14 @@ module.exports = function(grunt) {
     'use strict';
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     grunt.initConfig({
 
+        // Package info, used by some tasks
         pkg: '<json:package.json>',
 
+        // Project metadata, used by some tasks
         meta: {
             banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -17,6 +20,7 @@ module.exports = function(grunt) {
                 ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
         },
 
+        // List of files to lint with JSHint
         lint: {
             grunt: 'grunt.js',
             main: 'src/main.js',
@@ -25,10 +29,23 @@ module.exports = function(grunt) {
             test: 'test/**/*.js'
         },
 
+        // List of files to test with QUnit
         qunit: {
             files: ['test/**/*.html']
         },
 
+        // List of files to be concatenated
+        // This is N/A since we are using the Require r.js optimizer
+        concat: {
+        },
+
+        // List of files to be minified with Uglify.js
+        // This is N/A since we are using the Require r.js optimizer
+        min: {
+        }
+
+        // Require r.js optimizer settings
+        // Note: paths must be copied in from main.js for some reason
         requirejs: {
             compile: {
                 options: {
@@ -72,13 +89,19 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
 
+        // Configuration options for the server task
+        server: {
+        },
+
+        // Configuration options for the watch task
         watch: {
             files: '<config:lint.files>',
             tasks: 'lint qunit'
         },
 
+        // Global jshint options
         jshint: {
             options: {
                 // See: http://www.jshint.com/docs/

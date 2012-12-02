@@ -5,7 +5,9 @@
   "main": "src/main.js",
   "dependencies": {
     "grunt": "~0.3.17",
-    "weinre": "~2.0.0-pre-H9PU2WST-incubating"
+    "weinre": "~2.0.0-pre-H9PU2WST-incubating",
+    "grunt-contrib-requirejs": "~0.3.3",
+    "grunt-contrib-sass": "~0.2.1"
   },
   "devDependencies": {},
   "scripts": {
