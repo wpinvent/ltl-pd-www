@@ -9,7 +9,8 @@
     "grunt-contrib-requirejs": "~0.3.3",
     "grunt-contrib-sass": "~0.2.1",
     "grunt-contrib-less": "~0.3.2",
-    "grunt-contrib-clean": "~0.4.0a"
+    "grunt-contrib-clean": "~0.4.0a",
+    "grunt-rm": "0.0.3"
   },
   "devDependencies": {},
   "scripts": {
