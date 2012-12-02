@@ -6,28 +6,28 @@
 /* Colors */
 /*****************************************************************************/
 
-$white: white;
+@white: white;
 
-$lightGray: whiteSmoke;
-$gray: #a0a0a0;
-$darkGray: #404040;
+@lightGray: whiteSmoke;
+@gray: #a0a0a0;
+@darkGray: #404040;
 
-$lightBlue: #08c;
-$blue: #04c;
-$darkBlue: #002A80;
+@lightBlue: #08c;
+@blue: #04c;
+@darkBlue: #002A80;
 
 /*****************************************************************************/
 /* Mixins */
 /*****************************************************************************/
 
-@mixin borderRadius($val) {
-    border-radius: $val;
-    -webkit-border-radius: $val;
+.borderRadius(@radius: 5px) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
 }
 
-@mixin boxSizing($val) {
-    box-sizing: $val;
-    -webkit-box-sizing: $val;
+.boxSizing(@sizing: border-box) {
+    box-sizing: @sizing;
+    -webkit-box-sizing: @sizing;
 }
 
 /*****************************************************************************/
@@ -35,25 +35,25 @@ $darkBlue: #002A80;
 /*****************************************************************************/
 
 body {
-    background-color: $lightGray;
+    background-color: @lightGray;
 }
 
 #root {
 
     .span-content {
-        background-color: $white;
-        @include borderRadius(5px);
+        background-color: @white;
+        .borderRadius(5px);
 
         input {
             width: 100%;
             height: 3em;
-            @include boxSizing(border-box);
+            .boxSizing(border-box);
         }
     }
 }
 
 #loading {
-    background-color: $white;
+    background-color: @white;
     margin: 10%;
 
     h2, p {

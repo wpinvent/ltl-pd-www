@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     'use strict';
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     grunt.initConfig({
 
@@ -42,7 +42,20 @@ module.exports = function(grunt) {
         // List of files to be minified with Uglify.js
         // This is N/A since we are using the Require r.js optimizer
         min: {
-        }
+        },
+
+        // Less CSS compiler configuration
+        less: {
+            dist: {
+                options: {
+                    paths: ['src/css']
+                    //,yuicompress: true
+                },
+                files: {
+                    "src/css/style.css": "src/css/style.less"
+                }
+            }
+        },
 
         // Require r.js optimizer settings
         // Note: paths must be copied in from main.js for some reason
@@ -187,5 +200,5 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask('default', 'lint qunit requirejs');
+    grunt.registerTask('default', 'less lint qunit requirejs');
 };
