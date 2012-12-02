@@ -3,11 +3,6 @@
 module.exports = function(grunt) {
     'use strict';
 
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
-    //grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-rm');
-
     grunt.initConfig({
 
         // Package info, used by some tasks
@@ -246,6 +241,10 @@ module.exports = function(grunt) {
         }
     });
 
-    // Default task.
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    //grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-rm');
+
     grunt.registerTask('default', 'less lint qunit requirejs rm:dist');
 };
